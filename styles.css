@@ -1,0 +1,413 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "Space Grotesk", sans-serif;
+
+  background-image:
+    radial-gradient(
+      circle at top left,
+      rgba(255, 122, 0, 0.15),
+      transparent 35%
+    ),
+    url(./assets/desktop-images/background1.png);
+
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+
+  background-color: #0a1012;
+
+  min-height: 100vh;
+
+  overflow: hidden;
+
+  color: white;
+}
+
+.os-desktop {
+  position: relative;
+
+  width: 100%;
+  height: 100vh;
+
+  overflow: hidden;
+}
+
+.label {
+  position: absolute;
+  top: 50px;
+  left: 20px;
+  font-size: 24px;
+  color: #fff;
+  background-color: rgba(0, 0, 0, 0.5);
+  padding: 10px 20px;
+  border-radius: 5px;
+}
+
+.task-bar {
+  position: fixed;
+
+  bottom: 20px;
+  left: 50%;
+
+  transform: translateX(-50%);
+
+  width: fit-content;
+
+  display: flex;
+  align-items: center;
+  gap: 12px;
+
+  padding: 14px 18px;
+
+  border-radius: 1000px;
+
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
+
+  background: rgba(15, 15, 15, 0.45);
+
+  border: 1px solid rgba(255, 255, 255, 0.08);
+
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+
+  z-index: 999;
+}
+/* .task-bar .start-button {
+  background-color: transparent;
+  border: none;
+  color: #fff;
+  font-size: 18px;
+  margin-right: 20px;
+  cursor: pointer;
+} */
+.start-menu {
+  position: fixed;
+
+  bottom: 150px;
+  left: 740px;
+  transform: translateX(-50%);
+
+  width: 440px;
+  height: 540px;
+
+  padding: 20px;
+
+  border-radius: 32px;
+
+  backdrop-filter: blur(40px);
+  -webkit-backdrop-filter: blur(40px);
+
+  background: rgba(15, 15, 15, 0.55);
+
+  border: 1px solid rgba(255, 255, 255, 0.08);
+
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.4);
+
+  overflow: hidden;
+
+  z-index: 998;
+
+  /* HIDDEN STATE */
+
+  opacity: 0;
+
+  visibility: hidden;
+
+  transform: translateY(40px) scale(0.95);
+
+  transform-origin: bottom left;
+
+  transition:
+    opacity 0.35s ease,
+    transform 0.35s ease,
+    visibility 0.35s ease;
+}
+.start-pop-up {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+}
+
+.start-menu-logo {
+  width: 10%;
+  height: auto;
+}
+.start-menu-text {
+  font-size: 26px;
+  color: #fff;
+}
+.start-menu.active {
+  opacity: 1;
+
+  visibility: visible;
+
+  transform: translateY(0) scale(1);
+}
+
+.start-button {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+
+  padding: 12px 18px;
+
+  border-radius: 1000px;
+
+  background: rgba(255, 255, 255, 0.05);
+
+  border: 1px solid rgba(255, 255, 255, 0.08);
+
+  cursor: pointer;
+
+  transition: 0.3s ease;
+}
+
+.start-button:hover {
+  background: rgba(255, 122, 0, 0.12);
+
+  border-color: rgba(255, 122, 0, 0.25);
+}
+.start-button img {
+  width: 40px;
+  height: 40px;
+  object-fit: contain;
+}
+/* --------------------Start Menu Pinned Apps ----------------- */
+/* ======================================== */
+/* PINNED SECTION */
+/* ======================================== */
+
+.pinned-section {
+  margin-top: 30px;
+}
+
+.section-title {
+  margin-bottom: 18px;
+}
+
+.section-title p {
+  font-size: 14px;
+  color: rgba(255, 255, 255, 0.7);
+
+  letter-spacing: 0.08em;
+}
+
+/* ======================================== */
+/* PINNED GRID */
+/* ======================================== */
+
+.pinned-grid {
+  display: grid;
+
+  grid-template-columns: repeat(4, 1fr);
+
+  gap: 14px;
+}
+
+/* ======================================== */
+/* PINNED APP */
+/* ======================================== */
+
+.pinned-app {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+
+  padding: 16px 12px;
+
+  border-radius: 22px;
+
+  background: rgba(255, 255, 255, 0.04);
+
+  border: 1px solid rgba(255, 255, 255, 0.06);
+
+  cursor: pointer;
+
+  transition: 0.3s ease;
+}
+
+.pinned-app:hover {
+  transform: translateY(-4px);
+
+  background: rgba(255, 122, 0, 0.08);
+
+  border-color: rgba(255, 122, 0, 0.22);
+}
+
+/* ======================================== */
+/* ICON */
+/* ======================================== */
+
+.pinned-app img {
+  width: 42px;
+  height: 42px;
+
+  object-fit: contain;
+}
+
+/* ======================================== */
+/* LABEL */
+/* ======================================== */
+
+.pinned-app span {
+  font-size: 13px;
+
+  color: rgba(255, 255, 255, 0.85);
+}
+
+/* --------------------Start Menu Taskbar Apps ----------------- *
+/* ======================================== */
+/* TASKBAR APPS */
+/* ======================================== */
+
+.taskbar-apps {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+/* ======================================== */
+/* TASKBAR ICON */
+/* ======================================== */
+
+.taskbar-icon {
+  width: 52px;
+  height: 52px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  border-radius: 18px;
+
+  background: rgba(255, 255, 255, 0.04);
+
+  border: 1px solid rgba(255, 255, 255, 0.06);
+
+  cursor: pointer;
+
+  transition:
+    transform 0.3s ease,
+    background 0.3s ease,
+    border-color 0.3s ease;
+}
+
+/* HOVER */
+
+.taskbar-icon:hover {
+  transform: translateY(-6px);
+
+  background: rgba(255, 122, 0, 0.12);
+
+  border-color: rgba(255, 122, 0, 0.25);
+}
+
+/* ICON */
+
+.taskbar-icon img {
+  width: 24px;
+  height: 24px;
+
+  object-fit: contain;
+}
+
+/* ACTIVE APP */
+
+.active-taskbar-app {
+  position: relative;
+
+  background: rgba(255, 122, 0, 0.12);
+
+  border-color: rgba(255, 122, 0, 0.25);
+}
+
+/* ACTIVE DOT */
+
+.active-taskbar-app::after {
+  content: "";
+
+  position: absolute;
+
+  bottom: -10px;
+
+  width: 6px;
+  height: 6px;
+
+  border-radius: 50%;
+
+  background: #ff7a00;
+
+  box-shadow: 0 0 12px #ff7a00;
+}
+
+/* -----------------Start Menu Search Tab ----------------- */
+.containerInput {
+  background-color: #000;
+  position: relative;
+  overflow: hidden;
+  margin: 0;
+  padding: 0 0 4px 0;
+  z-index: 1;
+  font-size: 15px;
+  width: 100%;
+  border-radius: 10px;
+}
+
+.containerInput::before {
+  content: "";
+  width: 110%;
+  aspect-ratio: 1;
+  position: absolute;
+  inset: 0 0 0 0;
+  margin: auto;
+  animation: rotate6234 2.5s ease-in-out infinite;
+  z-index: -1;
+  background-image: conic-gradient(
+    from 0deg at 50% 50%,
+    #073aff00 0%,
+    #ff7a00 25%,
+    #073aff00 25%
+  );
+}
+
+.containerInput > input {
+  width: 210px;
+  height: 50px;
+  font-size: inherit;
+  color: #fff;
+  border: none;
+  padding: 12px;
+  background-color: #0a0a0a;
+  outline: 5px solid #0a0a0a;
+  width: 100%;
+}
+
+.containerInput > input:focus {
+  outline: none;
+}
+
+.containerInput > input:not(:placeholder-shown) {
+  outline: none;
+}
+
+.containerInput > input:not(:placeholder-shown):valid {
+  outline: 4px solid #ff7b0086;
+  border-radius: 0;
+}
+
+@keyframes rotate6234 {
+  from {
+    transform: rotate(0deg);
+  }
+
+  to {
+    transform: rotate(360deg);
+  }
+}
