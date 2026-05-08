@@ -160,24 +160,19 @@ body {
   top: 90px;
   right: 20px;
 
-  width: 340px;
+  width: 380px;
 
   padding: 24px;
 
   border-radius: 32px;
 
   backdrop-filter: blur(40px);
-  -webkit-backdrop-filter: blur(40px);
 
   background: rgba(15, 15, 15, 0.6);
 
   border: 1px solid rgba(255, 255, 255, 0.08);
 
-  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.35);
-
-  z-index: 999;
-
-  /* HIDDEN */
+  z-index: 9999;
 
   opacity: 0;
 
@@ -185,14 +180,10 @@ body {
 
   transform: translateY(-20px) scale(0.95);
 
-  transition:
-    opacity 0.3s ease,
-    transform 0.3s ease,
-    visibility 0.3s ease;
+  transition: 0.3s ease;
 }
 
 /* ACTIVE */
-
 .calendar-widget.active {
   opacity: 1;
 
@@ -347,7 +338,7 @@ body {
   transform: translateX(-50%);
 
   width: 440px;
-  height: 540px;
+  height: 590px;
 
   padding: 20px;
 
@@ -664,4 +655,499 @@ body {
   to {
     transform: rotate(360deg);
   }
+}
+
+/* ======================================== */
+/* DESKTOP ICONS */
+/* ======================================== */
+
+.desktop-icons {
+  position: absolute;
+
+  top: 120px;
+  left: 30px;
+
+  /* display: flex;
+  flex-direction: column;
+  gap: 24px; */
+
+  z-index: 10;
+}
+
+/* ======================================== */
+/* DESKTOP ITEM */
+/* ======================================== */
+
+/* ======================================== */
+/* DESKTOP ITEM */
+/* ======================================== */
+
+.desktop-item {
+  position: absolute;
+
+  width: 90px;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+
+  padding: 12px;
+
+  border-radius: 18px;
+
+  cursor: grab;
+
+  user-select: none;
+
+  transition:
+    background 0.3s ease,
+    transform 0.2s ease;
+}
+
+/* ACTIVE DRAG */
+
+.desktop-item.dragging {
+  cursor: grabbing;
+
+  transform: scale(1.05);
+
+  z-index: 999;
+}
+
+/* HOVER */
+
+.desktop-item:hover {
+  background: rgba(255, 255, 255, 0.06);
+
+  transform: translateY(-4px);
+}
+
+/* ICON */
+
+.desktop-item img {
+  width: 58px;
+  height: 58px;
+
+  object-fit: contain;
+}
+
+/* LABEL */
+
+.desktop-item span {
+  font-size: 13px;
+
+  text-align: center;
+
+  color: rgba(255, 255, 255, 0.88);
+}
+
+/* INDIVIDUAL POSITIONS */
+
+.desktop-item:nth-child(1) {
+  top: 0;
+  left: 0;
+}
+
+.desktop-item:nth-child(2) {
+  top: 120px;
+  left: 0;
+}
+
+.desktop-item:nth-child(3) {
+  top: 240px;
+  left: 0;
+}
+
+.desktop-item:nth-child(4) {
+  top: 360px;
+  left: 0;
+}
+
+/* ======================================== */
+/* APP WINDOW */
+/* ======================================== */
+
+.app-window {
+  position: absolute;
+
+  top: 140px;
+  left: 180px;
+
+  width: 850px;
+  height: 700px;
+
+  border-radius: 32px;
+
+  overflow: hidden;
+
+  backdrop-filter: blur(40px);
+
+  background: rgba(15, 15, 15, 0.58);
+
+  border: 1px solid rgba(255, 255, 255, 0.08);
+
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.4);
+
+  z-index: 100;
+
+  display: none;
+}
+
+/* ACTIVE WINDOW */
+
+.app-window.active-window {
+  display: block;
+}
+
+/* ======================================== */
+/* HEADER */
+/* ======================================== */
+
+.window-header {
+  height: 70px;
+
+  padding: 0 24px;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+/* ======================================== */
+/* CONTROLS */
+/* ======================================== */
+
+.window-controls {
+  display: flex;
+  gap: 10px;
+}
+
+.window-controls span {
+  width: 14px;
+  height: 14px;
+
+  border-radius: 50%;
+}
+
+.close-btn {
+  background: #ff5f57;
+}
+
+.minimize-btn {
+  background: #febc2e;
+}
+
+.expand-btn {
+  background: #28c840;
+}
+
+/* ======================================== */
+/* CONTENT */
+/* ======================================== */
+
+.window-content {
+  padding: 40px;
+}
+
+/* ======================================== */
+/* USER PROFILE CARD */
+/* ======================================== */
+
+.user-profile-card {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+
+  padding: 18px;
+
+  border-radius: 24px;
+
+  background: rgba(255, 255, 255, 0.04);
+
+  border: 1px solid rgba(255, 255, 255, 0.06);
+
+  margin-bottom: 24px;
+  width: 400px;
+}
+
+/* ======================================== */
+/* AVATAR */
+/* ======================================== */
+
+.profile-avatar {
+  width: 72px;
+  height: 72px;
+
+  border-radius: 50%;
+
+  overflow: hidden;
+
+  border: 2px solid rgba(255, 122, 0, 0.25);
+
+  box-shadow: 0 0 30px rgba(255, 122, 0, 0.15);
+}
+
+.profile-avatar img {
+  width: 100%;
+  height: 100%;
+
+  object-fit: cover;
+}
+
+/* ======================================== */
+/* INFO */
+/* ======================================== */
+
+.profile-info h3 {
+  font-size: 18px;
+  font-weight: 600;
+}
+
+.profile-info p {
+  font-size: 13px;
+
+  color: rgba(255, 255, 255, 0.65);
+
+  margin-top: 4px;
+}
+
+/* STATUS */
+
+.profile-info span {
+  display: inline-flex;
+
+  margin-top: 10px;
+
+  padding: 6px 10px;
+
+  border-radius: 999px;
+
+  background: rgba(255, 122, 0, 0.12);
+
+  border: 1px solid rgba(255, 122, 0, 0.2);
+
+  color: #ff7a00;
+
+  font-size: 11px;
+
+  letter-spacing: 0.08em;
+}
+
+/* ======================================== */
+/* USER PROFILE CARD */
+/* ======================================== */
+
+.user-profile-card {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+
+  padding: 18px;
+
+  border-radius: 24px;
+
+  background: rgba(255, 255, 255, 0.04);
+
+  border: 1px solid rgba(255, 255, 255, 0.06);
+
+  margin-bottom: 24px;
+
+  cursor: pointer;
+
+  transition: 0.3s ease;
+}
+
+.user-profile-card:hover {
+  transform: translateY(-4px);
+
+  background: rgba(255, 122, 0, 0.08);
+
+  border-color: rgba(255, 122, 0, 0.22);
+}
+
+/* ======================================== */
+/* PROFILE AVATAR */
+/* ======================================== */
+
+.profile-avatar {
+  width: 72px;
+  height: 72px;
+
+  border-radius: 50%;
+
+  overflow: hidden;
+
+  border: 2px solid rgba(255, 122, 0, 0.25);
+
+  box-shadow: 0 0 30px rgba(255, 122, 0, 0.15);
+}
+
+.profile-avatar img {
+  width: 100%;
+  height: 100%;
+
+  object-fit: cover;
+}
+
+/* ======================================== */
+/* PROFILE INFO */
+/* ======================================== */
+
+.profile-info h3 {
+  font-size: 18px;
+  font-weight: 600;
+}
+
+.profile-info p {
+  font-size: 13px;
+
+  color: rgba(255, 255, 255, 0.65);
+
+  margin-top: 4px;
+}
+
+.profile-info span {
+  display: inline-flex;
+
+  margin-top: 10px;
+
+  padding: 6px 10px;
+
+  border-radius: 999px;
+
+  background: rgba(255, 122, 0, 0.12);
+
+  border: 1px solid rgba(255, 122, 0, 0.2);
+
+  color: #ff7a00;
+
+  font-size: 11px;
+
+  letter-spacing: 0.08em;
+}
+
+/* ======================================== */
+/* SYSTEM WINDOW */
+/* ======================================== */
+
+.system-content {
+  display: grid;
+
+  grid-template-columns: 320px 1fr;
+
+  gap: 30px;
+
+  height: 500px;
+}
+
+/* ======================================== */
+/* LEFT PANEL */
+/* ======================================== */
+
+.system-left-panel {
+  padding: 30px;
+
+  border-radius: 28px;
+
+  background: rgba(255, 255, 255, 0.04);
+
+  border: 1px solid rgba(255, 255, 255, 0.06);
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.system-avatar {
+  width: 160px;
+  height: 160px;
+
+  border-radius: 50%;
+
+  overflow: hidden;
+
+  margin-bottom: 24px;
+
+  border: 3px solid rgba(255, 122, 0, 0.25);
+
+  box-shadow: 0 0 50px rgba(255, 122, 0, 0.2);
+}
+
+.system-avatar img {
+  width: 100%;
+  height: 100%;
+
+  object-fit: cover;
+}
+
+.system-left-panel h2 {
+  font-size: 28px;
+}
+
+.system-left-panel p {
+  margin-top: 10px;
+
+  line-height: 1.6;
+
+  color: rgba(255, 255, 255, 0.65);
+}
+
+.system-status {
+  margin-top: 20px;
+
+  padding: 10px 16px;
+
+  border-radius: 999px;
+
+  background: rgba(255, 122, 0, 0.12);
+
+  border: 1px solid rgba(255, 122, 0, 0.2);
+
+  color: #ff7a00;
+}
+
+/* ======================================== */
+/* RIGHT PANEL */
+/* ======================================== */
+
+.system-right-panel {
+  display: grid;
+
+  grid-template-columns: repeat(2, 1fr);
+
+  gap: 20px;
+}
+
+/* ======================================== */
+/* SPEC CARD */
+/* ======================================== */
+
+.spec-card {
+  padding: 24px;
+
+  border-radius: 24px;
+
+  background: rgba(255, 255, 255, 0.04);
+
+  border: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.spec-card span {
+  font-size: 12px;
+
+  letter-spacing: 0.08em;
+
+  color: rgba(255, 255, 255, 0.45);
+}
+
+.spec-card h3 {
+  margin-top: 12px;
+
+  font-size: 22px;
+
+  line-height: 1.4;
 }

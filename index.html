@@ -44,9 +44,9 @@
 
       <div class="system-right">
         <div class="system-time">
-          <p id="top-time">12:45</p>
+          <p id="top-time"></p>
 
-          <span id="top-date"> 18 Sept 2026 </span>
+          <span id="top-date"></span>
         </div>
 
         <div class="system-item">
@@ -73,53 +73,216 @@
 
       <div class="calendar-widget">
         <div class="calendar-header">
-          <h3 id="calendar-month">September 2026</h3>
+          <h3 id="calendar-month"></h3>
         </div>
 
-        <div class="calendar-grid">
-          <!-- DAYS -->
-
-          <span>Sun</span>
-          <span>Mon</span>
-          <span>Tue</span>
-          <span>Wed</span>
-          <span>Thu</span>
-          <span>Fri</span>
-          <span>Sat</span>
-
-          <!-- DATES -->
-
-          <div class="calendar-day empty"></div>
-          <div class="calendar-day empty"></div>
-
-          <div class="calendar-day">1</div>
-          <div class="calendar-day">2</div>
-          <div class="calendar-day">3</div>
-          <div class="calendar-day">4</div>
-          <div class="calendar-day">5</div>
-
-          <div class="calendar-day">6</div>
-          <div class="calendar-day">7</div>
-          <div class="calendar-day">8</div>
-          <div class="calendar-day">9</div>
-          <div class="calendar-day">10</div>
-          <div class="calendar-day">11</div>
-          <div class="calendar-day">12</div>
-
-          <div class="calendar-day">13</div>
-          <div class="calendar-day">14</div>
-          <div class="calendar-day">15</div>
-
-          <!-- ACTIVE DAY -->
-
-          <div class="calendar-day active-day">18</div>
-
-          <div class="calendar-day">19</div>
-        </div>
+        <div class="calendar-grid" id="calendar-grid"></div>
       </div>
     </header>
     <section class="os-desktop">
       <!-- <p class="label">Desktop View</p> -->
+
+      <!-- ======================================== -->
+      <!-- DESKTOP ICONS -->
+      <!-- ======================================== -->
+
+      <div class="desktop-icons">
+        <!-- WORK -->
+
+        <div
+          class="desktop-item"
+          data-window="finder-window"
+          data-taskbar="finder-taskbar"
+        >
+          <img src="./assets/Icons/folder.png" alt="Work Folder" />
+
+          <span> Work </span>
+        </div>
+
+        <!-- MUSIC -->
+
+        <div
+          class="desktop-item"
+          data-window="music-window"
+          data-taskbar="finder-taskbar"
+        >
+          <img src="./assets/Icons/folder.png" alt="Music Folder" />
+
+          <span> Music </span>
+        </div>
+
+        <!-- ARCHIVE -->
+
+        <div
+          class="desktop-item"
+          data-window="archive-window"
+          data-taskbar="finder-taskbar"
+        >
+          <img src="./assets/Icons/folder.png" alt="Archive Folder" />
+
+          <span> Archive </span>
+        </div>
+
+        <!-- ABOUT -->
+
+        <div
+          class="desktop-item"
+          data-window="about-window"
+          data-taskbar="finder-taskbar"
+        >
+          <img src="./assets/Icons/folder.png" alt="About Folder" />
+
+          <span> About Me </span>
+        </div>
+      </div>
+
+      <!-- ======================================== -->
+      <!-- WINDOWS -->
+      <!-- ======================================== -->
+
+      <!-- WORK WINDOW -->
+
+      <div class="app-window" id="finder-window">
+        <div class="window-header">
+          <div class="window-controls">
+            <span class="close-btn"></span>
+            <span class="minimize-btn"></span>
+            <span class="expand-btn"></span>
+          </div>
+
+          <p>WORK.exe</p>
+        </div>
+
+        <div class="window-content">
+          <h2>Work Portfolio</h2>
+        </div>
+      </div>
+
+      <!-- MUSIC WINDOW -->
+
+      <div class="app-window" id="music-window">
+        <div class="window-header">
+          <div class="window-controls">
+            <span class="close-btn"></span>
+            <span class="minimize-btn"></span>
+            <span class="expand-btn"></span>
+          </div>
+
+          <p>AUDIO.lab</p>
+        </div>
+
+        <div class="window-content">
+          <h2>Music Environment</h2>
+        </div>
+      </div>
+
+      <!-- ARCHIVE WINDOW -->
+
+      <div class="app-window" id="archive-window">
+        <div class="window-header">
+          <div class="window-controls">
+            <span class="close-btn"></span>
+            <span class="minimize-btn"></span>
+            <span class="expand-btn"></span>
+          </div>
+
+          <p>AUDIO.lab</p>
+        </div>
+
+        <div class="window-content">
+          <h2>Archive</h2>
+        </div>
+      </div>
+
+      <!-- ABOUT WINDOW -->
+
+      <div class="app-window" id="about-window">
+        <div class="window-header">
+          <div class="window-controls">
+            <span class="close-btn"></span>
+            <span class="minimize-btn"></span>
+            <span class="expand-btn"></span>
+          </div>
+
+          <p>AUDIO.lab</p>
+        </div>
+
+        <div class="window-content">
+          <h2>About Me</h2>
+        </div>
+      </div>
+
+      <!-- ======================================== -->
+      <!-- SYSTEM WINDOW -->
+      <!-- ======================================== -->
+
+      <div class="app-window" id="system-window">
+        <!-- HEADER -->
+
+        <div class="window-header">
+          <div class="window-controls">
+            <span class="close-btn"></span>
+            <span class="minimize-btn"></span>
+            <span class="expand-btn"></span>
+          </div>
+
+          <p>SYSTEM INFO.exe</p>
+        </div>
+
+        <!-- CONTENT -->
+
+        <div class="window-content system-content">
+          <!-- LEFT -->
+
+          <div class="system-left-panel">
+            <div class="system-avatar">
+              <img src="./assets/images/profile-image.png" alt="Olefile" />
+            </div>
+
+            <h2>Olefile Makganye</h2>
+
+            <p>Creative Developer / Interactive Designer / Music Producer</p>
+
+            <div class="system-status">ONLINE</div>
+          </div>
+
+          <!-- RIGHT -->
+
+          <div class="system-right-panel">
+            <div class="spec-card">
+              <span>OS</span>
+
+              <h3>Olefile Makganye OS</h3>
+            </div>
+
+            <div class="spec-card">
+              <span>Runtime</span>
+
+              <h3>HTML / CSS / JavaScript</h3>
+            </div>
+
+            <div class="spec-card">
+              <span>Motion Engine</span>
+
+              <h3>GSAP + ScrollTrigger</h3>
+            </div>
+
+            <div class="spec-card">
+              <span>Audio Engine</span>
+
+              <h3>FL Studio / Sound Design</h3>
+            </div>
+
+            <div class="spec-card">
+              <span>Current Focus</span>
+
+              <h3>Immersive Web Experiences</h3>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ------------------------------------Bottom Task Bar --------------------------- -->
 
       <div class="task-bar">
         <!-- START BUTTON -->
@@ -135,7 +298,7 @@
         <!-- TASKBAR APPS -->
 
         <div class="taskbar-apps">
-          <div class="taskbar-icon active-taskbar-app">
+          <div class="taskbar-icon" id="email-taskbar">
             <img
               src="./assets/Icons/communication.png"
               style="height: 60px; width: 50px"
@@ -143,7 +306,7 @@
             />
           </div>
 
-          <div class="taskbar-icon">
+          <div class="taskbar-icon" id="music-taskbar">
             <img
               src="./assets/Icons/FL studio icon.png"
               style="height: 60px; width: 60px"
@@ -151,7 +314,7 @@
             />
           </div>
 
-          <div class="taskbar-icon">
+          <div class="taskbar-icon" id="archive-taskbar">
             <img
               src="./assets/Icons/facebook.png"
               style="height: 50px; width: 50px"
@@ -159,7 +322,7 @@
             />
           </div>
 
-          <div class="taskbar-icon">
+          <div class="taskbar-icon" id="finder-taskbar">
             <img
               src="./assets/Icons/folder.png"
               style="height: 57px; width: 57px"
@@ -197,6 +360,24 @@
 
       <div class="start-menu">
         <div class="start-pop-up">
+          <div
+            class="user-profile-card"
+            data-window="system-window"
+            data-taskbar="finder-taskbar"
+          >
+            <div class="profile-avatar">
+              <img src="./assets/images/profile-image.png" alt="Olefile" />
+            </div>
+
+            <div class="profile-info">
+              <h3>Olefile Makganye</h3>
+
+              <p>Creative Developer / Producer</p>
+
+              <span> SYSTEM ONLINE </span>
+            </div>
+          </div>
+
           <div class="containerInput">
             <input placeholder="What app are you looking for?" type="text" />
           </div>
