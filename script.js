@@ -231,6 +231,20 @@ desktopIcons.forEach((icon) => {
     // ACTIVATE TASKBAR ICON
 
     taskbarApp.classList.add("active-taskbar-app");
+
+    if (windowId === "books-window") {
+      setTimeout(() => {
+        initPortfolioBook();
+      }, 200);
+    }
+
+    if (windowId === "books-window") {
+      setTimeout(() => {
+        if (!portfolioBook) {
+          initPortfolioBook();
+        }
+      }, 300);
+    }
   });
 });
 
@@ -308,3 +322,146 @@ windows.forEach((windowEl) => {
     isDragging = false;
   });
 });
+
+// ========================================
+// SETTINGS APP
+// ========================================
+
+const settingsTaskbar = document.getElementById("settings-taskbar");
+
+const settingsWindow = document.getElementById("settings-window");
+
+settingsTaskbar.addEventListener("click", () => {
+  settingsWindow.classList.add("active-window");
+
+  settingsTaskbar.classList.add("active-taskbar-app");
+});
+
+// ========================================
+// WALLPAPER SWITCHER
+// ========================================
+
+const wallpaperOptions = document.querySelectorAll(".wallpaper-option");
+
+wallpaperOptions.forEach((option) => {
+  option.addEventListener("click", () => {
+    const wallpaper = option.dataset.wallpaper;
+
+    // CHANGE BODY BG
+
+    document.body.style.backgroundImage = `
+      radial-gradient(
+        circle at top left,
+        rgba(255,122,0,0.15),
+        transparent 35%
+      ),
+      url(${wallpaper})
+      `;
+
+    // ACTIVE STATE
+
+    document.querySelectorAll(".wallpaper-option").forEach((item) => {
+      item.classList.remove("active-wallpaper");
+    });
+
+    option.classList.add("active-wallpaper");
+  });
+});
+
+// ========================================
+// ACCENT SWITCHER
+// ========================================
+
+const accentOptions = document.querySelectorAll(".accent-option");
+
+accentOptions.forEach((option) => {
+  option.addEventListener("click", () => {
+    const color = option.dataset.color;
+
+    // CHANGE ROOT VARIABLE
+
+    document.documentElement.style.setProperty("--accent", color);
+
+    // ACTIVE STATE
+
+    document.querySelectorAll(".accent-option").forEach((item) => {
+      item.classList.remove("active-accent");
+    });
+
+    option.classList.add("active-accent");
+  });
+});
+
+// let portfolioBook = null;
+
+// ========================================
+// PORTFOLIO BOOK
+// ========================================
+
+let portfolioBook = null;
+
+// ========================================
+// INIT PORTFOLIO BOOK
+// ========================================
+
+function initPortfolioBook() {
+  const bookElement = document.getElementById("portfolio-book");
+
+  // STOP IF MISSING
+
+  if (!bookElement) return;
+
+  // DESTROY OLD INSTANCE
+
+  if (portfolioBook && typeof portfolioBook.destroy === "function") {
+    portfolioBook.destroy();
+  }
+
+  // VIEWER
+
+  const viewer = document.querySelector(".books-viewer");
+
+  // WAIT FOR REAL SIZE
+
+  const viewerWidth = viewer.offsetWidth;
+
+  const viewerHeight = viewer.offsetHeight;
+
+  // SAFETY
+
+  if (viewerWidth === 0 || viewerHeight === 0) {
+    return;
+  }
+
+  // RESPONSIVE SIZE
+
+  // RESPONSIVE BOOK SIZE
+
+  const bookWidth = Math.min(viewerWidth * 0.26, 520);
+
+  const bookHeight = bookWidth * 1.42;
+
+  // INIT PAGEFLIP
+
+  portfolioBook = new St.PageFlip(bookElement, {
+    width: 650,
+
+    height: 880,
+
+    size: "stretch",
+
+    showCover: true,
+
+    usePortrait: true,
+
+    mobileScrollSupport: false,
+
+    maxShadowOpacity: 0.2,
+  });
+
+  // LOAD PAGES
+
+  portfolioBook.loadFromHTML(
+    document.querySelectorAll("#portfolio-book .page"),
+  );
+}

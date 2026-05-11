@@ -1151,3 +1151,511 @@ body {
 
   line-height: 1.4;
 }
+
+/* ======================================== */
+/* SETTINGS LAYOUT */
+/* ======================================== */
+
+.settings-content {
+  display: grid;
+
+  grid-template-columns: 240px 1fr;
+
+  height: 100%;
+}
+
+/* ======================================== */
+/* SIDEBAR */
+/* ======================================== */
+
+.settings-sidebar {
+  border-right: 1px solid rgba(255, 255, 255, 0.06);
+
+  padding-right: 20px;
+}
+
+/* ======================================== */
+/* TAB */
+/* ======================================== */
+
+.settings-tab {
+  padding: 16px 18px;
+
+  border-radius: 18px;
+
+  margin-bottom: 10px;
+
+  cursor: pointer;
+
+  transition: 0.3s ease;
+
+  color: rgba(255, 255, 255, 0.7);
+}
+
+.settings-tab:hover {
+  background: rgba(255, 122, 0, 0.08);
+}
+
+/* ACTIVE */
+
+.active-settings-tab {
+  background: rgba(255, 122, 0, 0.12);
+
+  border: 1px solid rgba(255, 122, 0, 0.18);
+
+  color: #ff7a00;
+}
+
+/* ======================================== */
+/* MAIN */
+/* ======================================== */
+
+.settings-main {
+  padding-left: 30px;
+}
+
+.settings-main h2 {
+  margin-bottom: 30px;
+}
+
+/* ======================================== */
+/* OPTION */
+/* ======================================== */
+
+.settings-option {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  padding: 20px;
+
+  border-radius: 24px;
+
+  margin-bottom: 18px;
+
+  background: rgba(255, 255, 255, 0.04);
+
+  border: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.settings-option p {
+  margin-top: 6px;
+
+  color: rgba(255, 255, 255, 0.55);
+}
+
+/* ======================================== */
+/* SWITCH */
+/* ======================================== */
+
+.switch {
+  position: relative;
+
+  width: 56px;
+  height: 30px;
+}
+
+.switch input {
+  display: none;
+}
+
+/* SLIDER */
+
+.slider {
+  position: absolute;
+
+  inset: 0;
+
+  border-radius: 999px;
+
+  background: rgba(255, 255, 255, 0.15);
+
+  cursor: pointer;
+
+  transition: 0.3s ease;
+}
+
+.slider::before {
+  content: "";
+
+  position: absolute;
+
+  width: 22px;
+  height: 22px;
+
+  left: 4px;
+  top: 4px;
+
+  border-radius: 50%;
+
+  background: white;
+
+  transition: 0.3s ease;
+}
+
+/* ACTIVE */
+
+.switch input:checked + .slider {
+  background: rgba(255, 122, 0, 0.6);
+}
+
+.switch input:checked + .slider::before {
+  transform: translateX(26px);
+}
+/* =================================================================================== */
+
+/* ======================================== */
+/* SETTINGS GROUP */
+/* ======================================== */
+
+.settings-group {
+  margin-top: 40px;
+}
+
+/* ======================================== */
+/* WALLPAPER GRID */
+/* ======================================== */
+
+.wallpaper-grid {
+  display: flex;
+  gap: 16px;
+
+  margin-top: 20px;
+}
+
+/* WALLPAPER */
+
+.wallpaper-option {
+  width: 140px;
+  height: 90px;
+
+  border-radius: 18px;
+
+  background-size: cover;
+  background-position: center;
+
+  cursor: pointer;
+
+  border: 2px solid transparent;
+
+  transition: 0.3s ease;
+}
+
+.wallpaper-option:hover {
+  transform: scale(1.04);
+}
+
+/* ACTIVE */
+
+.active-wallpaper {
+  border-color: #ff7a00;
+
+  box-shadow: 0 0 20px rgba(255, 122, 0, 0.35);
+}
+
+/* ======================================== */
+/* ACCENT GRID */
+/* ======================================== */
+
+.accent-grid {
+  display: flex;
+  gap: 14px;
+
+  margin-top: 20px;
+}
+
+/* ACCENT */
+
+.accent-option {
+  width: 42px;
+  height: 42px;
+
+  border-radius: 50%;
+
+  cursor: pointer;
+
+  border: 3px solid transparent;
+
+  transition: 0.3s ease;
+}
+
+.accent-option:hover {
+  transform: scale(1.08);
+}
+
+/* ACTIVE */
+
+.active-accent {
+  border-color: white;
+
+  box-shadow: 0 0 18px rgba(255, 255, 255, 0.25);
+}
+
+/* ======================================== */
+/* BOOKS WINDOW */
+/* ======================================== */
+
+.books-window {
+  width: 92vw;
+  height: 90vh;
+
+  top: 50px;
+  left: 50px;
+
+  overflow: visible;
+}
+
+/* ======================================== */
+/* BOOKS CONTENT */
+/* ======================================== */
+
+.books-content {
+  height: calc(100% - 70px);
+
+  display: flex;
+  flex-direction: column;
+
+  overflow: hidden;
+}
+
+/* .books-viewer::before {
+  content: "";
+
+  position: absolute;
+
+  width: 78%;
+  height: 82%;
+
+  border-radius: 32px;
+
+  background: rgba(0, 0, 0, 0.12);
+
+  border: 1px solid rgba(255, 255, 255, 0.04);
+
+  backdrop-filter: blur(10px);
+
+  z-index: 0;
+} */
+
+/* ======================================== */
+/* TOP SECTION */
+/* ======================================== */
+
+.books-top {
+  margin-bottom: 30px;
+
+  flex-shrink: 0;
+}
+
+.books-top h2 {
+  font-size: 32px;
+
+  font-weight: 600;
+}
+
+.books-top p {
+  margin-top: 10px;
+
+  color: rgba(255, 255, 255, 0.6);
+
+  font-size: 15px;
+}
+
+/* ======================================== */
+/* VIEWER */
+/* ======================================== */
+
+.books-viewer {
+  flex: 1;
+
+  width: 100%;
+
+  height: 500px;
+
+  display: flex;
+
+  align-items: center;
+
+  justify-content: center;
+
+  position: relative;
+
+  overflow: hidden;
+}
+
+/* ======================================== */
+/* BOOK CONTAINER */
+/* ======================================== */
+
+#portfolio-book {
+  width: 100%;
+  height: 100%;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* ======================================== */
+/* PAGE */
+/* ======================================== */
+
+.menu-book .page {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  overflow: hidden;
+
+  background: transparent;
+
+  padding: 0;
+}
+
+/* ======================================== */
+/* PAGE IMAGE */
+/* ======================================== */
+
+.menu-book .page img {
+  width: 100%;
+  height: 100%;
+
+  object-fit: contain;
+
+  user-select: none;
+
+  pointer-events: none;
+}
+
+/* ======================================== */
+/* PAGEFLIP OVERRIDES */
+/* ======================================== */
+
+.stf__parent {
+  margin: auto;
+}
+
+.stf__wrapper {
+  margin: auto;
+}
+
+.stf__block {
+  border-radius: 12px;
+
+  overflow: hidden;
+}
+.stf__parent {
+  width: 100% !important;
+
+  height: 100% !important;
+
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+}
+.stf__wrapper {
+  width: 100% !important;
+
+  height: 100% !important;
+
+  max-width: 1400px;
+
+  max-height: 100%;
+}
+
+#portfolio-book {
+  width: 100%;
+  height: 100%;
+}
+
+/* ======================================== */
+/* BOOK SHADOW */
+/* ======================================== */
+
+.stf__item {
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.35);
+}
+
+/* ======================================== */
+/* RESPONSIVE */
+/* ======================================== */
+
+@media screen and (max-width: 1200px) {
+  .books-window {
+    width: calc(100% - 40px);
+
+    height: 88vh;
+
+    left: 20px;
+    top: 30px;
+  }
+}
+
+/* ======================================== */
+/* TABLET */
+/* ======================================== */
+
+@media screen and (max-width: 992px) {
+  .books-content {
+    padding: 20px;
+  }
+
+  .books-top h2 {
+    font-size: 26px;
+  }
+}
+
+/* ======================================== */
+/* MOBILE */
+/* ======================================== */
+
+@media screen and (max-width: 768px) {
+  .books-window {
+    width: 100%;
+    height: 100vh;
+
+    top: 0;
+    left: 0;
+
+    border-radius: 0;
+  }
+
+  .books-content {
+    padding: 20px;
+  }
+
+  .books-top {
+    margin-bottom: 20px;
+  }
+
+  .books-top h2 {
+    font-size: 22px;
+  }
+
+  .books-top p {
+    font-size: 13px;
+  }
+
+  .books-viewer {
+    overflow: auto;
+  }
+}
+
+/* ======================================== */
+/* SMALL MOBILE */
+/* ======================================== */
+
+@media screen and (max-width: 480px) {
+  .books-content {
+    padding: 16px;
+  }
+
+  .books-top h2 {
+    font-size: 18px;
+  }
+
+  .books-top p {
+    font-size: 12px;
+  }
+}

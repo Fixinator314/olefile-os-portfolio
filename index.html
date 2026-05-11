@@ -134,6 +134,17 @@
 
           <span> About Me </span>
         </div>
+
+        <!-- Portfolio Items Book -->
+        <div
+          class="desktop-item"
+          data-window="books-window"
+          data-taskbar="finder-taskbar"
+        >
+          <img src="./assets/Icons/book.png" alt="Books" />
+
+          <span> Books </span>
+        </div>
       </div>
 
       <!-- ======================================== -->
@@ -213,6 +224,222 @@
       </div>
 
       <!-- ======================================== -->
+      <!-- BOOKS WINDOW -->
+      <!-- ======================================== -->
+
+      <div class="app-window books-window" id="books-window">
+        <!-- HEADER -->
+
+        <div class="window-header">
+          <div class="window-controls">
+            <span class="close-btn"></span>
+            <span class="minimize-btn"></span>
+            <span class="expand-btn"></span>
+          </div>
+
+          <p>BOOKS.exe</p>
+        </div>
+
+        <!-- CONTENT -->
+
+        <div class="window-content books-content">
+          <!-- TITLE -->
+
+          <div class="books-top">
+            <h2>Portfolio Archive</h2>
+
+            <p>Selected projects and visual case studies</p>
+          </div>
+
+          <!-- FLIPBOOK -->
+
+          <div class="books-viewer">
+            <div id="portfolio-book" class="menu-book">
+              <div class="page">
+                <img src="./assets/Portfolio Cover.png" />
+              </div>
+
+              <div class="page">
+                <img src="./assets/2.png" />
+              </div>
+
+              <div class="page">
+                <img src="./assets/3.png" />
+              </div>
+
+              <div class="page">
+                <img
+                  src="./assets/Polished Fixinator Rate Card with Amber Accents/2.png"
+                />
+              </div>
+
+              <div class="page">
+                <img
+                  src="./assets/Polished Fixinator Rate Card with Amber Accents/2.png"
+                />
+              </div>
+
+              <div class="page">
+                <img
+                  src="./assets/Polished Fixinator Rate Card with Amber Accents/2.png"
+                />
+              </div>
+
+              <div class="page">
+                <img
+                  src="./assets/Polished Fixinator Rate Card with Amber Accents/2.png"
+                />
+              </div>
+
+              <div class="page">
+                <img
+                  src="./assets/Polished Fixinator Rate Card with Amber Accents/3.png"
+                />
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ======================================== -->
+      <!-- SETTINGS WINDOW -->
+      <!-- ======================================== -->
+
+      <div class="app-window" id="settings-window">
+        <!-- HEADER -->
+
+        <div class="window-header">
+          <div class="window-controls">
+            <span class="close-btn"></span>
+            <span class="minimize-btn"></span>
+            <span class="expand-btn"></span>
+          </div>
+
+          <p>SETTINGS.exe</p>
+        </div>
+
+        <!-- CONTENT -->
+
+        <div class="window-content settings-content">
+          <!-- SIDEBAR -->
+
+          <div class="settings-sidebar">
+            <div class="settings-tab active-settings-tab">Appearance</div>
+
+            <div class="settings-tab">Wallpaper</div>
+
+            <div class="settings-tab">Audio</div>
+
+            <div class="settings-tab">Workspace</div>
+
+            <div class="settings-tab">Performance</div>
+          </div>
+
+          <!-- MAIN -->
+
+          <div class="settings-main">
+            <h2>Appearance Settings</h2>
+
+            <!-- WALLPAPERS -->
+
+            <div class="settings-group">
+              <h3>Wallpapers</h3>
+
+              <div class="wallpaper-grid">
+                <div
+                  class="wallpaper-option active-wallpaper"
+                  data-wallpaper="./assets/desktop-images/background1.png"
+                  style="
+                    background-image: url(&quot;./assets/desktop-images/background1.png&quot;);
+                  "
+                ></div>
+
+                <div
+                  class="wallpaper-option"
+                  data-wallpaper="./assets/desktop-images/background2.png"
+                  style="
+                    background-image: url(&quot;./assets/desktop-images/background2.png&quot;);
+                  "
+                ></div>
+
+                <div
+                  class="wallpaper-option"
+                  data-wallpaper="./assets/desktop-images/background3.png"
+                  style="
+                    background-image: url(&quot;./assets/desktop-images/background3.png&quot;);
+                  "
+                ></div>
+              </div>
+            </div>
+
+            <!-- ACCENT COLORS -->
+
+            <div class="settings-group">
+              <h3>Accent Color</h3>
+
+              <div class="accent-grid">
+                <div
+                  class="accent-option active-accent"
+                  data-color="#ff7a00"
+                  style="background: #ff7a00"
+                ></div>
+
+                <div
+                  class="accent-option"
+                  data-color="#00c2ff"
+                  style="background: #00c2ff"
+                ></div>
+
+                <div
+                  class="accent-option"
+                  data-color="#8b5cf6"
+                  style="background: #8b5cf6"
+                ></div>
+
+                <div
+                  class="accent-option"
+                  data-color="#00ff9d"
+                  style="background: #00ff9d"
+                ></div>
+              </div>
+            </div>
+
+            <!-- OPTION -->
+
+            <div class="settings-option">
+              <div>
+                <h3>UI Glow Effects</h3>
+
+                <p>Enable cinematic glow visuals</p>
+              </div>
+
+              <label class="switch">
+                <input type="checkbox" checked />
+
+                <span class="slider"></span>
+              </label>
+            </div>
+
+            <!-- OPTION -->
+
+            <div class="settings-option">
+              <div>
+                <h3>Motion Animations</h3>
+
+                <p>Enable workspace transitions</p>
+              </div>
+
+              <label class="switch">
+                <input type="checkbox" checked />
+
+                <span class="slider"></span>
+              </label>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ======================================== -->
       <!-- SYSTEM WINDOW -->
       <!-- ======================================== -->
 
@@ -226,7 +453,7 @@
             <span class="expand-btn"></span>
           </div>
 
-          <p>SYSTEM INFO.exe</p>
+          <p>SYSTEM INFO</p>
         </div>
 
         <!-- CONTENT -->
@@ -327,6 +554,14 @@
               src="./assets/Icons/folder.png"
               style="height: 57px; width: 57px"
               alt="Files"
+            />
+          </div>
+
+          <div class="taskbar-icon" id="settings-taskbar">
+            <img
+              src="./assets/Icons/settings.webp"
+              style="height: 50px; width: 50px"
+              alt="Settings"
             />
           </div>
 
@@ -440,6 +675,7 @@
       </div>
     </section>
 
+    <script src="https://unpkg.com/page-flip/dist/js/page-flip.browser.js"></script>
     <script src="script.js"></script>
   </body>
 </html>
