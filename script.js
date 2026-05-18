@@ -436,7 +436,6 @@ function initPortfolioBook() {
   // RESPONSIVE SIZE
 
   // RESPONSIVE BOOK SIZE
-
   const bookWidth = Math.min(viewerWidth * 0.26, 520);
 
   const bookHeight = bookWidth * 1.42;
@@ -465,3 +464,30 @@ function initPortfolioBook() {
     document.querySelectorAll("#portfolio-book .page"),
   );
 }
+
+const sidebarItems = document.querySelectorAll("#music-window .sidebar-item");
+
+const musicSections = document.querySelectorAll("#music-window .music-section");
+
+sidebarItems.forEach((item) => {
+  item.addEventListener("click", () => {
+    // REMOVE ACTIVE SIDEBAR
+    sidebarItems.forEach((i) => {
+      i.classList.remove("active-sidebar");
+    });
+
+    // ADD ACTIVE SIDEBAR
+    item.classList.add("active-sidebar");
+
+    // GET TARGET
+    const target = item.dataset.tab;
+
+    // HIDE SECTIONS
+    musicSections.forEach((section) => {
+      section.classList.remove("active-section");
+    });
+
+    // SHOW TARGET
+    document.getElementById(target).classList.add("active-section");
+  });
+});

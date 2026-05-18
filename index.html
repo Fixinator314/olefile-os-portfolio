@@ -50,20 +50,17 @@
         </div>
 
         <div class="system-item">
-          <img src="./assets/Icons/wifi.png" alt="Network" />
+          <img src="./assets/Icons/Wifi-white.png" alt="Network" />
         </div>
 
         <div class="system-item">
-          <img
-            src="./assets/Icons/volume-up-interface-symbol.png"
-            alt="Volume"
-          />
+          <img src="./assets/Icons/Volume white.png" alt="Volume" />
         </div>
 
         <div class="system-item battery">
-          <img src="./assets/Icons/half-battery.png" alt="Battery" />
+          <img src="./assets/Icons/Battery White.png" alt="Battery" />
 
-          <span>57%</span>
+          <span>67%</span>
         </div>
       </div>
 
@@ -135,7 +132,8 @@
           <span> About Me </span>
         </div>
 
-        <!-- Portfolio Items Book -->
+        <!-- BOOKS -->
+
         <div
           class="desktop-item"
           data-window="books-window"
@@ -145,29 +143,22 @@
 
           <span> Books </span>
         </div>
+
+        <!-- Portfolio Items Book -->
+        <div
+          class="desktop-item"
+          data-window="trash-window"
+          data-taskbar="finder-taskbar"
+        >
+          <img src="./assets/Icons/Trash-icon.png" alt="Trash" />
+
+          <span> Trash </span>
+        </div>
       </div>
 
       <!-- ======================================== -->
       <!-- WINDOWS -->
       <!-- ======================================== -->
-
-      <!-- WORK WINDOW -->
-
-      <div class="app-window" id="finder-window">
-        <div class="window-header">
-          <div class="window-controls">
-            <span class="close-btn"></span>
-            <span class="minimize-btn"></span>
-            <span class="expand-btn"></span>
-          </div>
-
-          <p>WORK.exe</p>
-        </div>
-
-        <div class="window-content">
-          <h2>Work Portfolio</h2>
-        </div>
-      </div>
 
       <!-- MUSIC WINDOW -->
 
@@ -179,47 +170,191 @@
             <span class="expand-btn"></span>
           </div>
 
-          <p>AUDIO.lab</p>
+          <p>Music</p>
         </div>
 
         <div class="window-content">
-          <h2>Music Environment</h2>
-        </div>
-      </div>
+          <div class="work-wrapper">
+            <!-- SIDEBAR -->
+            <div class="work-sidebar2">
+              <h3 class="sidebar-title">Audio Workspace</h3>
 
-      <!-- ARCHIVE WINDOW -->
+              <div class="sidebar-item active-sidebar" data-tab="catalogue">
+                Catalogue
+              </div>
 
-      <div class="app-window" id="archive-window">
-        <div class="window-header">
-          <div class="window-controls">
-            <span class="close-btn"></span>
-            <span class="minimize-btn"></span>
-            <span class="expand-btn"></span>
+              <div class="sidebar-item" data-tab="new-releases">
+                New Releases
+              </div>
+
+              <div class="sidebar-item" data-tab="beatstore">Beat Store</div>
+
+              <div class="sidebar-item" data-tab="features">Features</div>
+
+              <div class="sidebar-item" data-tab="stats">Analytics</div>
+            </div>
+
+            <!-- MAIN -->
+            <div class="work-main">
+              <!-- ================================= -->
+              <!-- CATALOGUE -->
+              <!-- ================================= -->
+
+              <div class="music-section active-section" id="catalogue">
+                <div class="work-top">
+                  <h2>Albums & EP's</h2>
+                  <p>Selected catalogue releases</p>
+                </div>
+
+                <div class="projects-grid2">
+                  <!-- ITEM -->
+                  <div class="music-item">
+                    <img src="./assets/Music-items/Space Station.jpg" />
+
+                    <div class="music-overlay">
+                      <span>Space Station EP</span>
+
+                      <h3>FIXINATOR</h3>
+
+                      <a
+                        href="https://ditto.fm/space-station-fixinator"
+                        target="_blank"
+                      >
+                        <button class="opn-website">Stream Project</button>
+                      </a>
+                    </div>
+                  </div>
+
+                  <!-- ITEM -->
+                  <div class="music-item">
+                    <img src="./assets/Music-items/PastCurfew.jpg" />
+
+                    <div class="music-overlay">
+                      <span>Past Curfew EP</span>
+
+                      <h3>FIXINATOR ft Various Artists</h3>
+
+                      <a
+                        href="https://ditto.fm/past-curfew-various-artists"
+                        target="_blank"
+                      >
+                        <button class="opn-website">Stream Project</button>
+                      </a>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- ================================= -->
+              <!-- NEW RELEASES -->
+              <!-- ================================= -->
+
+              <div class="music-section" id="new-releases">
+                <div class="work-top">
+                  <h2>Latest Drops</h2>
+                  <p>Recently released music & previews</p>
+                </div>
+
+                <div class="release-banner">
+                  <img src="./assets/Music-items/Spirit Friend.jpg" />
+
+                  <div class="release-info">
+                    <span>NOW STREAMING</span>
+
+                    <h2>Spirit Friend</h2>
+
+                    <p>
+                      Experimental beat tape blending cinematic textures with
+                      underground hip-hop production.
+                    </p>
+
+                    <button class="opn-website">Listen Now</button>
+                  </div>
+                </div>
+              </div>
+
+              <!-- ================================= -->
+              <!-- BEAT STORE -->
+              <!-- ================================= -->
+
+              <div class="music-section" id="beatstore">
+                <div class="work-top">
+                  <h2>Beat Store</h2>
+                  <p>Production catalogue & licensing</p>
+                </div>
+
+                <div class="beat-grid">
+                  <div class="beat-card">
+                    <span>Trap / Rage</span>
+                    <h3>OPIUM.wav</h3>
+                  </div>
+
+                  <div class="beat-card">
+                    <span>Alternative R&B</span>
+                    <h3>NIGHTDRIVE.mp3</h3>
+                  </div>
+
+                  <div class="beat-card">
+                    <span>Boom Bap</span>
+                    <h3>TAPE_94.wav</h3>
+                  </div>
+                </div>
+              </div>
+
+              <!-- ================================= -->
+              <!-- FEATURES -->
+              <!-- ================================= -->
+
+              <div class="music-section" id="features">
+                <div class="work-top">
+                  <h2>Collaborations</h2>
+                  <p>Featured appearances & production work</p>
+                </div>
+
+                <div class="feature-card">
+                  <div>
+                    <span>Featured Artist</span>
+                    <h3>KHIRY LUCAS</h3>
+                  </div>
+
+                  <button class="opn-website">Open Project</button>
+                </div>
+              </div>
+
+              <!-- ================================= -->
+              <!-- STATS -->
+              <!-- ================================= -->
+
+              <div class="music-section" id="stats">
+                <div class="work-top">
+                  <h2>Streaming Analytics</h2>
+                  <p>Music ecosystem overview</p>
+                </div>
+
+                <div class="stats-grid">
+                  <div class="stat-card">
+                    <span>Total Releases</span>
+                    <h2>12</h2>
+                  </div>
+
+                  <div class="stat-card">
+                    <span>Monthly Listeners</span>
+                    <h2>4.8K</h2>
+                  </div>
+
+                  <div class="stat-card">
+                    <span>Total Streams</span>
+                    <h2>120K</h2>
+                  </div>
+
+                  <div class="stat-card">
+                    <span>Collaborators</span>
+                    <h2>18</h2>
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
-
-          <p>AUDIO.lab</p>
-        </div>
-
-        <div class="window-content">
-          <h2>Archive</h2>
-        </div>
-      </div>
-
-      <!-- ABOUT WINDOW -->
-
-      <div class="app-window" id="about-window">
-        <div class="window-header">
-          <div class="window-controls">
-            <span class="close-btn"></span>
-            <span class="minimize-btn"></span>
-            <span class="expand-btn"></span>
-          </div>
-
-          <p>AUDIO.lab</p>
-        </div>
-
-        <div class="window-content">
-          <h2>About Me</h2>
         </div>
       </div>
 
