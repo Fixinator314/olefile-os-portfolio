@@ -179,68 +179,102 @@
             <div class="work-sidebar">
               <h3 class="sidebar-title">Workspace</h3>
 
-              <div class="sidebar-item active-sidebar">Featured</div>
+              <div class="sidebar-item active-sidebar2" data-tab="featured">
+                Featured
+              </div>
 
-              <div class="sidebar-item">Websites</div>
+              <div class="sidebar-item" data-tab="websites">Websites</div>
 
-              <div class="sidebar-item">Chatbots</div>
+              <div class="sidebar-item" data-tab="chatbots">Chatbots</div>
 
-              <div class="sidebar-item">Pictures</div>
+              <!-- <div class="sidebar-item" data-tab="pictures">Pictures</div> -->
 
-              <div class="sidebar-item">Music</div>
+              <!-- <div class="sidebar-item" data-tab="music">Music</div> -->
             </div>
 
             <!-- MAIN -->
             <div class="work-main">
-              <!-- TOP -->
-              <div class="work-top">
-                <div>
-                  <h2>Selected Projects</h2>
-                  <p>Interactive design & development archive</p>
+              <div class="work-section active-section" id="featured">
+                <!-- TOP -->
+                <div class="work-top">
+                  <div>
+                    <h2>Selected Projects</h2>
+                    <p>Interactive design & development archive</p>
+                  </div>
+                </div>
+
+                <!-- GRID -->
+                <div class="projects-grid">
+                  <!-- CARD -->
+                  <div class="project-card large-card">
+                    <img src="./assets/STS website.png" alt="STS website" />
+
+                    <div class="project-overlay">
+                      <span>Corporate Website</span>
+
+                      <h3>STS Africa</h3>
+                      <a href="https://www.sts-africa.co.za" target="_blank">
+                        <button class="opn-website">View Website</button>
+                      </a>
+                    </div>
+                  </div>
                 </div>
               </div>
-
-              <!-- GRID -->
-              <div class="projects-grid">
-                <!-- CARD -->
-                <div class="project-card large-card">
-                  <img src="./assets/STS website.png" alt="STS website" />
-
-                  <div class="project-overlay">
-                    <span>Corporate Website</span>
-
-                    <h3>STS Africa</h3>
-                    <a href="https://www.sts-africa.co.za" target="_blank">
-                      <button class="opn-website">View Website</button>
-                    </a>
+              <!-- ================================= -->
+              <!-- Websites -->
+              <!-- ================================= -->
+              <div class="work-section" id="websites">
+                <!-- TOP -->
+                <div class="work-top">
+                  <div>
+                    <h2>Websites</h2>
+                    <p>Digital experiences & responsive systems</p>
                   </div>
-                </div>
+                  <div class="web-banner">
+                    <!-- CARD -->
+                    <div class="project-card">
+                      <img src="./assets/Thynk Box.png" alt="ThynkBox" />
 
-                <!-- CARD -->
-                <div class="project-card">
-                  <img src="./assets/Thynk Box.png" alt="ThynkBox" />
+                      <div class="project-overlay">
+                        <span>Creative Development</span>
+                        <!-- <p class="live">live</p> -->
 
-                  <div class="project-overlay">
-                    <span>Creative Development</span>
+                        <h3>ThynkBox</h3>
+                        <a href="https://thethynkbox.co.za" target="_blank">
+                          <button class="opn-website">View Website</button>
+                        </a>
+                      </div>
+                    </div>
+                    <!-- CARD -->
+                    <div class="project-card">
+                      <img src="./assets/OS ui.png" alt="OS UI" />
 
-                    <h3>ThynkBox</h3>
-                    <a href="https://thethynkbox.co.za" target="_blank">
-                      <button class="opn-website">View Website</button>
-                    </a>
+                      <div class="project-overlay">
+                        <span>UI Experience</span>
+                        <!-- <p class="live">live</p> -->
+
+                        <h3>Portfolio OS</h3>
+                        <a href="https://thethynkbox.co.za" target="_blank">
+                          <button class="opn-website">View Website</button>
+                        </a>
+                      </div>
+                    </div>
                   </div>
-                </div>
+                  <div class="we-banner2">
+                    <!-- CARD -->
+                    <div class="project-card2">
+                      <img src="./assets/Ayanda2.png" alt="Ayanda's Website" />
 
-                <!-- CARD -->
-                <div class="project-card">
-                  <img src="./assets/OS ui.png" alt="OS UI" />
+                      <div class="project-overlay">
+                        <span>Artists Websites</span>
+                        <!-- <p class="live">live</p> -->
 
-                  <div class="project-overlay">
-                    <span>UI Experience</span>
-
-                    <h3>Portfolio OS</h3>
-                    <a href="https://thethynkbox.co.za" target="_blank">
-                      <button class="opn-website">View Website</button>
-                    </a>
+                        <h3>Ayanda Jiya's Website</h3>
+                        <a href="https://thethynkbox.co.za" target="_blank">
+                          <button class="opn-website">View Website</button>
+                        </a>
+                      </div>
+                    </div>
                   </div>
                 </div>
               </div>
@@ -424,7 +458,7 @@
 
                   <div class="beat-card">
                     <img
-                      src="./assets/2.png"
+                      src="./assets/Beat Store/artcover1.png"
                       alt="LTW Instrumental"
                       class="beat-cover"
                     />
@@ -459,7 +493,7 @@
 
                   <div class="beat-card">
                     <img
-                      src="./assets/2.png"
+                      src="./assets/Beat Store/artcover2.png"
                       alt="Nightdrive"
                       class="beat-cover"
                     />
@@ -681,6 +715,14 @@
                     <h2>18+</h2>
                   </div>
                 </div>
+                <a
+                  href="./assets/Polished Fixinator Rate Card with Amber Accents/Polished Fixinator Rate Card with Amber Accents .pdf"
+                  target="_blank"
+                >
+                  <button class="opn-website" style="padding-right: 10px">
+                    Download Rate Card
+                  </button>
+                </a>
               </div>
             </div>
           </div>
@@ -697,11 +739,155 @@
             <span class="expand-btn"></span>
           </div>
 
-          <p>AUDIO.lab</p>
+          <p></p>
         </div>
 
         <div class="window-content">
-          <h2>Archive</h2>
+          <div class="archive-wrapper">
+            <!-- SIDEBAR -->
+            <div class="work-sidebar3">
+              <h3 class="sidebar-title">Audio Workspace</h3>
+
+              <div
+                class="sidebar-item active-sidebar"
+                data-tab="recovered-files"
+              >
+                Recovered Files
+              </div>
+
+              <div class="sidebar-item" data-tab="studio-sessions">
+                Studio Sessions
+              </div>
+
+              <div class="sidebar-item" data-tab="photography">Photography</div>
+
+              <div class="sidebar-item" data-tab="experiments">Experiments</div>
+
+              <div class="sidebar-item" data-tab="unreleased">Unreleased</div>
+            </div>
+
+            <!-- Main -->
+            <div class="archive-main">
+              <!-- ================================= -->
+              <!-- CATALOGUE -->
+              <!-- ================================= -->
+              <div class="archive-section active-section" id="recovered-files">
+                <div class="archive-top">
+                  <h2>Recovered Files</h2>
+                  <p>Old Ideas, Early Draft and Pieces of Process</p>
+                </div>
+                <div class="archive-catalogue">
+                  <!-- card1 -->
+                  <div class="archive-card">
+                    <img
+                      src="./assets/Beat Store/I’m a creative developer and music producer based in Johannesburg, working across digital experiences and sound. My work blends technology and creativity—whether I’m building immersive websites or (1).png"
+                      alt=""
+                    />
+
+                    <div class="archive-info">
+                      <span class="archive-date"> 2024-11-02 23:41:07 </span>
+
+                      <h4>ARCHIVE_001.jpg</h4>
+
+                      <p>City Lights Concept</p>
+
+                      <small>2.4 MB</small>
+                    </div>
+                  </div>
+
+                  <!-- card2 -->
+                  <div class="archive-card">
+                    <img
+                      src="./assets/Beat Store/I’m a creative developer and music producer based in Johannesburg, working across digital experiences and sound. My work blends technology and creativity—whether I’m building immersive websites or (1).png"
+                      alt=""
+                    />
+
+                    <div class="archive-info">
+                      <span class="archive-date"> 2024-11-02 23:41:07 </span>
+
+                      <h4>ARCHIVE_001.jpg</h4>
+
+                      <p>City Lights Concept</p>
+
+                      <small>2.4 MB</small>
+                    </div>
+                  </div>
+
+                  <!-- card3 -->
+                  <div class="archive-card">
+                    <img
+                      src="./assets/Beat Store/I’m a creative developer and music producer based in Johannesburg, working across digital experiences and sound. My work blends technology and creativity—whether I’m building immersive websites or (1).png"
+                      alt=""
+                    />
+
+                    <div class="archive-info">
+                      <span class="archive-date"> 2024-11-02 23:41:07 </span>
+
+                      <h4>ARCHIVE_001.jpg</h4>
+
+                      <p>City Lights Concept</p>
+
+                      <small>2.4 MB</small>
+                    </div>
+                  </div>
+
+                  <!-- card4 -->
+                  <div class="archive-card">
+                    <img
+                      src="./assets/Beat Store/I’m a creative developer and music producer based in Johannesburg, working across digital experiences and sound. My work blends technology and creativity—whether I’m building immersive websites or (1).png"
+                      alt=""
+                    />
+
+                    <div class="archive-info">
+                      <span class="archive-date"> 2024-11-02 23:41:07 </span>
+
+                      <h4>ARCHIVE_001.jpg</h4>
+
+                      <p>City Lights Concept</p>
+
+                      <small>2.4 MB</small>
+                    </div>
+                  </div>
+
+                  <!-- card5 -->
+                  <div class="archive-card">
+                    <img
+                      src="./assets/Beat Store/I’m a creative developer and music producer based in Johannesburg, working across digital experiences and sound. My work blends technology and creativity—whether I’m building immersive websites or (1).png"
+                      alt=""
+                    />
+
+                    <div class="archive-info">
+                      <span class="archive-date"> 2024-11-02 23:41:07 </span>
+
+                      <h4>ARCHIVE_001.jpg</h4>
+
+                      <p>City Lights Concept</p>
+
+                      <small>2.4 MB</small>
+                    </div>
+                  </div>
+
+                  <!-- card6 -->
+                  <div class="archive-card">
+                    <img
+                      src="./assets/Beat Store/I’m a creative developer and music producer based in Johannesburg, working across digital experiences and sound. My work blends technology and creativity—whether I’m building immersive websites or (1).png"
+                      alt=""
+                    />
+
+                    <div class="archive-info">
+                      <span class="archive-date"> 2024-11-02 23:41:07 </span>
+
+                      <h4>ARCHIVE_001.jpg</h4>
+
+                      <p>City Lights Concept</p>
+
+                      <small>2.4 MB</small>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
 
@@ -1046,6 +1232,65 @@
               alt="Files"
             />
           </div>
+          <!-- ================================= -->
+          <!-- EMAIL MODAL -->
+          <!-- ================================= -->
+
+          <div class="email-modal" id="emailModal">
+            <div class="email-window">
+              <!-- TOP BAR -->
+              <div class="email-topbar">
+                <div class="window-controls">
+                  <span class="close-btn email-close"></span>
+                  <span class="minimize-btn"></span>
+                  <span class="expand-btn"></span>
+                </div>
+
+                <p>Compose Message</p>
+              </div>
+
+              <!-- BODY -->
+              <div class="email-body">
+                <!-- LEFT -->
+                <div class="email-sidebar">
+                  <div class="email-nav active-mail">Inbox</div>
+
+                  <div class="email-nav">Sent</div>
+
+                  <div class="email-nav">Drafts</div>
+
+                  <div class="email-nav">Archive</div>
+                </div>
+
+                <!-- RIGHT -->
+                <div class="email-content">
+                  <form id="contact-form">
+                    <div class="input-group">
+                      <label>Name</label>
+                      <input type="text" name="user_name" required />
+                    </div>
+
+                    <div class="input-group">
+                      <label>Email</label>
+                      <input type="email" name="user_email" required />
+                    </div>
+
+                    <div class="input-group">
+                      <label>Subject</label>
+                      <input type="text" name="subject" required />
+                    </div>
+
+                    <div class="input-group">
+                      <label>Message</label>
+                      <textarea name="message" rows="8" required></textarea>
+                    </div>
+
+                    <button type="submit" class="send-btn">Send Message</button>
+                  </form>
+                </div>
+              </div>
+            </div>
+          </div>
 
           <div class="taskbar-icon" id="music-taskbar">
             <img
@@ -1055,13 +1300,14 @@
             />
           </div>
 
-          <div class="taskbar-icon" id="archive-taskbar">
-            <img
-              src="./assets/Icons/facebook.png"
-              style="height: 50px; width: 50px"
-              alt="Facebook"
-            />
-          </div>
+          <a href="https://www.facebook.com/fixi.nator.1" target="__blank">
+            <div class="taskbar-icon" id="archive-taskbar">
+              <img
+                src="./assets/Icons/facebook.png"
+                style="height: 50px; width: 50px"
+                alt="Facebook"
+              /></div
+          ></a>
 
           <div class="taskbar-icon" id="finder-taskbar">
             <img
@@ -1079,21 +1325,24 @@
             />
           </div>
 
-          <div class="taskbar-icon">
-            <img
-              src="./assets/Icons/github.png"
-              style="height: 50px; width: 50px"
-              alt="Github"
-            />
-          </div>
+          <a href="https://github.com/Fixinator314" target="__blank">
+            <div class="taskbar-icon">
+              <img
+                src="./assets/Icons/github.png"
+                style="height: 50px; width: 50px"
+                alt="Github"
+              />
+            </div>
+          </a>
 
-          <div class="taskbar-icon">
-            <img
-              src="./assets/Icons/web.png"
-              style="height: 60px; width: 60px"
-              alt="Internet"
-            />
-          </div>
+          <a href="./internet.html" target="_blank">
+            <div class="taskbar-icon">
+              <img
+                src="./assets/Icons/web.png"
+                style="height: 60px; width: 60px"
+                alt="Internet"
+              /></div
+          ></a>
 
           <div class="taskbar-icon">
             <img
@@ -1139,14 +1388,16 @@
             </div>
 
             <div class="pinned-grid">
-              <div class="pinned-app">
-                <img
-                  src="./assets/Icons/facebook.png"
-                  style="height: 60px; width: 50px"
-                  alt="Facebook"
-                />
-                <span>Facebook</span>
-              </div>
+              <a href="https://www.facebook.com/fixi.nator.1" target="_blank">
+                <div class="pinned-app">
+                  <img
+                    src="./assets/Icons/facebook.png"
+                    style="height: 60px; width: 50px"
+                    alt="Facebook"
+                  />
+                  <span>Facebook</span>
+                </div></a
+              >
 
               <div class="pinned-app">
                 <img
@@ -1166,14 +1417,16 @@
                 <span>Email</span>
               </div>
 
-              <div class="pinned-app">
-                <img
-                  src="./assets/Icons/github.png"
-                  style="height: 60px; width: 60px"
-                  alt="Github"
-                />
-                <span>Github</span>
-              </div>
+              <a href="https://github.com/Fixinator314" target="__blank">
+                <div class="pinned-app">
+                  <img
+                    src="./assets/Icons/github.png"
+                    style="height: 60px; width: 60px"
+                    alt="Github"
+                  />
+                  <span>Github</span>
+                </div></a
+              >
 
               <div class="pinned-app">
                 <img
@@ -1189,7 +1442,9 @@
       </div>
     </section>
 
-    <script src="https://unpkg.com/page-flip/dist/js/page-flip.browser.js"></script>
+    <!-- EMAILJS CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+
     <script src="script.js"></script>
   </body>
 </html>

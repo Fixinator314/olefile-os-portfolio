@@ -1,0 +1,465 @@
+Planet Orbital System
+(HTML)
+<section class="orbital-section">
+      <div class="orbital-intro">
+        <span>Creative Network</span>
+
+        <h2>
+          Every project, sound and interface exists inside one connected digital
+          universe.
+        </h2>
+      </div>
+
+      <div class="orbit-wrapper">
+        <div class="orbital-system">
+          <!-- CENTER CORE -->
+          <div class="core-node"></div>
+
+          <!-- ORBITAL ITEMS -->
+          <div class="orbit orbit-1">
+            <div class="planet website-node" data-panel="web-panel">Web</div>
+          </div>
+
+          <div class="orbit orbit-2">
+            <div
+              class="planet music-node active-planet"
+              data-panel="music-panel"
+            >
+              Music
+            </div>
+          </div>
+
+          <!-- <div class="orbit orbit-3">
+            <div class="planet archive-node" data-panel="archive-panel">
+              Archive
+            </div>
+          </div> -->
+          <div class="orbit orbit-3">
+            <div class="planet ai-node" data-panel="ai-panel">AI</div>
+          </div>
+
+          <div class="orbit orbit-4">
+            <div class="planet ai-node" data-panel="ai-panel">AI</div>
+          </div>
+        </div>
+
+        <!-- break into the panels -->
+        <div class="orbital-panels">
+          <!-- WEB -->
+          <div class="orbit-panel" id="web-panel">
+            <span>Web Systems</span>
+
+            <h3>Interactive websites and cinematic digital experiences.</h3>
+          </div>
+
+          <!-- MUSIC -->
+          <div class="orbit-panel active-panel" id="music-panel">
+            <span>Music Universe</span>
+
+            <h3>Instrumentals, sound design and immersive audio worlds.</h3>
+          </div>
+
+          <!-- ARCHIVE -->
+          <div class="orbit-panel" id="archive-panel">
+            <span>Recovered Files</span>
+
+            <h3>Old concepts, experiments and unfinished creative systems.</h3>
+          </div>
+
+          <!-- AI -->
+          <div class="orbit-panel" id="ai-panel">
+            <span>AI Systems</span>
+
+            <h3>Interactive tools, assistants and experimental interfaces.</h3>
+          </div>
+
+          <!-- AI -->
+          <div class="orbit-panel" id="ai-panel">
+            <span>AI Systems</span>
+
+            <h3>Interactive tools, assistants and experimental interfaces.</h3>
+          </div>
+        </div>
+      </div>
+    </section>
+
+(CSS)
+/* =============================Orbital section ==========*/
+/* =================================
+   ORBITAL SECTION
+================================= */
+
+.orbital-section {
+  position: relative;
+
+  min-height: 100vh;
+
+  background:
+    radial-gradient(circle at center, rgba(255, 122, 0, 0.08), transparent 45%),
+    #050505;
+
+  border-top: 2px solid red;
+
+  overflow: hidden;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  padding: 120px 0;
+
+  z-index: 20;
+
+  isolation: isolate;
+}
+
+/* INTRO */
+
+.orbital-intro {
+  text-align: center;
+
+  max-width: 900px;
+
+  margin-bottom: 120px;
+
+  z-index: 10;
+}
+
+.orbital-intro span {
+  color: #ff7a00;
+
+  text-transform: uppercase;
+
+  letter-spacing: 4px;
+
+  font-size: 13px;
+}
+
+.orbital-intro h2 {
+  font-size: clamp(2rem, 5vw, 5rem);
+
+  line-height: 1.05;
+
+  margin-top: 20px;
+
+  color: white;
+}
+
+/* =================================
+   ORBIT SYSTEM
+================================= */
+
+.orbital-system {
+  position: relative;
+
+  width: min(90vw, 900px);
+  height: min(90vw, 900px);
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.orbit-wrapper {
+  width: 100%;
+  height: 100%;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  gap: 20px;
+}
+
+/* CENTER CORE */
+
+.core-node {
+  width: 120px;
+  height: 120px;
+
+  border-radius: 50%;
+
+  background: radial-gradient(circle, #ff7a00, #ff5100);
+
+  box-shadow:
+    0 0 60px rgba(255, 122, 0, 0.45),
+    0 0 140px rgba(255, 122, 0, 0.15);
+
+  position: absolute;
+
+  z-index: 20;
+}
+
+/* ORBITS */
+
+.orbit {
+  position: absolute;
+
+  border: 1px solid rgba(255, 255, 255, 0.08);
+
+  border-radius: 50%;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* INDIVIDUAL RINGS */
+
+.orbit-1 {
+  width: 300px;
+  height: 300px;
+  z-index: 5;
+}
+
+.orbit-2 {
+  width: 480px;
+  height: 480px;
+  z-index: 10;
+}
+
+.orbit-3 {
+  width: 650px;
+  height: 650px;
+  z-index: 15;
+}
+
+.orbit-4 {
+  width: 820px;
+  height: 820px;
+  z-index: 20;
+}
+
+/* PLANETS */
+
+.planet {
+  position: absolute;
+
+  top: -30px;
+
+  width: 90px;
+  height: 90px;
+
+  border-radius: 50%;
+
+  background: linear-gradient(
+    145deg,
+    rgba(255, 255, 255, 0.12),
+    rgba(255, 255, 255, 0.03)
+  );
+  z-index: 999;
+
+  backdrop-filter: blur(20px);
+
+  border: 1px solid rgba(255, 255, 255, 0.08);
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  color: white;
+
+  font-size: 14px;
+  font-weight: 500;
+
+  letter-spacing: 1px;
+
+  cursor: pointer;
+
+  transition:
+    border-color 0.4s ease,
+    box-shadow 0.4s ease,
+    background 0.4s ease;
+
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.35);
+}
+
+.planet:hover {
+  border-color: rgba(255, 122, 0, 0.4);
+
+  box-shadow: 0 0 40px rgba(255, 122, 0, 0.2);
+}
+
+/* =================================
+   PANELS
+================================= */
+
+.orbital-panels {
+  position: relative;
+  width: 100%;
+  max-width: 900px;
+  margin-top: 100px;
+  min-height: 260px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  pointer-events: none;
+  z-index: 5;
+}
+
+.orbit-panel {
+  position: absolute;
+  width: 100%;
+  padding: 50px;
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(40px);
+  pointer-events: none;
+  /* FIX: Remove visibility from transition, handle it separately */
+  transition:
+    opacity 0.5s ease,
+    transform 0.5s ease;
+  background: linear-gradient(
+    145deg,
+    rgba(255, 255, 255, 0.06),
+    rgba(255, 255, 255, 0.02)
+  );
+  backdrop-filter: blur(30px);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 28px;
+  /* FIX: Add z-index control */
+  z-index: 1;
+}
+
+.orbit-panel.active-panel {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+  pointer-events: none;
+  z-index: 10;
+}
+
+.orbit-panel span {
+  color: #ff7a00;
+  text-transform: uppercase;
+  letter-spacing: 3px;
+  font-size: 13px;
+}
+.orbit-panel h3 {
+  font-size: clamp(2rem, 4vw, 4rem);
+  line-height: 1.1;
+  margin-top: 20px;
+  color: white;
+}
+
+.active-planet {
+  border-color: rgba(255, 122, 0, 0.6);
+
+  box-shadow: 0 0 50px rgba(255, 122, 0, 0.3);
+}
+
+(JS)
+/* =================================
+   ORBIT ROTATION
+================================= */
+
+gsap.to(".orbit-1", {
+  rotate: 360,
+
+  duration: 20,
+
+  repeat: -1,
+
+  ease: "none",
+
+  transformOrigin: "center center",
+});
+
+gsap.to(".orbit-2", {
+  rotate: -360,
+
+  duration: 30,
+
+  repeat: -1,
+
+  ease: "none",
+
+  transformOrigin: "center center",
+});
+
+gsap.to(".orbit-3", {
+  rotate: 360,
+
+  duration: 45,
+
+  repeat: -1,
+
+  ease: "none",
+
+  transformOrigin: "center center",
+});
+
+gsap.to(".orbit-4", {
+  rotate: -360,
+
+  duration: 60,
+
+  repeat: -1,
+
+  ease: "none",
+
+  transformOrigin: "center center",
+});
+
+//   Scroll Reveal
+gsap.from(".orbital-system", {
+  scale: 0.7,
+  opacity: 0,
+
+  duration: 2,
+
+  ease: "power3.out",
+
+  scrollTrigger: {
+    trigger: ".orbital-section",
+
+    start: "top 70%",
+  },
+});
+
+/* =================================
+   ORBIT CLICK (FIXED)
+================================= */
+
+const planets = document.querySelectorAll(".planet");
+const panels = document.querySelectorAll(".orbit-panel");
+
+planets.forEach((planet) => {
+  planet.addEventListener("click", () => {
+    const targetId = planet.dataset.panel;
+    const targetPanel = document.getElementById(targetId);
+
+    gsap.to(planets, {
+      scale: 1,
+      duration: 0.3,
+    });
+
+    gsap.to(planet, {
+      scale: 1.2,
+      duration: 0.3,
+    });
+
+    if (!targetPanel) {
+      console.error(`Panel with id "${targetId}" not found!`);
+      return;
+    }
+
+    // Remove active from all planets first
+    planets.forEach((p) => p.classList.remove("active-planet"));
+    planet.classList.add("active-planet");
+
+    // Remove active from all panels
+    panels.forEach((panel) => {
+      panel.classList.remove("active-panel");
+    });
+
+    // Force a reflow before adding the new active class
+    // This ensures the transition restarts properly
+    void targetPanel.offsetWidth;
+
+    // Add active to target panel
+    targetPanel.classList.add("active-panel");
+  });
+});
+

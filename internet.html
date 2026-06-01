@@ -1,0 +1,345 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <!-- SEO -->
+    <title>Olefile Makganye's Portfolio</title>
+    <meta
+      name="description"
+      content="Official portfolio website for Olefile Makganye"
+    />
+
+    <!-- Fonts (premium feel) Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Cormorant+Infant:ital,wght@0,300..700;1,300..700&family=Fraunces:ital,opsz,wght@0,9..144,100..900;1,9..144,100..900&family=Karla:ital,wght@0,200..800;1,200..800&family=Montserrat:ital,wght@0,100..900;1,100..900&family=Philosopher:ital,wght@0,400;0,700;1,400;1,700&family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Red+Hat+Display:ital,wght@0,300..900;1,300..900&family=Roboto:ital,wght@0,100..900;1,100..900&family=Yellowtail&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- Main CSS -->
+
+    <link rel="stylesheet" href="./net.css" />
+
+    <link rel="stylesheet" href="./assets/css/label.css" />
+    <link rel="stylesheet" href="./assets/css/responses.css" />
+
+    <!-- Favicon -->
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="32x32"
+      href="./assets/HQ logo/HQ Logo.png"
+      alt="HQ Logo"
+    />
+
+    <!-- GSAP -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollToPlugin.min.js"></script>
+  </head>
+
+  <body>
+    <header class="system-navbar">
+      <!-- LEFT -->
+
+      <div class="system-left">
+        <p class="system-name">Olefile Makganye OS</p>
+      </div>
+
+      <!-- RIGHT -->
+
+      <div class="system-right">
+        <div class="system-time">
+          <p id="top-time"></p>
+
+          <span id="top-date"></span>
+        </div>
+
+        <div class="system-item">
+          <img src="./assets/Icons/Wifi-white.png" alt="Network" />
+        </div>
+
+        <div class="system-item">
+          <img src="./assets/Icons/Volume white.png" alt="Volume" />
+        </div>
+
+        <div class="system-item battery">
+          <img src="./assets/Icons/Battery White.png" alt="Battery" />
+
+          <span>67%</span>
+        </div>
+      </div>
+
+      <!-- ======================================== -->
+      <!-- CALENDAR WIDGET -->
+      <!-- ======================================== -->
+
+      <div class="calendar-widget">
+        <div class="calendar-header">
+          <h3 id="calendar-month"></h3>
+        </div>
+
+        <div class="calendar-grid" id="calendar-grid"></div>
+      </div>
+    </header>
+
+    <main class="internet-experience">
+      <!-- HERO SECTION -->
+      <section class="expand-section">
+        <!-- BACKGROUND -->
+        <div class="expand-bg">
+          <img src="./assets/desktop-images/background1.png" alt="" />
+        </div>
+
+        <!-- HERO -->
+        <div class="expand-hero">
+          <!-- MEDIA -->
+          <div class="expand-media">
+            <video
+              src="./assets/video/Video2.mp4"
+              autoplay
+              muted
+              loop
+              playsinline
+            ></video>
+          </div>
+
+          <!-- TITLE -->
+          <div class="expand-title">
+            <h1 class="title-left">FIXI</h1>
+            <h1 class="title-right">NATOR</h1>
+          </div>
+        </div>
+      </section>
+
+      <!-- CONTENT -->
+      <section class="internet-content">
+        <div class="content-wrapper">
+          <div class="content-block">
+            <span>Creative System</span>
+
+            <h2 class="reveal-heading">
+              BUILDING IMMERSIVE DIGITAL EXPERIENCES THROUGH
+            </h2>
+
+            <!-- GOOEY TEXT -->
+            <div class="gooey-wrapper">
+              <svg class="gooey-svg">
+                <defs>
+                  <filter id="gooey">
+                    <feGaussianBlur
+                      in="SourceGraphic"
+                      stdDeviation="10"
+                      result="blur"
+                    />
+
+                    <feColorMatrix
+                      in="blur"
+                      mode="matrix"
+                      values="
+                1 0 0 0 0
+                0 1 0 0 0
+                0 0 1 0 0
+                0 0 0 22 -10
+              "
+                      result="goo"
+                    />
+
+                    <feBlend in="SourceGraphic" in2="goo" />
+                  </filter>
+                </defs>
+              </svg>
+
+              <div class="gooey-text-container">
+                <span id="text1"></span>
+                <span id="text2"></span>
+              </div>
+            </div>
+          </div>
+          <div class="content-image">
+            <img
+              src="./assets/desktop-images/desktop imag2.jpg"
+              alt="Content Image"
+            />
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <section class="network-section">
+      <!-- INTRO -->
+      <div class="network-intro">
+        <span>Tech Stack</span>
+
+        <h2 class="reveal-heading">
+          Building immersive interfaces using HTML, SCSS, JavaScript, and GSAP.
+        </h2>
+      </div>
+
+      <!-- CORE -->
+      <div class="network-core"></div>
+
+      <div class="system-blob">
+        <span class="blob-label"> System Core </span>
+
+        <h3 id="blob-title">Frontend Systems</h3>
+
+        <p id="blob-text">
+          Building immersive interfaces using HTML, SCSS, JavaScript and GSAP.
+        </p>
+      </div>
+
+      <!-- GRID -->
+      <div class="network-grid">
+        <!-- FRONTEND -->
+        <div
+          class="network-card"
+          data-title="Frontend Systems"
+          data-text="Building immersive interfaces using HTML, SCSS, JavaScript and GSAP."
+        >
+          <div class="card-icon">⌘</div>
+
+          <h3>Frontend Systems</h3>
+
+          <p>
+            Building immersive interfaces using HTML, SCSS, JavaScript and GSAP.
+          </p>
+
+          <div class="stack-tags">
+            <span>HTML5</span>
+            <span>SCSS</span>
+            <span>JavaScript</span>
+            <span>React</span>
+            <span>GSAP</span>
+          </div>
+        </div>
+
+        <!-- CREATIVE -->
+        <div
+          class="network-card"
+          data-title="Creative Development"
+          data-text="Cinematic UI systems, immersive motion design and interactive visuals."
+        >
+          <div class="card-icon">◉</div>
+
+          <h3>Creative Development</h3>
+
+          <p>
+            Cinematic UI systems, immersive motion design and interactive
+            visuals.
+          </p>
+
+          <div class="stack-tags">
+            <span>Motion</span>
+            <span>UI Design</span>
+            <span>Visual Systems</span>
+          </div>
+        </div>
+
+        <!-- MUSIC -->
+        <div
+          class="network-card"
+          data-title="Audio Universe"
+          data-text="Music production, sound design and immersive sonic experiences."
+        >
+          <div class="card-icon">♫</div>
+
+          <h3>Audio Universe</h3>
+
+          <p>Music production, sound design and immersive sonic experiences.</p>
+
+          <div class="stack-tags">
+            <span>FL Studio</span>
+            <span>Logic Pro</span>
+            <span>Pro Tools</span>
+            <span>Suno AI</span>
+          </div>
+        </div>
+
+        <!-- AI -->
+        <div
+          class="network-card"
+          data-title="AI Systems"
+          data-text="Building intelligent workflows, assistants and automation systems."
+        >
+          <div class="card-icon">AI</div>
+
+          <h3>AI Systems</h3>
+
+          <p>
+            Building intelligent workflows, assistants and automation systems.
+          </p>
+
+          <div class="stack-tags">
+            <span>Chatbots</span>
+            <span>Automation</span>
+            <span>AI Tools</span>
+            <span>Creative AI</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="menus-section" class="menus-section">
+      <!-- FOOD MENU -->
+      <div class="menu-block">
+        <!-- <h2>Online Book</h2> -->
+        <div id="food-book" class="menu-book">
+          <div class="page">
+            <img src="./assets/Book/1.png" />
+          </div>
+          <div class="page">
+            <img src="./assets/Book/2.png" />
+          </div>
+
+          <div class="page">
+            <img src="./assets/Book/3.png" />
+          </div>
+
+          <div class="page">
+            <img src="./assets/Book/4.png" />
+          </div>
+
+          <div class="page">
+            <img src="./assets/Book/5.png" />
+          </div>
+          <div class="page">
+            <img src="./assets/Book/6.png" />
+          </div>
+          <div class="page">
+            <img src="./assets/Book/7.png" />
+          </div>
+          <div class="page">
+            <img src="./assets/Book/8.png" />
+          </div>
+          <div class="page">
+            <img src="./assets/Book/9.png" />
+          </div>
+          <div class="page">
+            <img src="./assets/Book/10.png" />
+          </div>
+          <div class="page">
+            <img src="./assets/Book/11.png" />
+          </div>
+          <div class="page">
+            <img src="./assets/Book/13.png" />
+          </div>
+        </div>
+      </div>
+    </section>
+    <section>
+      <div class=""></div>
+    </section>
+
+    <!-- EMAILJS CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+    <script src="https://unpkg.com/page-flip/dist/js/page-flip.browser.js"></script>
+    <script src="https://unpkg.com/@studio-freight/lenis@1.0.42/bundled/lenis.min.js"></script>
+    <script src="https://unpkg.com/page-flip/dist/js/page-flip.browser.js"></script>
+    <script src="./gsap.js"></script>
+    <script src="./gsap-text.js"></script>
+  </body>
+</html>

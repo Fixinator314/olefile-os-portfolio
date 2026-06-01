@@ -248,6 +248,95 @@ desktopIcons.forEach((icon) => {
   });
 });
 
+// ============Taskbar email script
+const emailTaskbar = document.getElementById("email-taskbar");
+const emailModal = document.getElementById("emailModal");
+const emailClose = document.querySelector(".email-close");
+
+emailTaskbar.addEventListener("click", () => {
+  emailModal.classList.add("show-email");
+});
+
+emailClose.addEventListener("click", () => {
+  emailModal.classList.remove("show-email");
+});
+
+const emailWindow = document.querySelector(".email-window");
+const emailTopbar = document.querySelector(".email-topbar");
+
+let isDragging = false;
+
+let offsetX = 0;
+let offsetY = 0;
+
+emailTopbar.addEventListener("mousedown", (e) => {
+  isDragging = true;
+
+  offsetX = e.clientX - emailWindow.offsetLeft;
+  offsetY = e.clientY - emailWindow.offsetTop;
+});
+
+document.addEventListener("mousemove", (e) => {
+  if (!isDragging) return;
+
+  emailWindow.style.position = "absolute";
+
+  emailWindow.style.left = `${e.clientX - offsetX}px`;
+  emailWindow.style.top = `${e.clientY - offsetY}px`;
+});
+
+document.addEventListener("mouseup", () => {
+  isDragging = false;
+});
+// ======================================
+// EMAILJS INIT
+// ======================================
+
+emailjs.init("U5rZmh31ECmnHaw2K");
+
+// ======================================
+// CONTACT FORM
+// ======================================
+
+const contactForm = document.getElementById("contact-form");
+
+contactForm.addEventListener("submit", function (e) {
+  e.preventDefault();
+
+  // OPTIONAL LOADING STATE
+  const sendBtn = document.querySelector(".send-btn");
+
+  sendBtn.innerText = "Sending...";
+  sendBtn.disabled = true;
+
+  emailjs
+    .sendForm("service_2ck1wkw", "template_x9em24t", "#contact-form")
+
+    .then(() => {
+      // SUCCESS
+      sendBtn.innerText = "Message Sent";
+
+      contactForm.reset();
+
+      // RESET BUTTON
+      setTimeout(() => {
+        sendBtn.innerText = "Send Message";
+        sendBtn.disabled = false;
+      }, 2500);
+    })
+
+    .catch((error) => {
+      console.log(error);
+
+      sendBtn.innerText = "Failed";
+
+      setTimeout(() => {
+        sendBtn.innerText = "Send Message";
+        sendBtn.disabled = false;
+      }, 2500);
+    });
+});
+
 // ==================Click to close Windows======================
 const closeButtons = document.querySelectorAll(".close-btn");
 
@@ -465,6 +554,8 @@ function initPortfolioBook() {
   );
 }
 
+// =======================music window sidebar activation=================
+
 const sidebarItems = document.querySelectorAll("#music-window .sidebar-item");
 
 const musicSections = document.querySelectorAll("#music-window .music-section");
@@ -490,4 +581,80 @@ sidebarItems.forEach((item) => {
     // SHOW TARGET
     document.getElementById(target).classList.add("active-section");
   });
+});
+
+// =======================
+// WORK WINDOW SIDEBAR
+// =======================
+
+const sidebarItems2 = document.querySelectorAll("#finder-window .sidebar-item");
+
+const workSections = document.querySelectorAll("#finder-window .work-section");
+
+sidebarItems2.forEach((item) => {
+  item.addEventListener("click", () => {
+    // REMOVE ACTIVE
+    sidebarItems2.forEach((i) => {
+      i.classList.remove("active-sidebar2");
+    });
+
+    // ADD ACTIVE
+    item.classList.add("active-sidebar2");
+
+    // TARGET
+    const target = item.dataset.tab;
+
+    // HIDE SECTIONS
+    workSections.forEach((section) => {
+      section.classList.remove("active-section");
+    });
+
+    // SHOW TARGET
+    document.getElementById(target).classList.add("active-section");
+  });
+});
+
+// ===========================================================================
+let foodBook = null;
+let cocktailBook = null;
+
+window.addEventListener("load", () => {
+  if (window.innerWidth > 768) {
+    initFlipbooks();
+  }
+});
+
+function initFlipbooks() {
+  if (foodBook) foodBook.destroy();
+  if (cocktailBook) cocktailBook.destroy();
+
+  const size = getBookSize();
+
+  foodBook = new St.PageFlip(document.getElementById("food-book"), {
+    width: size.width,
+    height: size.height,
+    size: "fixed",
+    showCover: true,
+  });
+
+  foodBook.loadFromHTML(document.querySelectorAll("#food-book .page"));
+
+  cocktailBook = new St.PageFlip(document.getElementById("cocktail-book"), {
+    width: size.width,
+    height: size.height,
+    size: "fixed",
+    showCover: true,
+  });
+
+  cocktailBook.loadFromHTML(document.querySelectorAll("#cocktail-book .page"));
+}
+
+function getBookSize() {
+  return { width: 600, height: 840 };
+}
+
+window.addEventListener("resize", () => {
+  if (window.innerWidth > 768) {
+    initFlipbooks();
+  }
 });

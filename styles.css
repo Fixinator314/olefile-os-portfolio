@@ -454,6 +454,9 @@ body {
 
   gap: 14px;
 }
+.pinned-grid a {
+  text-decoration: none;
+}
 
 /* ======================================== */
 /* PINNED APP */
@@ -590,6 +593,212 @@ body {
   background: #ff7a00;
 
   box-shadow: 0 0 12px #ff7a00;
+}
+
+/* =================================
+   EMAIL MODAL
+================================= */
+
+.email-modal {
+  position: fixed;
+  inset: 0;
+
+  background: transparent;
+  backdrop-filter: none;
+
+  opacity: 0;
+  pointer-events: none;
+
+  transition: 0.3s ease;
+
+  z-index: 9999;
+}
+
+.email-modal.show-email {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+/* WINDOW */
+
+.email-window {
+  position: absolute;
+
+  width: 900px;
+  height: 700px;
+
+  top: -695px;
+  left: 50%;
+
+  transform: translateX(-50%);
+
+  border-radius: 28px;
+
+  overflow: hidden;
+
+  background: rgba(10, 10, 10, 0.85);
+
+  backdrop-filter: blur(30px);
+  -webkit-backdrop-filter: blur(30px);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+
+  box-shadow: 0 30px 80px rgba(0, 0, 0, 0.5);
+
+  display: flex;
+  flex-direction: column;
+
+  transition: opacity 0.3s ease;
+}
+
+/* TOPBAR */
+
+.email-topbar {
+  height: 100px;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  padding: 0 24px;
+
+  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+  cursor: grab;
+  user-select: none;
+}
+
+.email-topbar:active {
+  cursor: grabbing;
+}
+
+.email-topbar p {
+  color: white;
+  font-size: 15px;
+  letter-spacing: 1px;
+}
+
+/* BODY */
+
+.email-body {
+  flex: 1;
+  display: flex;
+}
+
+/* SIDEBAR */
+
+.email-sidebar {
+  width: 220px;
+
+  border-right: 1px solid rgba(255, 255, 255, 0.06);
+
+  padding: 24px;
+
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.email-nav {
+  padding: 14px 18px;
+
+  border-radius: 14px;
+
+  color: rgba(255, 255, 255, 0.7);
+
+  transition: 0.3s ease;
+
+  cursor: pointer;
+}
+
+.email-nav:hover,
+.active-mail {
+  background: rgba(255, 122, 0, 0.12);
+
+  border: 1px solid rgba(255, 122, 0, 0.25);
+
+  color: #ff7a00;
+}
+
+/* CONTENT */
+
+.email-content {
+  flex: 1;
+
+  padding: 32px;
+
+  overflow-y: auto;
+}
+
+/* FORM */
+
+#contact-form {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.input-group {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.input-group label {
+  color: rgba(255, 255, 255, 0.6);
+  font-size: 14px;
+}
+
+.input-group input,
+.input-group textarea {
+  width: 100%;
+
+  background: rgba(255, 255, 255, 0.03);
+
+  border: 1px solid rgba(255, 255, 255, 0.08);
+
+  border-radius: 18px;
+
+  padding: 18px;
+
+  color: white;
+
+  outline: none;
+
+  transition: 0.3s ease;
+}
+
+.input-group input:focus,
+.input-group textarea:focus {
+  border-color: rgba(255, 122, 0, 0.4);
+
+  background: rgba(255, 122, 0, 0.04);
+}
+
+/* BUTTON */
+
+.send-btn {
+  width: fit-content;
+
+  padding: 16px 28px;
+
+  border-radius: 999px;
+
+  border: none;
+
+  background: #ff7a00;
+
+  color: white;
+
+  font-weight: 600;
+
+  cursor: pointer;
+
+  transition: 0.3s ease;
+}
+
+.send-btn:hover {
+  transform: translateY(-2px);
+
+  background: #ff8f2f;
 }
 
 /* -----------------Start Menu Search Tab ----------------- */
@@ -836,6 +1045,15 @@ body {
 
   overflow: hidden;
 }
+.archive-wrapper {
+  display: grid;
+
+  grid-template-columns: 240px 1fr;
+
+  height: 100%;
+
+  overflow: hidden;
+}
 
 /* ================================= */
 /* SIDEBAR */
@@ -853,6 +1071,18 @@ body {
   border-radius: 0 0 0 20px;
 }
 .work-sidebar2 {
+  padding: 30px;
+
+  border-right: 1px solid rgba(255, 255, 255, 0.06);
+
+  background: rgba(255, 255, 255, 0.02);
+
+  backdrop-filter: blur(20px);
+
+  border-radius: 0 0 0 20px;
+}
+
+.work-sidebar3 {
   padding: 30px;
 
   border-right: 1px solid rgba(255, 255, 255, 0.06);
@@ -894,13 +1124,30 @@ body {
 
   color: rgba(255, 255, 255, 0.7);
 }
+.sidebar-item2 {
+  padding: 14px 18px;
+
+  border-radius: 18px;
+
+  margin-bottom: 10px;
+
+  cursor: pointer;
+
+  transition: 0.3s ease;
+
+  color: rgba(255, 255, 255, 0.7);
+}
 
 .sidebar-item:hover {
   background: rgba(255, 122, 0, 0.08);
 
   transform: translateX(4px);
 }
+.sidebar-item2:hover {
+  background: rgba(255, 122, 0, 0.08);
 
+  transform: translateX(4px);
+}
 .active-sidebar {
   background: rgba(255, 122, 0, 0.12);
 
@@ -908,7 +1155,13 @@ body {
 
   border: 1px solid rgba(255, 122, 0, 0.2);
 }
+.active-sidebar2 {
+  background: rgba(255, 122, 0, 0.12);
 
+  color: #ff7a00;
+
+  border: 1px solid rgba(255, 122, 0, 0.2);
+}
 /* ================================= */
 /* MAIN */
 /* ================================= */
@@ -924,8 +1177,22 @@ body {
 
   overflow: hidden;
 }
+.archive-main {
+  display: flex;
+
+  flex-direction: column;
+
+  padding: 40px;
+
+  height: 100%;
+
+  overflow: hidden;
+}
 
 .work-top {
+  margin-bottom: 30px;
+}
+.archive-top {
   margin-bottom: 30px;
 }
 
@@ -935,7 +1202,16 @@ body {
   margin-bottom: 10px;
 }
 
+.archive-top h2 {
+  font-size: 32px;
+
+  margin-bottom: 10px;
+}
+
 .work-top p {
+  color: rgba(255, 255, 255, 0.55);
+}
+.archive-top p {
   color: rgba(255, 255, 255, 0.55);
 }
 
@@ -949,6 +1225,34 @@ body {
   border-radius: 999px;
 }
 
+.work-section {
+  display: none;
+  height: 100%;
+}
+
+.archive-section {
+  display: none;
+  height: 100%;
+}
+
+.work-section.active-section {
+  display: block;
+}
+
+.archive-section.active-section {
+  display: block;
+}
+.web-banner {
+  display: flex;
+  flex-direction: row;
+
+  gap: 10px;
+}
+.project-overlay p {
+  padding-top: 20px;
+  color: #ff7b00e8;
+}
+
 /* ================================= */
 /* GRID */
 /* ================================= */
@@ -959,6 +1263,8 @@ body {
   grid-template-columns: repeat(2, 1fr);
 
   gap: 24px;
+  overflow-y: visible;
+  overflow-x: hidden;
 }
 .projects-grid2 {
   display: flex;
@@ -990,7 +1296,106 @@ body {
   padding-right: 10px;
 }
 
+/* ================================= */
+/* CUSTOM SCROLLBAR */
+/* ================================= */
+
+.projects-grid::-webkit-scrollbar,
+.projects-grid2::-webkit-scrollbar,
+.projects-grid3::-webkit-scrollbar,
+.beat-grid::-webkit-scrollbar {
+  width: 10px;
+}
+
+/* TRACK */
+
+.projects-grid::-webkit-scrollbar-track,
+.projects-grid2::-webkit-scrollbar-track,
+.projects-grid3::-webkit-scrollbar-track,
+.beat-grid::-webkit-scrollbar-track {
+  background: transparent;
+
+  margin-block: 10px;
+}
+
+/* THUMB */
+
+.projects-grid::-webkit-scrollbar-thumb,
+.projects-grid2::-webkit-scrollbar-thumb,
+.projects-grid3::-webkit-scrollbar-thumb,
+.beat-grid::-webkit-scrollbar-thumb {
+  background: linear-gradient(
+    to bottom,
+    rgba(255, 122, 0, 0.2),
+    rgba(255, 122, 0, 0.6)
+  );
+
+  border-radius: 999px;
+
+  border: 2px solid transparent;
+
+  background-clip: padding-box;
+
+  transition: 0.3s ease;
+
+  box-shadow:
+    inset 0 0 8px rgba(255, 255, 255, 0.08),
+    0 0 12px rgba(255, 122, 0, 0.2);
+}
+
+/* HOVER */
+
+.projects-grid::-webkit-scrollbar-thumb:hover,
+.projects-grid2::-webkit-scrollbar-thumb:hover,
+.projects-grid3::-webkit-scrollbar-thumb:hover,
+.beat-grid::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(
+    to bottom,
+    rgba(255, 122, 0, 0.4),
+    rgba(255, 122, 0, 0.9)
+  );
+
+  box-shadow: 0 0 18px rgba(255, 122, 0, 0.45);
+}
+
 .music-section {
+  display: none;
+
+  flex-direction: column;
+
+  flex: 1;
+
+  min-height: 0;
+
+  overflow: hidden;
+}
+.archive-section {
+  display: none;
+
+  flex-direction: column;
+
+  flex: 1;
+
+  min-height: 0;
+
+  overflow: hidden;
+}
+.archive-catalogue {
+  display: grid;
+
+  grid-template-columns: repeat(3, 1fr);
+
+  gap: 20px;
+
+  width: 100%;
+  height: 100%;
+
+  overflow-y: auto;
+  overflow-x: hidden;
+
+  padding-right: 10px;
+}
+.work-section {
   display: none;
 
   flex-direction: column;
@@ -1004,6 +1409,124 @@ body {
 
 .music-section.active-section {
   display: flex;
+}
+.work-section.active-section {
+  display: flex;
+}
+
+.archive-card {
+  background: rgba(255, 255, 255, 0.03);
+
+  border: 1px solid rgba(255, 255, 255, 0.06);
+
+  border-radius: 18px;
+
+  overflow: hidden;
+
+  transition: 0.3s ease;
+
+  cursor: pointer;
+}
+
+.archive-card:hover {
+  transform: translateY(-4px);
+
+  border-color: rgba(255, 122, 0, 0.3);
+}
+
+.archive-card img {
+  width: 100%;
+  height: 140px;
+
+  object-fit: cover;
+
+  display: block;
+}
+
+.archive-info {
+  padding: 14px;
+}
+
+.archive-date {
+  font-size: 11px;
+
+  color: #ff7a00;
+
+  letter-spacing: 1px;
+}
+
+.archive-info h4 {
+  margin-top: 10px;
+
+  font-size: 15px;
+
+  color: white;
+}
+
+.archive-info p {
+  margin-top: 4px;
+
+  color: rgba(255, 255, 255, 0.6);
+
+  font-size: 13px;
+}
+
+.archive-info small {
+  display: block;
+
+  margin-top: 10px;
+
+  color: rgba(255, 255, 255, 0.35);
+}
+
+/* =================================
+   ARCHIVE SCROLLBAR
+================================= */
+
+.archive-catalogue::-webkit-scrollbar {
+  width: 10px;
+}
+
+/* TRACK */
+
+.archive-catalogue::-webkit-scrollbar-track {
+  background: transparent;
+
+  margin-block: 10px;
+}
+
+/* THUMB */
+
+.archive-catalogue::-webkit-scrollbar-thumb {
+  background: linear-gradient(
+    to bottom,
+    rgba(255, 122, 0, 0.2),
+    rgba(255, 122, 0, 0.6)
+  );
+
+  border-radius: 999px;
+
+  border: 2px solid transparent;
+
+  background-clip: padding-box;
+
+  transition: 0.3s ease;
+
+  box-shadow:
+    inset 0 0 8px rgba(255, 255, 255, 0.08),
+    0 0 12px rgba(255, 122, 0, 0.2);
+}
+
+/* HOVER */
+
+.archive-catalogue::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(
+    to bottom,
+    rgba(255, 122, 0, 0.4),
+    rgba(255, 122, 0, 0.9)
+  );
+
+  box-shadow: 0 0 18px rgba(255, 122, 0, 0.45);
 }
 
 .release-banner {
@@ -1239,12 +1762,48 @@ body {
   transition: 0.4s ease;
 }
 
-.project-card:hover {
+.project-card3 {
+  position: relative;
+
+  height: 280px;
+
+  border-radius: 28px;
+
+  overflow: hidden;
+
+  cursor: pointer;
+
+  background: rgba(255, 255, 255, 0.04);
+
+  border: 1px solid rgba(255, 255, 255, 0.06);
+
+  transition: 0.4s ease;
+}
+
+.project-card4:hover {
   transform: translateY(-8px) scale(1.02);
 
   box-shadow:
     0 20px 40px rgba(0, 0, 0, 0.35),
     0 0 30px rgba(255, 122, 0, 0.12);
+}
+
+.project-card2 {
+  position: relative;
+
+  height: 200px;
+
+  border-radius: 28px;
+
+  overflow: hidden;
+
+  cursor: pointer;
+
+  background: rgba(255, 255, 255, 0.04);
+
+  border: 1px solid rgba(255, 255, 255, 0.06);
+
+  transition: 0.4s ease;
 }
 
 /* LARGE */
@@ -1265,8 +1824,19 @@ body {
 
   transition: 0.6s ease;
 }
+.project-card2 img {
+  width: 100%;
+  height: 100%;
+
+  object-fit: cover;
+
+  transition: 0.6s ease;
+}
 
 .project-card:hover img {
+  transform: scale(1.06);
+}
+.project-card2:hover img {
   transform: scale(1.06);
 }
 
@@ -2020,259 +2590,4 @@ body {
   left: 50px;
 
   overflow: visible;
-}
-
-/* ======================================== */
-/* BOOKS CONTENT */
-/* ======================================== */
-
-.books-content {
-  height: calc(100% - 70px);
-
-  display: flex;
-  flex-direction: column;
-
-  overflow: hidden;
-}
-
-/* .books-viewer::before {
-  content: "";
-
-  position: absolute;
-
-  width: 78%;
-  height: 82%;
-
-  border-radius: 32px;
-
-  background: rgba(0, 0, 0, 0.12);
-
-  border: 1px solid rgba(255, 255, 255, 0.04);
-
-  backdrop-filter: blur(10px);
-
-  z-index: 0;
-} */
-
-/* ======================================== */
-/* TOP SECTION */
-/* ======================================== */
-
-.books-top {
-  margin-bottom: 30px;
-
-  flex-shrink: 0;
-}
-
-.books-top h2 {
-  font-size: 32px;
-
-  font-weight: 600;
-}
-
-.books-top p {
-  margin-top: 10px;
-
-  color: rgba(255, 255, 255, 0.6);
-
-  font-size: 15px;
-}
-
-/* ======================================== */
-/* VIEWER */
-/* ======================================== */
-
-.books-viewer {
-  flex: 1;
-
-  width: 100%;
-
-  height: 500px;
-
-  display: flex;
-
-  align-items: center;
-
-  justify-content: center;
-
-  position: relative;
-
-  overflow: hidden;
-}
-
-/* ======================================== */
-/* BOOK CONTAINER */
-/* ======================================== */
-
-#portfolio-book {
-  width: 100%;
-  height: 100%;
-
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-/* ======================================== */
-/* PAGE */
-/* ======================================== */
-
-.menu-book .page {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-
-  overflow: hidden;
-
-  background: transparent;
-
-  padding: 0;
-}
-
-/* ======================================== */
-/* PAGE IMAGE */
-/* ======================================== */
-
-.menu-book .page img {
-  width: 100%;
-  height: 100%;
-
-  object-fit: contain;
-
-  user-select: none;
-
-  pointer-events: none;
-}
-
-/* ======================================== */
-/* PAGEFLIP OVERRIDES */
-/* ======================================== */
-
-.stf__parent {
-  margin: auto;
-}
-
-.stf__wrapper {
-  margin: auto;
-}
-
-.stf__block {
-  border-radius: 12px;
-
-  overflow: hidden;
-}
-.stf__parent {
-  width: 100% !important;
-
-  height: 100% !important;
-
-  display: flex;
-
-  align-items: center;
-  justify-content: center;
-}
-.stf__wrapper {
-  width: 100% !important;
-
-  height: 100% !important;
-
-  max-width: 1400px;
-
-  max-height: 100%;
-}
-
-#portfolio-book {
-  width: 100%;
-  height: 100%;
-}
-
-/* ======================================== */
-/* BOOK SHADOW */
-/* ======================================== */
-
-.stf__item {
-  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.35);
-}
-
-/* ======================================== */
-/* RESPONSIVE */
-/* ======================================== */
-
-@media screen and (max-width: 1200px) {
-  .books-window {
-    width: calc(100% - 40px);
-
-    height: 88vh;
-
-    left: 20px;
-    top: 30px;
-  }
-}
-
-/* ======================================== */
-/* TABLET */
-/* ======================================== */
-
-@media screen and (max-width: 992px) {
-  .books-content {
-    padding: 20px;
-  }
-
-  .books-top h2 {
-    font-size: 26px;
-  }
-}
-
-/* ======================================== */
-/* MOBILE */
-/* ======================================== */
-
-@media screen and (max-width: 768px) {
-  .books-window {
-    width: 100%;
-    height: 100vh;
-
-    top: 0;
-    left: 0;
-
-    border-radius: 0;
-  }
-
-  .books-content {
-    padding: 20px;
-  }
-
-  .books-top {
-    margin-bottom: 20px;
-  }
-
-  .books-top h2 {
-    font-size: 22px;
-  }
-
-  .books-top p {
-    font-size: 13px;
-  }
-
-  .books-viewer {
-    overflow: auto;
-  }
-}
-
-/* ======================================== */
-/* SMALL MOBILE */
-/* ======================================== */
-
-@media screen and (max-width: 480px) {
-  .books-content {
-    padding: 16px;
-  }
-
-  .books-top h2 {
-    font-size: 18px;
-  }
-
-  .books-top p {
-    font-size: 12px;
-  }
 }
