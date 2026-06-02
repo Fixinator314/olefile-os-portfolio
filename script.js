@@ -658,3 +658,28 @@ window.addEventListener("resize", () => {
     initFlipbooks();
   }
 });
+
+// Full Screen
+document.querySelectorAll(".expand-btn").forEach((btn) => {
+  btn.addEventListener("click", (e) => {
+    const windowEl = e.target.closest(".app-window");
+
+    if (!windowEl) return;
+
+    if (!windowEl.classList.contains("fullscreen")) {
+      windowEl.dataset.top = windowEl.style.top;
+      windowEl.dataset.left = windowEl.style.left;
+      windowEl.dataset.width = windowEl.style.width;
+      windowEl.dataset.height = windowEl.style.height;
+
+      windowEl.classList.add("fullscreen");
+    } else {
+      windowEl.classList.remove("fullscreen");
+
+      windowEl.style.top = windowEl.dataset.top;
+      windowEl.style.left = windowEl.dataset.left;
+      windowEl.style.width = windowEl.dataset.width;
+      windowEl.style.height = windowEl.dataset.height;
+    }
+  });
+});

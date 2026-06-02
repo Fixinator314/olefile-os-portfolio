@@ -247,18 +247,19 @@ function initFlipbooks() {
     height: size.height,
     size: "fixed",
     showCover: true,
+    // gap: size.gap,
   });
 
   foodBook.loadFromHTML(document.querySelectorAll("#food-book .page"));
 
-  cocktailBook = new St.PageFlip(document.getElementById("cocktail-book"), {
-    width: size.width,
-    height: size.height,
-    size: "fixed",
-    showCover: true,
-  });
+  // cocktailBook = new St.PageFlip(document.getElementById("cocktail-book"), {
+  //   width: size.width,
+  //   height: size.height,
+  //   size: "fixed",
+  //   showCover: true,
+  // });
 
-  cocktailBook.loadFromHTML(document.querySelectorAll("#cocktail-book .page"));
+  // cocktailBook.loadFromHTML(document.querySelectorAll("#cocktail-book .page"));
 }
 
 function getBookSize() {

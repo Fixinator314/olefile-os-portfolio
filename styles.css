@@ -2591,3 +2591,34 @@ body {
 
   overflow: visible;
 }
+
+/* Full Screen */
+.app-window.fullscreen {
+  position: fixed !important;
+
+  top: 0 !important;
+  left: 0 !important;
+
+  width: 100vw !important;
+  height: 100vh !important;
+
+  transform: none !important;
+
+  border-radius: 0 !important;
+
+  z-index: 99999;
+
+  max-width: none !important;
+  max-height: none !important;
+
+  transition:
+    width 0.35s ease,
+    height 0.35s ease,
+    top 0.35s ease,
+    left 0.35s ease,
+    border-radius 0.35s ease;
+}
+
+.app-window.fullscreen .window-content {
+  height: calc(100vh - 50px);
+}

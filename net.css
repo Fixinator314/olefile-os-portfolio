@@ -773,7 +773,7 @@
 
   margin: 0 auto 100px;
 
-  padding: 50px;
+  padding: 10px;
 
   border-radius: 40px;
 
@@ -909,10 +909,8 @@
 
   width: 100%;
   max-width: 700px; /* 👈 important */
-  margin: 80px auto;
-
-  margin: 80px auto;
-
+  /* margin-left: 80px; */
+  margin: 80px auto 0 auto;
   /* transform: scale(1.4);
   transform-origin: center; */
 }
@@ -1036,4 +1034,14 @@
   .menu-block h2 {
     display: none;
   }
+}
+
+.footer {
+  text-align: center;
+  padding: 20px;
+  background: #050505;
+  color: #ff7a00;
+}
+.footer p {
+  font-size: 14px;
 }
