@@ -4,6 +4,40 @@
   box-sizing: border-box;
 }
 
+:root {
+  --bg: #0a1012;
+  --surface: rgba(15, 15, 15, 0.58);
+  --surface-light: rgba(255, 255, 255, 0.04);
+
+  --text: #ffffff;
+  --text-tertiary: #fff;
+  --text-secondary: rgba(255, 255, 255, 0.65);
+
+  --border: rgba(255, 255, 255, 0.08);
+
+  --accent: #ff7a00;
+  --accent-secondary: #ff7b00e8;
+  --mail-field: rgba(255, 255, 255, 0.03);
+  --bg-light: #0a1012;
+  --sys-item: rgba(255, 255, 255, 0.61);
+}
+body.light-mode {
+  --bg: #f5f6f8;
+
+  --surface: rgba(255, 255, 255, 0.8);
+  --surface-light: rgba(255, 255, 255, 0.9);
+
+  --text: #ffffff;
+  --text-secondary: rgba(0, 0, 0, 0.65);
+
+  --border: rgba(0, 0, 0, 0.08);
+
+  --accent: #ff7a00;
+  --mail-field: rgba(255, 255, 255, 0.548);
+  --bg-light: #a7a2a2;
+  --sys-item: rgba(75, 73, 73, 0.13);
+}
+
 body {
   font-family: "Space Grotesk", sans-serif;
 
@@ -19,14 +53,15 @@ body {
   background-position: center;
   background-repeat: no-repeat;
 
-  background-color: #0a1012;
+  background-color: var(--bg);
 
   min-height: 100vh;
 
   overflow: hidden;
 
-  color: white;
+  color: var(--text);
 }
+
 /* ----------------------------Top Nav Bar ------------------------*/
 /* ======================================== */
 /* SYSTEM NAVBAR */
@@ -51,7 +86,7 @@ body {
   backdrop-filter: blur(24px);
   -webkit-backdrop-filter: blur(24px);
 
-  background: rgba(15, 15, 15, 0.4);
+  background: var(--surface);
 
   border: 1px solid rgba(255, 255, 255, 0.08);
 
@@ -65,7 +100,7 @@ body {
 .system-name {
   font-size: 14px;
 
-  color: rgba(255, 255, 255, 0.7);
+  color: var(--text-secondary);
 
   letter-spacing: 0.08em;
 }
@@ -93,11 +128,15 @@ body {
 
   border-radius: 999px;
 
-  background: rgba(255, 255, 255, 0.04);
+  background: var(--sys-item);
 
   border: 1px solid rgba(255, 255, 255, 0.05);
 }
+.system-item:hover {
+  background: rgba(255, 122, 0, 0.12);
 
+  border-color: rgba(255, 122, 0, 0.25);
+}
 /* ======================================== */
 /* TIME + DATE */
 /* ======================================== */
@@ -113,7 +152,7 @@ body {
 
   border-radius: 18px;
 
-  background: rgba(255, 255, 255, 0.04);
+  background: var(--sys-item);
 
   border: 1px solid rgba(255, 255, 255, 0.05);
 }
@@ -168,7 +207,7 @@ body {
 
   backdrop-filter: blur(40px);
 
-  background: rgba(15, 15, 15, 0.6);
+  background: var(--surface);
 
   border: 1px solid rgba(255, 255, 255, 0.08);
 
@@ -203,6 +242,7 @@ body {
 .calendar-header h3 {
   font-size: 20px;
   font-weight: 600;
+  color: var(--text-secondary);
 }
 
 /* ======================================== */
@@ -220,7 +260,7 @@ body {
 .calendar-grid span {
   font-size: 12px;
 
-  color: rgba(255, 255, 255, 0.45);
+  color: var(--text-secondary);
 
   text-align: center;
 }
@@ -244,6 +284,7 @@ body {
   transition: 0.3s ease;
 
   cursor: pointer;
+  color: var(--text-secondary);
 }
 
 .calendar-day:hover {
@@ -257,7 +298,7 @@ body {
 
   border: 1px solid rgba(255, 122, 0, 0.35);
 
-  color: #ff7a00;
+  color: var(--accent);
 
   box-shadow: 0 0 18px rgba(255, 122, 0, 0.18);
 }
@@ -287,7 +328,7 @@ body {
   top: 50px;
   left: 20px;
   font-size: 24px;
-  color: #fff;
+  color: var(--text-tertiary);
   background-color: rgba(0, 0, 0, 0.5);
   padding: 10px 20px;
   border-radius: 5px;
@@ -314,7 +355,7 @@ body {
   backdrop-filter: blur(24px);
   -webkit-backdrop-filter: blur(24px);
 
-  background: rgba(15, 15, 15, 0.45);
+  background: var(--surface);
 
   border: 1px solid rgba(255, 255, 255, 0.08);
 
@@ -325,7 +366,7 @@ body {
 /* .task-bar .start-button {
   background-color: transparent;
   border: none;
-  color: #fff;
+  color: var(--text-tertiary);
   font-size: 18px;
   margin-right: 20px;
   cursor: pointer;
@@ -347,7 +388,7 @@ body {
   backdrop-filter: blur(40px);
   -webkit-backdrop-filter: blur(40px);
 
-  background: rgba(15, 15, 15, 0.55);
+  background: var(--surface);
 
   border: 1px solid rgba(255, 255, 255, 0.08);
 
@@ -385,7 +426,7 @@ body {
 }
 .start-menu-text {
   font-size: 26px;
-  color: #fff;
+  color: var(--text-tertiary);
 }
 .start-menu.active {
   opacity: 1;
@@ -438,7 +479,7 @@ body {
 
 .section-title p {
   font-size: 14px;
-  color: rgba(255, 255, 255, 0.7);
+  color: var(--text-secondary);
 
   letter-spacing: 0.08em;
 }
@@ -472,7 +513,7 @@ body {
 
   border-radius: 22px;
 
-  background: rgba(255, 255, 255, 0.04);
+  background: var(--surface-light);
 
   border: 1px solid rgba(255, 255, 255, 0.06);
 
@@ -507,7 +548,7 @@ body {
 .pinned-app span {
   font-size: 13px;
 
-  color: rgba(255, 255, 255, 0.85);
+  color: var(--text-secondary);
 }
 
 /* --------------------Start Menu Taskbar Apps ----------------- *
@@ -535,7 +576,7 @@ body {
 
   border-radius: 18px;
 
-  background: rgba(255, 255, 255, 0.04);
+  background: var(--surface-light);
 
   border: 1px solid rgba(255, 255, 255, 0.06);
 
@@ -590,9 +631,9 @@ body {
 
   border-radius: 50%;
 
-  background: #ff7a00;
+  background: var(--accent);
 
-  box-shadow: 0 0 12px #ff7a00;
+  box-shadow: 0 0 12px var(--accent);
 }
 
 /* =================================
@@ -661,9 +702,11 @@ body {
 
   padding: 0 24px;
 
-  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.74);
   cursor: grab;
   user-select: none;
+
+  background: var(--surface-light);
 }
 
 .email-topbar:active {
@@ -671,7 +714,7 @@ body {
 }
 
 .email-topbar p {
-  color: white;
+  color: var(--text-secondary);
   font-size: 15px;
   letter-spacing: 1px;
 }
@@ -695,6 +738,8 @@ body {
   display: flex;
   flex-direction: column;
   gap: 14px;
+
+  background: var(--surface-light);
 }
 
 .email-nav {
@@ -702,7 +747,7 @@ body {
 
   border-radius: 14px;
 
-  color: rgba(255, 255, 255, 0.7);
+  color: var(--text-secondary);
 
   transition: 0.3s ease;
 
@@ -715,7 +760,7 @@ body {
 
   border: 1px solid rgba(255, 122, 0, 0.25);
 
-  color: #ff7a00;
+  color: var(--accent);
 }
 
 /* CONTENT */
@@ -726,6 +771,7 @@ body {
   padding: 32px;
 
   overflow-y: auto;
+  background: var(--surface);
 }
 
 /* FORM */
@@ -743,7 +789,7 @@ body {
 }
 
 .input-group label {
-  color: rgba(255, 255, 255, 0.6);
+  color: var(--text-secondary);
   font-size: 14px;
 }
 
@@ -751,7 +797,7 @@ body {
 .input-group textarea {
   width: 100%;
 
-  background: rgba(255, 255, 255, 0.03);
+  background: var(--mail-field);
 
   border: 1px solid rgba(255, 255, 255, 0.08);
 
@@ -759,7 +805,7 @@ body {
 
   padding: 18px;
 
-  color: white;
+  color: var(--text-secondary);
 
   outline: none;
 
@@ -784,9 +830,9 @@ body {
 
   border: none;
 
-  background: #ff7a00;
+  background: var(--accent);
 
-  color: white;
+  color: var(--text);
 
   font-weight: 600;
 
@@ -803,7 +849,7 @@ body {
 
 /* -----------------Start Menu Search Tab ----------------- */
 .containerInput {
-  background-color: #000;
+  background-color: var(--bg-light);
   position: relative;
   overflow: hidden;
   margin: 0;
@@ -826,7 +872,7 @@ body {
   background-image: conic-gradient(
     from 0deg at 50% 50%,
     #073aff00 0%,
-    #ff7a00 25%,
+    var(--accent) 25%,
     #073aff00 25%
   );
 }
@@ -835,7 +881,7 @@ body {
   width: 210px;
   height: 50px;
   font-size: inherit;
-  color: #fff;
+  color: var(--text-tertiary);
   border: none;
   padding: 12px;
   background-color: #0a0a0a;
@@ -948,7 +994,7 @@ body {
 
   text-align: center;
 
-  color: rgba(255, 255, 255, 0.88);
+  color: var(--text);
 }
 
 /* INDIVIDUAL POSITIONS */
@@ -1002,7 +1048,7 @@ body {
 
   backdrop-filter: blur(40px);
 
-  background: rgba(15, 15, 15, 0.58);
+  background: var(--surface);
 
   border: 1px solid rgba(255, 255, 255, 0.08);
 
@@ -1104,7 +1150,7 @@ body {
 
   margin-bottom: 24px;
 
-  color: rgba(255, 255, 255, 0.5);
+  color: var(--text-secondary);
 
   text-transform: uppercase;
 
@@ -1122,7 +1168,7 @@ body {
 
   transition: 0.3s ease;
 
-  color: rgba(255, 255, 255, 0.7);
+  color: var(--text-secondary);
 }
 .sidebar-item2 {
   padding: 14px 18px;
@@ -1151,14 +1197,14 @@ body {
 .active-sidebar {
   background: rgba(255, 122, 0, 0.12);
 
-  color: #ff7a00;
+  color: var(--accent);
 
   border: 1px solid rgba(255, 122, 0, 0.2);
 }
 .active-sidebar2 {
   background: rgba(255, 122, 0, 0.12);
 
-  color: #ff7a00;
+  color: var(--accent);
 
   border: 1px solid rgba(255, 122, 0, 0.2);
 }
@@ -1200,19 +1246,21 @@ body {
   font-size: 32px;
 
   margin-bottom: 10px;
+  color: var(--text-secondary);
 }
 
 .archive-top h2 {
   font-size: 32px;
 
   margin-bottom: 10px;
+  color: var(--text-secondary);
 }
 
 .work-top p {
-  color: rgba(255, 255, 255, 0.55);
+  color: var(--text-secondary);
 }
 .archive-top p {
-  color: rgba(255, 255, 255, 0.55);
+  color: var(--text-secondary);
 }
 
 .work-main::-webkit-scrollbar {
@@ -1450,7 +1498,7 @@ body {
 .archive-date {
   font-size: 11px;
 
-  color: #ff7a00;
+  color: var(--accent);
 
   letter-spacing: 1px;
 }
@@ -1460,13 +1508,13 @@ body {
 
   font-size: 15px;
 
-  color: white;
+  color: var(--text-secondary);
 }
 
 .archive-info p {
   margin-top: 4px;
 
-  color: rgba(255, 255, 255, 0.6);
+  color: var(--text-secondary);
 
   font-size: 13px;
 }
@@ -1476,7 +1524,7 @@ body {
 
   margin-top: 10px;
 
-  color: rgba(255, 255, 255, 0.35);
+  color: var(--text-secondary);
 }
 
 /* =================================
@@ -1540,7 +1588,7 @@ body {
 
   border-radius: 28px;
 
-  background: rgba(255, 255, 255, 0.04);
+  background: var(--surface-light);
 
   border: 1px solid rgba(255, 255, 255, 0.06);
 }
@@ -1560,7 +1608,7 @@ body {
 }
 
 .release-info span {
-  color: #ff7a00;
+  color: var(--accent);
 
   margin-bottom: 10px;
 }
@@ -1569,10 +1617,11 @@ body {
   font-size: 42px;
 
   margin-bottom: 14px;
+  color: var(--text-secondary);
 }
 
 .release-info p {
-  color: rgba(255, 255, 255, 0.6);
+  color: var(--text-secondary);
 
   line-height: 1.7;
 
@@ -1612,7 +1661,7 @@ body {
 
   border-radius: 28px;
 
-  background: rgba(255, 255, 255, 0.04);
+  background: var(--surface-light);
 
   border: 1px solid rgba(255, 255, 255, 0.06);
 
@@ -1652,7 +1701,7 @@ body {
 }
 
 .beat-info span {
-  color: #ff7a00;
+  color: var(--accent);
 
   font-size: 12px;
 
@@ -1665,12 +1714,13 @@ body {
   margin-top: 10px;
 
   font-size: 18px;
+  color: var(--text-secondary);
 }
 
 .beat-info p {
   margin-top: 8px;
 
-  color: rgba(255, 255, 255, 0.55);
+  color: var(--text-secondary);
 
   line-height: 1.6;
 }
@@ -1688,7 +1738,7 @@ body {
 .beat-note {
   margin-top: 30px;
 
-  color: rgba(255, 255, 255, 0.45);
+  color: var(--text-secondary);
 
   line-height: 1.7;
 }
@@ -1704,12 +1754,16 @@ body {
 
   border-radius: 24px;
 
-  background: rgba(255, 255, 255, 0.04);
+  background: var(--surface-light);
 
   border: 1px solid rgba(255, 255, 255, 0.06);
 }
 .feature-card p {
   font-size: 12px;
+  color: var(--text-secondary);
+}
+.feature-card h3 {
+  color: var(--text-secondary);
 }
 
 .stats-grid {
@@ -1725,19 +1779,20 @@ body {
 
   border-radius: 24px;
 
-  background: rgba(255, 255, 255, 0.04);
+  background: var(--surface-light);
 
   border: 1px solid rgba(255, 255, 255, 0.06);
 }
 
 .stat-card span {
-  color: rgba(255, 255, 255, 0.5);
+  color: var(--text-secondary);
 }
 
 .stat-card h2 {
   font-size: 42px;
 
   margin-top: 10px;
+  color: var(--text-secondary);
 }
 
 /* ================================= */
@@ -1755,7 +1810,7 @@ body {
 
   cursor: pointer;
 
-  background: rgba(255, 255, 255, 0.04);
+  background: var(--surface-light);
 
   border: 1px solid rgba(255, 255, 255, 0.06);
 
@@ -1773,7 +1828,7 @@ body {
 
   cursor: pointer;
 
-  background: rgba(255, 255, 255, 0.04);
+  background: var(--surface-light);
 
   border: 1px solid rgba(255, 255, 255, 0.06);
 
@@ -1799,7 +1854,7 @@ body {
 
   cursor: pointer;
 
-  background: rgba(255, 255, 255, 0.04);
+  background: var(--surface-light);
 
   border: 1px solid rgba(255, 255, 255, 0.06);
 
@@ -1912,13 +1967,10 @@ body {
   align-items: flex-start;
   justify-content: flex-start;
   padding: 10px;
-
-  width: 520px;
-
   gap: 20px;
 
   border-radius: 18px;
-  background: rgba(255, 255, 255, 0.04);
+  background: var(--surface-light);
   border: 1px solid rgba(255, 255, 255, 0.06);
   transition: 0.3s ease;
   cursor: pointer;
@@ -1932,6 +1984,7 @@ body {
   flex-direction: column;
   gap: 6px;
   height: 100%;
+  color: var(--text-secondary);
 }
 .music-item img {
   width: 100px;
@@ -1954,6 +2007,9 @@ body {
   justify-content: space-between;
 
   border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+}
+.window-header p {
+  color: var(--text-secondary);
 }
 
 /* ======================================== */
@@ -1995,7 +2051,7 @@ body {
 
   margin-top: 10px;
 
-  color: #fff;
+  color: var(--text-tertiary);
 
   font-size: 14px;
 
@@ -2044,7 +2100,7 @@ body {
 
   border-radius: 24px;
 
-  background: rgba(255, 255, 255, 0.04);
+  background: var(--surface-light);
 
   border: 1px solid rgba(255, 255, 255, 0.06);
 
@@ -2083,12 +2139,16 @@ body {
 .profile-info h3 {
   font-size: 18px;
   font-weight: 600;
+  color: var(--text-secondary);
+}
+.profile-info {
+  color: var(--text-secondary);
 }
 
 .profile-info p {
   font-size: 13px;
 
-  color: rgba(255, 255, 255, 0.65);
+  color: var(--text-secondary);
 
   margin-top: 4px;
 }
@@ -2108,7 +2168,7 @@ body {
 
   border: 1px solid rgba(255, 122, 0, 0.2);
 
-  color: #ff7a00;
+  color: var(--accent);
 
   font-size: 11px;
 
@@ -2128,7 +2188,7 @@ body {
 
   border-radius: 24px;
 
-  background: rgba(255, 255, 255, 0.04);
+  background: var(--surface-light);
 
   border: 1px solid rgba(255, 255, 255, 0.06);
 
@@ -2172,43 +2232,6 @@ body {
 }
 
 /* ======================================== */
-/* PROFILE INFO */
-/* ======================================== */
-
-.profile-info h3 {
-  font-size: 18px;
-  font-weight: 600;
-}
-
-.profile-info p {
-  font-size: 13px;
-
-  color: rgba(255, 255, 255, 0.65);
-
-  margin-top: 4px;
-}
-
-.profile-info span {
-  display: inline-flex;
-
-  margin-top: 10px;
-
-  padding: 6px 10px;
-
-  border-radius: 999px;
-
-  background: rgba(255, 122, 0, 0.12);
-
-  border: 1px solid rgba(255, 122, 0, 0.2);
-
-  color: #ff7a00;
-
-  font-size: 11px;
-
-  letter-spacing: 0.08em;
-}
-
-/* ======================================== */
 /* SYSTEM WINDOW */
 /* ======================================== */
 
@@ -2239,7 +2262,7 @@ body {
 
   border-radius: 28px;
 
-  background: rgba(255, 255, 255, 0.04);
+  background: var(--surface-light);
 
   border: 1px solid rgba(255, 255, 255, 0.06);
 
@@ -2294,7 +2317,7 @@ body {
 
   border: 1px solid rgba(255, 122, 0, 0.2);
 
-  color: #ff7a00;
+  color: var(--accent);
 }
 
 /* ======================================== */
@@ -2318,7 +2341,7 @@ body {
 
   border-radius: 24px;
 
-  background: rgba(255, 255, 255, 0.04);
+  background: var(--surface-light);
 
   border: 1px solid rgba(255, 255, 255, 0.06);
 }
@@ -2376,7 +2399,7 @@ body {
 
   transition: 0.3s ease;
 
-  color: rgba(255, 255, 255, 0.7);
+  color: var(--text-secondary);
 }
 
 .settings-tab:hover {
@@ -2390,7 +2413,7 @@ body {
 
   border: 1px solid rgba(255, 122, 0, 0.18);
 
-  color: #ff7a00;
+  color: var(--accent);
 }
 
 /* ======================================== */
@@ -2403,6 +2426,12 @@ body {
 
 .settings-main h2 {
   margin-bottom: 30px;
+  color: var(--text-secondary);
+}
+
+.settings-main h3 {
+  margin-bottom: 30px;
+  color: var(--text-secondary);
 }
 
 /* ======================================== */
@@ -2420,7 +2449,7 @@ body {
 
   margin-bottom: 18px;
 
-  background: rgba(255, 255, 255, 0.04);
+  background: var(--surface-light);
 
   border: 1px solid rgba(255, 255, 255, 0.06);
 }
@@ -2428,7 +2457,7 @@ body {
 .settings-option p {
   margin-top: 6px;
 
-  color: rgba(255, 255, 255, 0.55);
+  color: var(--text-secondary);
 }
 
 /* ======================================== */
@@ -2497,6 +2526,7 @@ body {
 
 .settings-group {
   margin-top: 40px;
+  color: var(--text-secondary);
 }
 
 /* ======================================== */
@@ -2535,7 +2565,7 @@ body {
 /* ACTIVE */
 
 .active-wallpaper {
-  border-color: #ff7a00;
+  border-color: var(--accent);
 
   box-shadow: 0 0 20px rgba(255, 122, 0, 0.35);
 }
@@ -2576,20 +2606,6 @@ body {
   border-color: white;
 
   box-shadow: 0 0 18px rgba(255, 255, 255, 0.25);
-}
-
-/* ======================================== */
-/* BOOKS WINDOW */
-/* ======================================== */
-
-.books-window {
-  width: 92vw;
-  height: 90vh;
-
-  top: 50px;
-  left: 50px;
-
-  overflow: visible;
 }
 
 /* Full Screen */

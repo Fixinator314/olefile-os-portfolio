@@ -344,25 +344,22 @@ closeButtons.forEach((button) => {
   button.addEventListener("click", () => {
     const window = button.closest(".app-window");
 
-    // WINDOW ID
+    if (!window) return;
 
     const windowId = window.id;
 
-    // FIND MATCHING TASKBAR APP
+    window.classList.remove("active-window");
 
     const matchingIcon = document.querySelector(`[data-window="${windowId}"]`);
 
-    const taskbarId = matchingIcon.dataset.taskbar;
+    if (matchingIcon) {
+      const taskbarId = matchingIcon.dataset.taskbar;
+      const taskbarApp = document.getElementById(taskbarId);
 
-    const taskbarApp = document.getElementById(taskbarId);
-
-    // CLOSE WINDOW
-
-    window.classList.remove("active-window");
-
-    // REMOVE ACTIVE STATE
-
-    taskbarApp.classList.remove("active-taskbar-app");
+      if (taskbarApp) {
+        taskbarApp.classList.remove("active-taskbar-app");
+      }
+    }
   });
 });
 
@@ -480,79 +477,6 @@ accentOptions.forEach((option) => {
     option.classList.add("active-accent");
   });
 });
-
-// let portfolioBook = null;
-
-// ========================================
-// PORTFOLIO BOOK
-// ========================================
-
-let portfolioBook = null;
-
-// ========================================
-// INIT PORTFOLIO BOOK
-// ========================================
-
-function initPortfolioBook() {
-  const bookElement = document.getElementById("portfolio-book");
-
-  // STOP IF MISSING
-
-  if (!bookElement) return;
-
-  // DESTROY OLD INSTANCE
-
-  if (portfolioBook && typeof portfolioBook.destroy === "function") {
-    portfolioBook.destroy();
-  }
-
-  // VIEWER
-
-  const viewer = document.querySelector(".books-viewer");
-
-  // WAIT FOR REAL SIZE
-
-  const viewerWidth = viewer.offsetWidth;
-
-  const viewerHeight = viewer.offsetHeight;
-
-  // SAFETY
-
-  if (viewerWidth === 0 || viewerHeight === 0) {
-    return;
-  }
-
-  // RESPONSIVE SIZE
-
-  // RESPONSIVE BOOK SIZE
-  const bookWidth = Math.min(viewerWidth * 0.26, 520);
-
-  const bookHeight = bookWidth * 1.42;
-
-  // INIT PAGEFLIP
-
-  portfolioBook = new St.PageFlip(bookElement, {
-    width: 650,
-
-    height: 880,
-
-    size: "stretch",
-
-    showCover: true,
-
-    usePortrait: true,
-
-    mobileScrollSupport: false,
-
-    maxShadowOpacity: 0.2,
-  });
-
-  // LOAD PAGES
-
-  portfolioBook.loadFromHTML(
-    document.querySelectorAll("#portfolio-book .page"),
-  );
-}
 
 // =======================music window sidebar activation=================
 
@@ -682,4 +606,30 @@ document.querySelectorAll(".expand-btn").forEach((btn) => {
       windowEl.style.height = windowEl.dataset.height;
     }
   });
+});
+
+// Full Screen Toggle for Taskbar
+document.getElementById("fullscreen-toggle").addEventListener("click", () => {
+  if (!document.fullscreenElement) {
+    document.documentElement.requestFullscreen();
+  } else {
+    document.exitFullscreen();
+  }
+});
+
+// Light/Dark Mode Toggle
+const themeToggle = document.getElementById("themeToggle");
+
+if (localStorage.getItem("theme") === "light") {
+  document.body.classList.add("light-mode");
+  themeToggle.checked = true;
+}
+
+themeToggle.addEventListener("change", () => {
+  document.body.classList.toggle("light-mode");
+
+  localStorage.setItem(
+    "theme",
+    document.body.classList.contains("light-mode") ? "light" : "dark",
+  );
 });

@@ -43,6 +43,8 @@
       <!-- RIGHT -->
 
       <div class="system-right">
+        <div class="system-item" id="fullscreen-toggle">⛶</div>
+
         <div class="system-time">
           <p id="top-time"></p>
 
@@ -130,18 +132,6 @@
           <img src="./assets/Icons/folder.png" alt="About Folder" />
 
           <span> About Me </span>
-        </div>
-
-        <!-- BOOKS -->
-
-        <div
-          class="desktop-item"
-          data-window="books-window"
-          data-taskbar="finder-taskbar"
-        >
-          <img src="./assets/Icons/book.png" alt="Books" />
-
-          <span> Books </span>
         </div>
 
         <!-- Portfolio Items Book -->
@@ -568,6 +558,10 @@
                       <h3>Mantjaka</h3>
                     </div>
 
+                    <div>
+                      <h3>2025</h3>
+                    </div>
+
                     <a
                       href="https://music.youtube.com/watch?v=FNzYFvP-TkM&si=54QpNghDqHwS8cgj"
                       target="_blank"
@@ -910,74 +904,6 @@
       </div>
 
       <!-- ======================================== -->
-      <!-- BOOKS WINDOW -->
-      <!-- ======================================== -->
-
-      <div class="app-window books-window" id="books-window">
-        <!-- HEADER -->
-
-        <div class="window-header">
-          <div class="window-controls">
-            <span class="close-btn"></span>
-            <span class="minimize-btn"></span>
-            <span class="expand-btn"></span>
-          </div>
-
-          <p>BOOKS.exe</p>
-        </div>
-
-        <!-- CONTENT -->
-
-        <div class="window-content books-content">
-          <!-- TITLE -->
-
-          <div class="books-top">
-            <h2>Portfolio Archive</h2>
-
-            <p>Selected projects and visual case studies</p>
-          </div>
-
-          <!-- FLIPBOOK -->
-
-          <div class="books-viewer">
-            <div id="portfolio-book" class="menu-book">
-              <div class="page">
-                <img src="./assets/Book/1.png" />
-              </div>
-
-              <div class="page">
-                <img src="./assets/Book/2.png" />
-              </div>
-
-              <div class="page">
-                <img src="./assets/Book/3.png" />
-              </div>
-
-              <div class="page">
-                <img src="./assets/Book/3.png" />
-              </div>
-
-              <div class="page">
-                <img src="./assets/Book/4.png" />
-              </div>
-
-              <div class="page">
-                <img src="./assets/Book/5.png" />
-              </div>
-
-              <div class="page">
-                <img src="./assets/Book/6.png" />
-              </div>
-
-              <div class="page">
-                <img src="./assets/Book/7.png" />
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <!-- ======================================== -->
       <!-- SETTINGS WINDOW -->
       <!-- ======================================== -->
 
@@ -1050,7 +976,7 @@
 
             <!-- ACCENT COLORS -->
 
-            <div class="settings-group">
+            <!-- <div class="settings-group">
               <h3>Accent Color</h3>
 
               <div class="accent-grid">
@@ -1078,7 +1004,7 @@
                   style="background: #00ff9d"
                 ></div>
               </div>
-            </div>
+            </div> -->
 
             <!-- OPTION -->
 
@@ -1108,6 +1034,19 @@
               <label class="switch">
                 <input type="checkbox" checked />
 
+                <span class="slider"></span>
+              </label>
+            </div>
+
+            <div class="settings-option">
+              <div>
+                <h3>Motion Animations</h3>
+
+                <p>Enable workspace transitions</p>
+              </div>
+
+              <label class="switch">
+                <input type="checkbox" id="themeToggle" />
                 <span class="slider"></span>
               </label>
             </div>
