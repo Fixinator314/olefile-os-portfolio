@@ -70,9 +70,9 @@ body {
 .system-navbar {
   position: fixed;
 
-  top: 0px;
-  left: 50%;
+  top: -80px; /* hidden */
 
+  left: 50%;
   transform: translateX(-50%);
 
   width: 100%;
@@ -91,8 +91,13 @@ body {
   border: 1px solid rgba(255, 255, 255, 0.08);
 
   z-index: 999;
-}
 
+  transition: top 0.35s cubic-bezier(0.22, 1, 0.36, 1);
+}
+/* SHOW STATE */
+.system-navbar.show-navbar {
+  top: 0;
+}
 /* ======================================== */
 /* LEFT */
 /* ======================================== */

@@ -633,3 +633,35 @@ themeToggle.addEventListener("change", () => {
     document.body.classList.contains("light-mode") ? "light" : "dark",
   );
 });
+
+// Hide and Show navbar on hover
+const navbar = document.querySelector(".system-navbar");
+
+document.addEventListener("mousemove", (e) => {
+  if (e.clientY <= 15) {
+    navbar.classList.add("show-navbar");
+  }
+});
+
+navbar.addEventListener("mouseleave", () => {
+  navbar.classList.remove("show-navbar");
+});
+
+// Battery Indicator
+const batteryLevel = document.getElementById("battery-level");
+
+if ("getBattery" in navigator) {
+  navigator.getBattery().then((battery) => {
+    function updateBattery() {
+      const level = Math.round(battery.level * 100);
+
+      batteryLevel.textContent = `${level}%`;
+    }
+
+    updateBattery();
+
+    battery.addEventListener("levelchange", updateBattery);
+  });
+} else {
+  batteryLevel.textContent = "--%";
+}
