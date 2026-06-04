@@ -60,9 +60,11 @@
         </div>
 
         <div class="system-item battery">
-          <img src="./assets/Icons/Battery White.png" alt="Battery" />
+          <div class="battery-shell">
+            <div class="battery-fill" id="battery-fill"></div>
+          </div>
 
-          <span>67%</span>
+          <span id="battery-level">100%</span>
         </div>
       </div>
 
@@ -922,131 +924,324 @@
           <!-- SIDEBAR -->
 
           <div class="settings-sidebar">
-            <div class="settings-tab active-settings-tab">Appearance</div>
+  <div
+    class="settings-tab active-settings-tab"
+    data-tab="appearance"
+  >
+    Appearance
+  </div>
 
-            <div class="settings-tab">Wallpaper</div>
+  <div
+    class="settings-tab"
+    data-tab="wallpaper"
+  >
+    Wallpaper
+  </div>
 
-            <div class="settings-tab">Audio</div>
+  <div
+    class="settings-tab"
+    data-tab="workspace"
+  >
+    Workspace
+  </div>
 
-            <div class="settings-tab">Workspace</div>
+  <div
+    class="settings-tab"
+    data-tab="audio"
+  >
+    Audio
+  </div>
 
-            <div class="settings-tab">Performance</div>
-          </div>
+  <div
+    class="settings-tab"
+    data-tab="performance"
+  >
+    Performance
+  </div>
+</div>
 
           <!-- MAIN -->
 
           <div class="settings-main">
-            <h2>Appearance Settings</h2>
 
-            <!-- WALLPAPERS -->
+  <!-- ================================= -->
+  <!-- APPEARANCE -->
+  <!-- ================================= -->
 
-            <div class="settings-group">
-              <h3>Wallpapers</h3>
+  <div
+    class="settings-section active-section"
+    id="appearance"
+  >
 
-              <div class="wallpaper-grid">
-                <div
-                  class="wallpaper-option active-wallpaper"
-                  data-wallpaper="./assets/desktop-images/background1.png"
-                  style="
-                    background-image: url(&quot;./assets/desktop-images/background1.png&quot;);
-                  "
-                ></div>
+    <h2>Appearance</h2>
 
-                <div
-                  class="wallpaper-option"
-                  data-wallpaper="./assets/desktop-images/background2.png"
-                  style="
-                    background-image: url(&quot;./assets/desktop-images/background2.png&quot;);
-                  "
-                ></div>
+    <div class="settings-option">
 
-                <div
-                  class="wallpaper-option"
-                  data-wallpaper="./assets/desktop-images/background3.png"
-                  style="
-                    background-image: url(&quot;./assets/desktop-images/background3.png&quot;);
-                  "
-                ></div>
-              </div>
-            </div>
+      <div>
+        <h3>Light Mode</h3>
+        <p>Switch between dark and light themes</p>
+      </div>
 
-            <!-- ACCENT COLORS -->
+      <label class="switch">
+        <input type="checkbox" id="themeToggle">
+        <span class="slider"></span>
+      </label>
 
-            <!-- <div class="settings-group">
-              <h3>Accent Color</h3>
+    </div>
 
-              <div class="accent-grid">
-                <div
-                  class="accent-option active-accent"
-                  data-color="#ff7a00"
-                  style="background: #ff7a00"
-                ></div>
+    <div class="settings-option">
 
-                <div
-                  class="accent-option"
-                  data-color="#00c2ff"
-                  style="background: #00c2ff"
-                ></div>
+      <div>
+        <h3>UI Glow Effects</h3>
+        <p>Enable cinematic glow visuals</p>
+      </div>
 
-                <div
-                  class="accent-option"
-                  data-color="#8b5cf6"
-                  style="background: #8b5cf6"
-                ></div>
+      <label class="switch">
+        <input
+          type="checkbox"
+          id="glowToggle"
+          checked
+        >
+        <span class="slider"></span>
+      </label>
 
-                <div
-                  class="accent-option"
-                  data-color="#00ff9d"
-                  style="background: #00ff9d"
-                ></div>
-              </div>
-            </div> -->
+    </div>
 
-            <!-- OPTION -->
+    <div class="settings-option">
 
-            <div class="settings-option">
-              <div>
-                <h3>UI Glow Effects</h3>
+      <div>
+        <h3>Reduce Transparency</h3>
+        <p>Improve readability and performance</p>
+      </div>
 
-                <p>Enable cinematic glow visuals</p>
-              </div>
+      <label class="switch">
+        <input
+          type="checkbox"
+          id="transparencyToggle"
+        >
+        <span class="slider"></span>
+      </label>
 
-              <label class="switch">
-                <input type="checkbox" checked />
+    </div>
 
-                <span class="slider"></span>
-              </label>
-            </div>
+  </div>
 
-            <!-- OPTION -->
+  <!-- ================================= -->
+  <!-- WALLPAPER -->
+  <!-- ================================= -->
 
-            <div class="settings-option">
-              <div>
-                <h3>Motion Animations</h3>
+  <div
+    class="settings-section"
+    id="wallpaper"
+  >
 
-                <p>Enable workspace transitions</p>
-              </div>
+    <h2>Wallpaper</h2>
 
-              <label class="switch">
-                <input type="checkbox" checked />
+    <div class="settings-group">
 
-                <span class="slider"></span>
-              </label>
-            </div>
+      <h3>Desktop Background</h3>
 
-            <div class="settings-option">
-              <div>
-                <h3>Motion Animations</h3>
+      <div class="wallpaper-grid">
 
-                <p>Enable workspace transitions</p>
-              </div>
+        <div
+          class="wallpaper-option active-wallpaper"
+          data-wallpaper="./assets/desktop-images/background1.png"
+          style="background-image:url('./assets/desktop-images/background1.png')"
+        ></div>
 
-              <label class="switch">
-                <input type="checkbox" id="themeToggle" />
-                <span class="slider"></span>
-              </label>
-            </div>
-          </div>
+        <div
+          class="wallpaper-option"
+          data-wallpaper="./assets/desktop-images/background2.png"
+          style="background-image:url('./assets/desktop-images/background2.png')"
+        ></div>
+
+        <div
+          class="wallpaper-option"
+          data-wallpaper="./assets/desktop-images/background3.png"
+          style="background-image:url('./assets/desktop-images/background3.png')"
+        ></div>
+
+      </div>
+
+    </div>
+
+  </div>
+
+  <!-- ================================= -->
+  <!-- WORKSPACE -->
+  <!-- ================================= -->
+
+  <div
+    class="settings-section"
+    id="workspace"
+  >
+
+    <h2>Workspace</h2>
+
+    <div class="settings-option">
+
+      <div>
+        <h3>Auto Hide Navbar</h3>
+        <p>Hide menu bar until hovered</p>
+      </div>
+
+      <label class="switch">
+        <input
+          type="checkbox"
+          id="navbarToggle"
+          checked
+        >
+        <span class="slider"></span>
+      </label>
+
+    </div>
+
+    <div class="settings-option">
+
+      <div>
+        <h3>Lock Desktop Icons</h3>
+        <p>Prevent accidental movement</p>
+      </div>
+
+      <label class="switch">
+        <input
+          type="checkbox"
+          id="lockIconsToggle"
+        >
+        <span class="slider"></span>
+      </label>
+
+    </div>
+
+    <div class="settings-option">
+
+      <div>
+        <h3>Start In Fullscreen</h3>
+        <p>Launch OS in fullscreen mode</p>
+      </div>
+
+      <label class="switch">
+        <input
+          type="checkbox"
+          id="fullscreenStartup"
+        >
+        <span class="slider"></span>
+      </label>
+
+    </div>
+
+  </div>
+
+  <!-- ================================= -->
+  <!-- AUDIO -->
+  <!-- ================================= -->
+
+  <div
+    class="settings-section"
+    id="audio"
+  >
+
+    <h2>Audio</h2>
+
+    <div class="settings-option">
+
+      <div>
+        <h3>UI Sounds</h3>
+        <p>Play sounds when opening windows</p>
+      </div>
+
+      <label class="switch">
+        <input
+          type="checkbox"
+          id="uiSoundToggle"
+          checked
+        >
+        <span class="slider"></span>
+      </label>
+
+    </div>
+
+    <div class="settings-option">
+
+      <div>
+        <h3>Startup Sound</h3>
+        <p>Play sound when OS loads</p>
+      </div>
+
+      <label class="switch">
+        <input
+          type="checkbox"
+          id="startupSoundToggle"
+          checked
+        >
+        <span class="slider"></span>
+      </label>
+
+    </div>
+
+  </div>
+
+  <!-- ================================= -->
+  <!-- PERFORMANCE -->
+  <!-- ================================= -->
+
+  <div
+    class="settings-section"
+    id="performance"
+  >
+
+    <h2>Performance</h2>
+
+    <div class="settings-option">
+
+      <div>
+        <h3>Performance Mode</h3>
+        <p>Disable heavy animations</p>
+      </div>
+
+      <label class="switch">
+        <input
+          type="checkbox"
+          id="performanceToggle"
+        >
+        <span class="slider"></span>
+      </label>
+
+    </div>
+
+    <div class="settings-option">
+
+      <div>
+        <h3>Disable Background Videos</h3>
+        <p>Reduce GPU usage</p>
+      </div>
+
+      <label class="switch">
+        <input
+          type="checkbox"
+          id="videoToggle"
+        >
+        <span class="slider"></span>
+      </label>
+
+    </div>
+
+    <div class="settings-option">
+
+      <div>
+        <h3>Reset Portfolio OS</h3>
+        <p>Clear saved preferences</p>
+      </div>
+
+      <button class="reset-btn">
+        Reset
+      </button>
+
+    </div>
+
+  </div>
+
+</div>
         </div>
       </div>
 
@@ -1176,42 +1371,109 @@
 
               <!-- BODY -->
               <div class="email-body">
-                <!-- LEFT -->
-                <div class="email-sidebar">
-                  <div class="email-nav active-mail">Inbox</div>
-
-                  <div class="email-nav">Sent</div>
-
-                  <div class="email-nav">Drafts</div>
-
-                  <div class="email-nav">Archive</div>
-                </div>
-
-                <!-- RIGHT -->
-                <div class="email-content">
-                  <form id="contact-form">
-                    <div class="input-group">
-                      <label>Name</label>
-                      <input type="text" name="user_name" required />
+                <div class="email-wrapper">
+                  <!-- LEFT -->
+                  <div class="email-sidebar">
+                    <div class="email-nav active-mail" data-tab="compose">
+                      Compose
                     </div>
 
-                    <div class="input-group">
-                      <label>Email</label>
-                      <input type="email" name="user_email" required />
+                    <div class="email-nav" data-tab="notifications">
+                      Notifications
                     </div>
 
-                    <div class="input-group">
-                      <label>Subject</label>
-                      <input type="text" name="subject" required />
-                    </div>
+                    <div class="email-nav" data-tab="activity">Activity</div>
 
-                    <div class="input-group">
-                      <label>Message</label>
-                      <textarea name="message" rows="8" required></textarea>
-                    </div>
+                    <div class="email-nav" data-tab="console">Console</div>
+                  </div>
 
-                    <button type="submit" class="send-btn">Send Message</button>
-                  </form>
+                  <!-- RIGHT -->
+                  <div class="email-content">
+                    <!-- COMPOSE -->
+                    <div class="email-section active-section" id="compose">
+                      <form id="contact-form">
+                        <div class="input-group">
+                          <label>Name</label>
+                          <input type="text" name="user_name" required />
+                        </div>
+
+                        <div class="input-group">
+                          <label>Email</label>
+                          <input type="email" name="user_email" required />
+                        </div>
+
+                        <div class="input-group">
+                          <label>Subject</label>
+                          <input type="text" name="subject" required />
+                        </div>
+
+                        <div class="input-group">
+                          <label>Message</label>
+                          <textarea name="message" rows="8" required></textarea>
+                        </div>
+
+                        <button type="submit" class="send-btn">
+                          Send Message
+                        </button>
+                      </form>
+                    </div>
+                    <!-- NOTIFICATIONS -->
+  <div class="email-section" id="notifications">
+
+    <div class="log-card">
+      <span>NEW</span>
+      <h4>Portfolio OS v2 Released</h4>
+      <p>System upgrades and interface improvements deployed.</p>
+    </div>
+
+    <div class="log-card">
+      <span>UPDATE</span>
+      <h4>Music Archive Expanded</h4>
+      <p>New instrumentals and production experiments added.</p>
+    </div>
+<!-- 
+    <div class="log-card">
+      <span>UPDATE</span>
+      <h4>UI/UX Archive Updated</h4>
+      <p>New design assets and user experience experiments added.</p>
+    </div> -->
+
+    <div class="log-card">
+      <span>NEW</span>
+      <h4>Imnisi House Website</h4>
+      <p>Build an immersive online presence for imnisi house.</p>
+    </div>
+
+  </div>
+
+  <!-- ACTIVITY -->
+  <div class="email-section" id="activity">
+
+    <div class="status-card">
+      <h4>Currently Building</h4>
+      <p>Immersive web experiences using GSAP and custom interfaces.</p>
+    </div>
+
+    <div class="status-card">
+      <h4>Exploring</h4>
+      <p>AI workflows, interaction design and creative systems.</p>
+    </div>
+
+  </div>
+
+  <!-- CONSOLE -->
+  <div class="email-section" id="console">
+
+    <pre>> system.status ONLINE>
+      current.role FULL_TIME_DEVELOPER>
+      creative.mode ACTIVE> 
+      response.time 24_TO_48_HOURS
+    </pre>
+
+  </div>
+
+</div>
+                  </div>
                 </div>
               </div>
             </div>
