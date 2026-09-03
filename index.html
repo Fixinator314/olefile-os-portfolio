@@ -43,7 +43,7 @@
       <!-- RIGHT -->
 
       <div class="system-right">
-        <div class="system-item" id="fullscreen-toggle">⛶</div>
+        <div class="system-item" id="fullscreen-toggle"><div class="fullscreen-mode"></div> </div>
 
         <div class="system-time">
           <p id="top-time"></p>
@@ -52,11 +52,11 @@
         </div>
 
         <div class="system-item">
-          <img src="./assets/Icons/Wifi-white.png" alt="Network" />
+          <div class="wifi-logo"></div>
         </div>
 
         <div class="system-item">
-          <img src="./assets/Icons/Volume white.png" alt="Volume" />
+          <div class="volume-logo"></div>
         </div>
 
         <div class="system-item battery">
@@ -95,7 +95,7 @@
           data-window="finder-window"
           data-taskbar="finder-taskbar"
         >
-          <img src="./assets/Icons/folder.png" alt="Work Folder" />
+          <img src="./assets/Icons/folder (2).png" alt="Work Folder" />
 
           <span> Work </span>
         </div>
@@ -107,7 +107,7 @@
           data-window="music-window"
           data-taskbar="finder-taskbar"
         >
-          <img src="./assets/Icons/folder.png" alt="Music Folder" />
+          <img src="./assets/Icons/folder (2).png" alt="Music Folder" />
 
           <span> Music </span>
         </div>
@@ -119,7 +119,7 @@
           data-window="archive-window"
           data-taskbar="finder-taskbar"
         >
-          <img src="./assets/Icons/folder.png" alt="Archive Folder" />
+          <img src="./assets/Icons/folder (2).png" alt="Archive Folder" />
 
           <span> Archive </span>
         </div>
@@ -131,12 +131,12 @@
           data-window="about-window"
           data-taskbar="finder-taskbar"
         >
-          <img src="./assets/Icons/folder.png" alt="About Folder" />
+          <img src="./assets/Icons/folder (2).png" alt="About Folder" />
 
           <span> About Me </span>
         </div>
 
-        <!-- Portfolio Items Book -->
+        <!-- Trash Window desktop item -->
         <div
           class="desktop-item"
           data-window="trash-window"
@@ -146,9 +146,19 @@
 
           <span> Trash </span>
         </div>
+
+        <!-- Arcade Window desktop item -->
+        <div
+          class="desktop-item"
+          id="arcade-icon"
+          data-window="arcade-window"
+            >
+            <img src="./assets/icons/folder (2).png" alt="Arcade">
+            <span>Arcade</span>
+        </div>
       </div>
 
-      <!-- ======================================== -->
+ <!-- ======================================== -->
       <!-- WINDOWS -->
       <!-- ======================================== -->
 
@@ -883,23 +893,178 @@
         </div>
       </div>
 
-      <!-- ABOUT WINDOW -->
+      <!-- =====================================
+    
 
-      <div class="app-window" id="about-window">
-        <div class="window-header">
-          <div class="window-controls">
-            <span class="close-btn"></span>
-            <span class="minimize-btn"></span>
-            <span class="expand-btn"></span>
-          </div>
+       
 
-          <p>AUDIO.lab</p>
-        </div>
 
-        <div class="window-content">
-          <h2>About Me</h2>
-        </div>
+ <div class="app-window" id="trash-window"> -->
+  <!-- HEADER -->
+
+  <!-- <div class="window-header">
+    <div class="window-controls">
+      <span class="close-btn"></span>
+      <span class="minimize-btn"></span>
+      <span class="expand-btn"></span>
+    </div>
+
+    <p>TRASH</p>
+  </div> -->
+
+  <!-- CONTENT -->
+
+  <!-- <div class="trash-content">
+
+    <div class="trash-top">
+      <h2>Recycle Bin</h2>
+
+      <p>
+        Files that should have stayed deleted
+      </p>
+    </div>
+
+    <div class="trash-grid">
+
+      <div class="trash-card">
+        <img src="./assets/Icons/photoshop-file.png" alt="" />
+
+        <h3>final-final-v2.psd</h3>
+
+        <p>Deleted 2024</p>
       </div>
+
+      <div class="trash-card">
+        <img src="./assets/Icons/photoshop-file.png" alt="" />
+
+        <h3>final-final-v3.psd</h3>
+
+        <p>Deleted 2024</p>
+      </div>
+
+      <div class="trash-card">
+        <img src="./assets/Icons/photoshop-file.png" alt="" />
+
+        <h3>final-final-real-final.psd</h3>
+
+        <p>Deleted 2025</p>
+      </div>
+
+      <div class="trash-card">
+        <img src="./assets/Icons/js-file.png" alt="" />
+
+        <h3>dont-touch-this.js</h3>
+
+        <p>Deleted 2025</p>
+      </div>
+
+      <div class="trash-card">
+        <img src="./assets/Icons/zip-folder.png" alt="" />
+
+        <h3>old_portfolio_v1.zip</h3>
+
+        <p>Deleted 2023</p>
+      </div>
+
+      <div class="trash-card">
+        <img src="./assets/Icons/FL studio icon.png" alt="" />
+
+        <h3>broken-beat.flp</h3>
+
+        <p>Deleted 2024</p>
+      </div>
+
+      
+
+    </div>
+  </div>
+</div> -->
+
+
+<!-- ======================================== -->
+<!-- TRASH WINDOW -->
+<!-- ======================================== -->
+
+<div class="app-window" id="trash-window">
+  <!-- HEADER -->
+
+  <div class="window-header">
+    <div class="window-controls">
+      <span class="close-btn"></span>
+      <span class="minimize-btn"></span>
+      <span class="expand-btn"></span>
+    </div>
+
+    <p>TRASH</p>
+  </div>
+
+  <!-- CONTENT -->
+
+  <div class="trash-content">
+
+    <div class="trash-top">
+      <h2>Recycle Bin</h2>
+
+      <p>
+        Files that should have stayed deleted.
+      </p>
+    </div>
+
+    <div class="trash-grid">
+
+      <div class="trash-card">
+        <img src="./assets/Icons/photoshop-file.png" alt="" />
+
+        <h3>final-final-v2.psd</h3>
+
+        <p>Deleted 2024</p>
+      </div>
+
+      <div class="trash-card">
+        <img src="./assets/Icons/photoshop-file.png" alt="" />
+
+        <h3>final-final-v3.psd</h3>
+
+        <p>Deleted 2024</p>
+      </div>
+
+      <div class="trash-card">
+        <img src="./assets/Icons/photoshop-file.png" alt="" />
+
+        <h3>final-final-real-final.psd</h3>
+
+        <p>Deleted 2025</p>
+      </div>
+
+      <div class="trash-card">
+        <img src="./assets/Icons/js-file.png" alt="" />
+
+        <h3>dont-touch-this.js</h3>
+
+        <p>Deleted 2025</p>
+      </div>
+
+      <div class="trash-card">
+        <img src="./assets/Icons/zip-folder.png" alt="" />
+
+        <h3>old_portfolio_v1.zip</h3>
+
+        <p>Deleted 2023</p>
+      </div>
+
+      <div class="trash-card">
+        <img src="./assets/Icons/FL studio icon.png" alt="" />
+
+        <h3>broken-beat.flp</h3>
+
+        <p>Deleted 2024</p>
+      </div>
+
+      
+
+    </div>
+  </div>
+</div>
 
       <!-- ======================================== -->
       <!-- SETTINGS WINDOW -->
@@ -915,7 +1080,7 @@
             <span class="expand-btn"></span>
           </div>
 
-          <p>SETTINGS.exe</p>
+          <p>SETTINGS</p>
         </div>
 
         <!-- CONTENT -->
@@ -1044,7 +1209,7 @@
       <div class="wallpaper-grid">
 
         <div
-          class="wallpaper-option active-wallpaper"
+          class="wallpaper-option"
           data-wallpaper="./assets/desktop-images/background1.png"
           style="background-image:url('./assets/desktop-images/background1.png')"
         ></div>
@@ -1056,9 +1221,39 @@
         ></div>
 
         <div
-          class="wallpaper-option"
+          class="wallpaper-option active-wallpaper"
           data-wallpaper="./assets/desktop-images/background3.png"
           style="background-image:url('./assets/desktop-images/background3.png')"
+        ></div>
+
+        <div
+          class="wallpaper-option active-wallpaper"
+          data-wallpaper="./assets/desktop-images/background4.png"
+          style="background-image:url('./assets/desktop-images/background4.png')"
+        ></div>
+
+        <div
+          class="wallpaper-option active-wallpaper"
+          data-wallpaper="./assets/desktop-images/background5.png"
+          style="background-image:url('./assets/desktop-images/background5.png')"
+        ></div>
+
+         <div
+          class="wallpaper-option active-wallpaper"
+          data-wallpaper="./assets/desktop-images/background6.png"
+          style="background-image:url('./assets/desktop-images/background6.png')"
+        ></div>
+
+         <div
+          class="wallpaper-option active-wallpaper"
+          data-wallpaper="./assets/desktop-images/background7.png"
+          style="background-image:url('./assets/desktop-images/background7.png')"
+        ></div>
+
+         <div
+          class="wallpaper-option active-wallpaper"
+          data-wallpaper="./assets/desktop-images/background8.png"
+          style="background-image:url('./assets/desktop-images/background8.png')"
         ></div>
 
       </div>
@@ -1329,17 +1524,394 @@
         </div>
       </div>
 
+      <!-- ========================================
+     ARCADE WINDOW
+======================================== -->
+
+<!-- ========================================
+     ARCADE WINDOW
+======================================== -->
+
+<div class="app-window" id="arcade-window">
+
+    <!-- ========================================
+         WINDOW HEADER
+    ========================================= -->
+
+    <div class="window-header">
+
+        <p>Arcade</p>
+
+        <div class="window-controls">
+
+            <span class="close-btn"></span>
+
+            <span class="minimize-btn"></span>
+
+            <span class="expand-btn"></span>
+
+        </div>
+
+    </div>
+
+
+    <!-- ========================================
+         ARCADE CONTENT
+    ========================================= -->
+
+    <div class="window-content arcade-content">
+
+
+        <!-- ========================================
+             ARCADE HOME / GAME LIBRARY
+        ========================================= -->
+
+        <div class="arcade-home active-arcade-screen">
+
+            <div class="arcade-logo">
+
+                <h1>ARCADE</h1>
+
+                <p>Portfolio Gaming Collection</p>
+
+            </div>
+
+
+            <div class="game-grid">
+
+
+                <!-- AIR HOCKEY -->
+
+                <div class="game-card active-game">
+
+                    <div class="game-image">
+                        🎮
+                    </div>
+
+                    <h2>Air Hockey</h2>
+
+                    <p>
+                        Physics • AI • Multiplayer
+                    </p>
+
+                    <button
+                        class="launch-air-hockey"
+                        id="launch-air-hockey"
+                        type="button"
+                    >
+                        PLAY
+                    </button>
+
+                </div>
+
+
+                <!-- BUG HUNTER -->
+
+                <div class="game-card disabled">
+
+                    <div class="game-image">
+                        🐞
+                    </div>
+
+                    <h2>Bug Hunter</h2>
+
+                    <p>Coming Soon</p>
+
+                </div>
+
+
+                <!-- SPACE RUNNER -->
+
+                <div class="game-card disabled">
+
+                    <div class="game-image">
+                        🚀
+                    </div>
+
+                    <h2>Space Runner</h2>
+
+                    <p>Coming Soon</p>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- ========================================
+             AIR HOCKEY GAME SCREEN
+        ========================================= -->
+
+        <section
+            class="arcade-screen hockey-screen"
+            id="hockey-screen"
+        >
+
+
+            <!-- ========================================
+                 GAME TOP BAR
+            ========================================= -->
+
+            <div class="hockey-topbar">
+
+
+                <!-- BACK -->
+
+                <button
+                    class="arcade-back-btn"
+                    id="arcade-back-btn"
+                    type="button"
+                >
+                    ← ARCADE
+                </button>
+
+
+                <!-- SCOREBOARD -->
+
+                <div class="hockey-scoreboard">
+
+
+                    <!-- PLAYER SCORE -->
+
+                    <div class="score-player">
+
+                        <span>YOU</span>
+
+                        <strong id="player-score">
+                            0
+                        </strong>
+
+                    </div>
+
+
+                    <div class="score-divider">
+                        :
+                    </div>
+
+
+                    <!-- CPU SCORE -->
+
+                    <div class="score-player cpu-score">
+
+                        <strong id="cpu-score">
+                            0
+                        </strong>
+
+                        <span>CPU</span>
+
+                    </div>
+
+                </div>
+
+
+                <!-- RESTART -->
+
+                <button
+                    class="hockey-restart-btn"
+                    id="restart-hockey"
+                    type="button"
+                >
+                    RESTART
+                </button>
+
+            </div>
+
+
+
+            <!-- ========================================
+                 GAME AREA
+            ========================================= -->
+
+            <div class="hockey-game-wrapper">
+
+
+                <!-- HOCKEY TABLE -->
+
+                <div
+                    class="hockey-table"
+                    id="hockey-table"
+                >
+
+
+                    <!-- TOP GOAL -->
+
+                    <div
+                        class="hockey-goal hockey-goal-top"
+                    >
+
+                        <div class="goal-net"></div>
+
+                    </div>
+
+
+                    <!-- BOTTOM GOAL -->
+
+                    <div
+                        class="hockey-goal hockey-goal-bottom"
+                    >
+
+                        <div class="goal-net"></div>
+
+                    </div>
+
+
+
+                    <!-- CENTRE LINE -->
+
+                    <div class="hockey-centre-line"></div>
+
+
+
+                    <!-- CENTRE CIRCLE -->
+
+                    <div class="hockey-centre-circle">
+
+                        <div class="centre-dot"></div>
+
+                    </div>
+
+
+
+                    <!-- SIDE MARKINGS -->
+
+                    <div
+                        class="rink-mark rink-mark-left"
+                    ></div>
+
+                    <div
+                        class="rink-mark rink-mark-right"
+                    ></div>
+
+
+
+                    <!-- CPU LABEL -->
+
+                    <div
+                        class="hockey-side-label cpu-label"
+                    >
+                        CPU
+                    </div>
+
+
+
+                    <!-- PLAYER LABEL -->
+
+                    <div
+                        class="hockey-side-label player-label"
+                    >
+                        YOU
+                    </div>
+
+
+
+                    <!-- ========================================
+                         CPU PADDLE
+                    ========================================= -->
+
+                    <div
+                        class="hockey-paddle cpu-paddle"
+                        id="cpu-paddle"
+                    >
+
+                        <div class="paddle-inner"></div>
+
+                    </div>
+
+
+
+                    <!-- ========================================
+                         PUCK
+                    ========================================= -->
+
+                    <div
+                        class="hockey-puck"
+                        id="hockey-puck"
+                    >
+
+                        <div class="puck-highlight"></div>
+
+                    </div>
+
+
+
+                    <!-- ========================================
+                         PLAYER PADDLE
+                    ========================================= -->
+
+                    <div
+                        class="hockey-paddle player-paddle"
+                        id="player-paddle"
+                    >
+
+                        <div class="paddle-inner"></div>
+
+                    </div>
+
+
+                </div>
+
+            </div>
+
+
+
+            <!-- ========================================
+                 GAME FOOTER
+            ========================================= -->
+
+            <div class="hockey-footer">
+
+
+                <!-- STATUS -->
+
+                <div class="hockey-status">
+
+                    <span class="status-light"></span>
+
+                    <span id="hockey-status-text">
+                        READY
+                    </span>
+
+                </div>
+
+
+                <!-- INSTRUCTIONS -->
+
+                <div class="hockey-instructions">
+
+                    MOVE MOUSE TO CONTROL PADDLE
+
+                </div>
+
+
+                <!-- MATCH INFO -->
+
+                <div class="hockey-match-info">
+
+                    FIRST TO
+
+                    <strong>7</strong>
+
+                </div>
+
+
+            </div>
+
+
+        </section>
+
+
+    </div>
+
+</div>
+
       <!-- ------------------------------------Bottom Task Bar --------------------------- -->
 
       <div class="task-bar">
         <!-- START BUTTON -->
 
         <div class="start-button">
-          <img
-            src="./assets/Logo/om-logo.png"
-            alt="Logo"
-            class="start-menu-logo"
-          />
+          <div class = "start-menu-logo"></div>
         </div>
 
         <!-- TASKBAR APPS -->
@@ -1498,7 +2070,7 @@
 
           <div class="taskbar-icon" id="finder-taskbar">
             <img
-              src="./assets/Icons/folder.png"
+              src="./assets/Icons/folder (2).png"
               style="height: 57px; width: 57px"
               alt="Files"
             />
@@ -1586,7 +2158,7 @@
                 </div></a
               >
 
-              <div class="pinned-app">
+              <div class="pinned-app" id="music-taskbar">
                 <img
                   src="./assets/Icons/FL studio icon.png"
                   style="height: 60px; width: 60px"

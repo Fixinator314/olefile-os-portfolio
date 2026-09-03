@@ -248,18 +248,34 @@ window.addEventListener("DOMContentLoaded", () => {
   });
 
   const desktopIcons = document.querySelectorAll(".desktop-item");
+
   desktopIcons.forEach((icon) => {
     icon.addEventListener("dblclick", () => {
       const windowId = icon.dataset.window;
       const taskbarId = icon.dataset.taskbar;
+
+      if (!windowId) return;
+
       const targetWindow = document.getElementById(windowId);
-      const taskbarApp = document.getElementById(taskbarId);
 
-      if (!targetWindow || !taskbarApp) return;
+      if (!targetWindow) {
+        console.error(`Window not found: ${windowId}`);
+        return;
+      }
 
+      // Open the window
       targetWindow.classList.add("active-window");
-      taskbarApp.classList.add("active-taskbar-app");
 
+      // Only activate taskbar item if one exists
+      if (taskbarId) {
+        const taskbarApp = document.getElementById(taskbarId);
+
+        if (taskbarApp) {
+          taskbarApp.classList.add("active-taskbar-app");
+        }
+      }
+
+      // Portfolio book initialization
       if (windowId === "books-window") {
         setTimeout(() => {
           initPortfolioBook?.();
@@ -747,3 +763,1357 @@ navbar.addEventListener("mouseleave", () => {
 
   navbar.classList.remove("show-navbar");
 });
+
+// ========================================
+// TRASH FILES
+// ========================================
+
+const trashCards = document.querySelectorAll(".trash-card");
+
+trashCards.forEach((card) => {
+  card.addEventListener("dblclick", () => {
+    alert(
+      `"${card.querySelector("h3").textContent}" was permanently deleted, You're not supposed to open this anyway🤦🏾`,
+    );
+  });
+});
+
+// =========== DAW Music Player ============
+
+/* =================================
+   FL STUDIO APP
+================================= */
+
+// ELEMENTS
+// const player = document.getElementById("beatPlayer");
+
+// const projects = document.querySelectorAll(".fl-project");
+
+// const bpmDisplay = document.querySelector(".bpm-display");
+
+// const genreDisplay = document.querySelector(".genre-display");
+
+// const playBtn = document.getElementById("playBeat");
+
+// const pauseBtn = document.getElementById("pauseBeat");
+
+// const volumeSlider = document.getElementById("volumeSlider");
+
+// const musicTaskbar = document.getElementById("music-taskbar");
+
+// const flWindow = document.getElementById("fl-window");
+
+// const flClose = document.querySelector(".fl-close");
+
+/* =================================
+   PROJECT SWITCHING
+================================= */
+
+// projects.forEach((project) => {
+//   project.addEventListener("click", () => {
+//     // ACTIVE PROJECT
+
+// projects.forEach((p) => {
+//   p.classList.remove("active-project");
+// });
+
+// project.classList.add("active-project");
+
+// UPDATE AUDIO
+
+//     const audio = project.dataset.audio;
+//     console.log(audio);
+
+//     const bpm = project.dataset.bpm;
+
+//     const genre = project.dataset.genre;
+
+//     player.src = audio;
+
+//     player.load();
+
+//     // UPDATE UI
+
+//     bpmDisplay.textContent = bpm;
+
+//     genreDisplay.textContent = genre;
+//   });
+// });
+
+/* =================================
+   PLAY
+================================= */
+
+// if (playBtn) {
+//   playBtn.addEventListener("click", () => {
+//     console.log(player.src);
+
+//     player
+//       .play()
+//       .then(() => {
+//         console.log("Playing");
+//       })
+//       .catch((err) => {
+//         console.error(err);
+//       });
+//   });
+// }
+
+/* =================================
+   PAUSE
+================================= */
+
+// if (pauseBtn) {
+//   pauseBtn.addEventListener("click", () => {
+//     player.pause();
+//   });
+// }
+
+/* =================================
+   VOLUME
+================================= */
+
+// if (volumeSlider) {
+//   volumeSlider.addEventListener("input", () => {
+//     player.volume = volumeSlider.value;
+//   });
+// }
+
+/* =================================
+   LOAD FIRST PROJECT
+================================= */
+
+// const firstProject = document.querySelector(".fl-project");
+
+// if (firstProject) {
+//   player.src = firstProject.dataset.audio;
+
+//   player.load();
+
+//   bpmDisplay.textContent = firstProject.dataset.bpm;
+
+//   genreDisplay.textContent = firstProject.dataset.genre;
+// }
+
+/* =================================
+   OPEN WINDOW
+================================= */
+
+// if (musicTaskbar && flWindow) {
+//   musicTaskbar.addEventListener("click", () => {
+//     console.log("FL Studio Opened");
+
+//     flWindow.classList.add("show-window");
+//   });
+// }
+
+/* =================================
+   CLOSE WINDOW
+================================= */
+
+// if (flClose && flWindow) {
+//   flClose.addEventListener("click", () => {
+//     flWindow.classList.remove("show-window");
+//   });
+// }
+
+/* =================================
+   SPACEBAR PLAY / PAUSE
+================================= */
+
+// document.addEventListener("keydown", (e) => {
+//   if (e.code !== "Space") return;
+
+// Ignore if typing in inputs
+
+//   if (
+//     document.activeElement.tagName === "INPUT" ||
+//     document.activeElement.tagName === "TEXTAREA"
+//   )
+//     return;
+
+//   e.preventDefault();
+
+//   if (player.paused) {
+//     player.play();
+//   } else {
+//     player.pause();
+//   }
+// });
+
+/* =================================
+   AUTO UPDATE PLAY BUTTON
+================================= */
+
+// player.addEventListener("play", () => {
+//   playBtn.textContent = "⏵";
+// });
+
+// player.addEventListener("pause", () => {
+//   playBtn.textContent = "▶";
+// });
+
+/* =================================
+   SONG ENDED
+================================= */
+
+// player.addEventListener("ended", () => {
+//   playBtn.textContent = "▶";
+// });
+
+// document.getElementById("track1").textContent = "Recorder";
+
+// document.getElementById("track2").textContent = "Bass";
+
+// document.getElementById("track3").textContent = "Drums";
+
+// document.getElementById("track4").textContent = "Keys";
+
+// document.getElementById("track5").textContent = "FX";
+
+// Add clip functionality
+// const addClip = document.getElementById("addClip");
+
+// const firstLane = document.querySelector(".track-lane");
+
+// addClip.addEventListener("click", () => {
+//   const clip = document.createElement("div");
+
+//   clip.classList.add("clip");
+
+//   clip.textContent = "New Stem.wav";
+
+//   const gridSize = 40;
+
+//   const snapped = Math.round(x / gridSize) * gridSize;
+
+//   clip.style.left = `${snapped}px`;
+
+//   firstLane.appendChild(clip);
+
+//   makeClipInteractive(clip);
+// });
+
+// Drag clips
+// document.querySelectorAll(".clip").forEach(makeClipDraggable);
+
+// function makeClipDraggable(clip) {
+//   let isDragging = false;
+
+//   let offsetX = 0;
+
+//   clip.addEventListener("mousedown", (e) => {
+//     isDragging = true;
+
+//     offsetX = e.clientX - clip.offsetLeft;
+
+//     clip.style.cursor = "grabbing";
+//   });
+
+//   document.addEventListener("mousemove", (e) => {
+//     if (!isDragging) return;
+
+//     let x = e.clientX - offsetX;
+
+//     x = Math.max(0, x);
+
+//     clip.style.left = `${x}px`;
+//   });
+
+//   document.addEventListener("mouseup", () => {
+//     isDragging = false;
+
+//     clip.style.cursor = "grab";
+//   });
+// }
+
+// document.querySelectorAll(".resize-handle").forEach((handle) => {
+//   handle.addEventListener("mousedown", startResize);
+// });
+
+// Resize clips
+// function startResize(e) {
+//   const clip = e.target.parentElement;
+
+//   const startWidth = clip.offsetWidth;
+
+//   const startX = e.clientX;
+
+//   function resize(moveEvent) {
+//     const newWidth = startWidth + (moveEvent.clientX - startX);
+
+//     clip.style.width = `${Math.max(80, newWidth)}px`;
+//   }
+
+//   function stopResize() {
+//     document.removeEventListener("mousemove", resize);
+
+//     document.removeEventListener("mouseup", stopResize);
+//   }
+
+//   document.addEventListener("mousemove", resize);
+
+//   document.addEventListener("mouseup", stopResize);
+// }
+
+// document.querySelectorAll(".clip").forEach((clip) => {
+//   clip.addEventListener("contextmenu", (e) => {
+//     e.preventDefault();
+
+//     if (confirm("Delete stem?")) {
+//       clip.remove();
+//     }
+//   });
+// });
+
+// Animate Meters
+// setInterval(() => {
+//   document.querySelectorAll(".meter").forEach((meter) => {
+//     meter.style.height = `${20 + Math.random() * 80}px`;
+//   });
+// }, 150);
+
+// CPU meter
+// const cpuMeter = document.getElementById("cpuMeter");
+
+// setInterval(() => {
+//   cpuMeter.textContent = Math.floor(Math.random() * 15 + 10) + "%";
+// }, 2000);
+
+// Meters Animation
+// const meters = document.querySelectorAll(".meter");
+
+// setInterval(() => {
+//   if (player.paused) return;
+
+//   meters.forEach((meter) => {
+//     meter.style.height = `${20 + Math.random() * 80}px`;
+//   });
+// }, 100);
+
+// player.addEventListener("play", () => {
+//   document.querySelector(".playhead").classList.add("playing");
+// });
+
+// player.addEventListener("pause", () => {
+//   document.querySelector(".playhead").classList.remove("playing");
+// });
+
+// projectTitle.textContent = project.dataset.name;
+
+// projectBpm.textContent = project.dataset.bpm;
+
+// projectGenre.textContent = project.dataset.genre;
+
+// ========================================Arcade
+
+/* =========================================================
+   PORTFOLIO OS - ARCADE
+========================================================= */
+
+// ========================================
+// ARCADE
+// ========================================
+
+const arcadeWindow = document.getElementById("arcade-window");
+
+const launchAirHockey = document.getElementById("launch-air-hockey");
+
+const arcadeBackBtn = document.getElementById("arcade-back-btn");
+
+const arcadeHome = arcadeWindow?.querySelector(".arcade-home");
+
+const hockeyScreen = document.getElementById("hockey-screen");
+
+launchAirHockey?.addEventListener("click", () => {
+  arcadeHome.classList.remove("active-arcade-screen");
+
+  hockeyScreen.classList.add("active-arcade-screen");
+
+  requestAnimationFrame(() => {
+    resetHockeyMatch();
+
+    setTimeout(() => {
+      servePuck();
+    }, 700);
+  });
+});
+
+arcadeBackBtn?.addEventListener("click", () => {
+  showArcadeHome();
+});
+
+function showArcadeHome() {
+  hockeyScreen?.classList.remove("active-arcade-screen");
+  arcadeHome?.classList.add("active-arcade-screen");
+}
+
+// =================================Arcade Logic=====================
+
+/* =========================================================
+   AIR HOCKEY
+   STEP 2B - PLAYER PADDLE MOVEMENT
+========================================================= */
+
+const hockeyTable = document.getElementById("hockey-table");
+const playerPaddle = document.getElementById("player-paddle");
+
+/* =========================================================
+   PLAYER POSITION
+========================================================= */
+
+let playerX = 0;
+let playerY = 0;
+
+let targetPlayerX = 0;
+let targetPlayerY = 0;
+
+let hockeyControlsActive = false;
+
+/* =========================================================
+   GET TABLE DIMENSIONS
+========================================================= */
+
+function getHockeyTableBounds() {
+  if (!hockeyTable) return null;
+
+  return hockeyTable.getBoundingClientRect();
+}
+
+/* =========================================================
+   RESET PLAYER POSITION
+========================================================= */
+
+function resetPlayerPosition() {
+  if (!hockeyTable || !playerPaddle) return;
+
+  const tableWidth = hockeyTable.clientWidth;
+  const tableHeight = hockeyTable.clientHeight;
+
+  // Start in centre of player's half
+  playerX = tableWidth / 2;
+  playerY = tableHeight * 0.78;
+
+  targetPlayerX = playerX;
+  targetPlayerY = playerY;
+
+  updatePlayerPaddle();
+}
+
+/* =========================================================
+   UPDATE PADDLE VISUAL POSITION
+========================================================= */
+
+function updatePlayerPaddle() {
+  if (!playerPaddle) return;
+
+  playerPaddle.style.left = `${playerX}px`;
+  playerPaddle.style.top = `${playerY}px`;
+}
+
+/* =========================================================
+   SET PLAYER TARGET
+========================================================= */
+
+function setPlayerTarget(clientX, clientY) {
+  if (!hockeyTable || !playerPaddle) return;
+
+  const tableBounds = getHockeyTableBounds();
+
+  if (!tableBounds) return;
+
+  /*
+   * Convert screen coordinates into coordinates
+   * relative to the hockey table.
+   */
+
+  let x = clientX - tableBounds.left;
+  let y = clientY - tableBounds.top;
+
+  /*
+   * Get paddle radius dynamically.
+   *
+   * This means if we make the paddle larger using CSS,
+   * the movement boundaries still work.
+   */
+
+  const paddleRadius = playerPaddle.offsetWidth / 2;
+
+  /* =============================================
+     HORIZONTAL BOUNDARIES
+  ============================================= */
+
+  const minimumX = paddleRadius;
+  const maximumX = hockeyTable.clientWidth - paddleRadius;
+
+  x = Math.max(minimumX, Math.min(x, maximumX));
+
+  /* =============================================
+     VERTICAL BOUNDARIES
+  ============================================= */
+
+  /*
+   * Player is only allowed in the bottom half.
+   *
+   * The paddle radius is added to the centre
+   * line so the paddle itself cannot cross it.
+   */
+
+  const centreLine = hockeyTable.clientHeight / 2;
+
+  const minimumY = centreLine + paddleRadius;
+
+  const maximumY = hockeyTable.clientHeight - paddleRadius;
+
+  y = Math.max(minimumY, Math.min(y, maximumY));
+
+  targetPlayerX = x;
+  targetPlayerY = y;
+}
+
+/* =========================================================
+   MOUSE CONTROLS
+========================================================= */
+
+hockeyTable?.addEventListener("mouseenter", () => {
+  hockeyControlsActive = true;
+});
+
+hockeyTable?.addEventListener("mouseleave", () => {
+  hockeyControlsActive = false;
+});
+
+hockeyTable?.addEventListener("mousemove", (event) => {
+  if (!hockeyControlsActive) return;
+
+  setPlayerTarget(event.clientX, event.clientY);
+});
+
+/* =========================================================
+   TOUCH CONTROLS
+========================================================= */
+
+hockeyTable?.addEventListener(
+  "touchstart",
+  (event) => {
+    hockeyControlsActive = true;
+
+    const touch = event.touches[0];
+
+    if (!touch) return;
+
+    setPlayerTarget(touch.clientX, touch.clientY);
+  },
+  {
+    passive: true,
+  },
+);
+
+hockeyTable?.addEventListener(
+  "touchmove",
+  (event) => {
+    const touch = event.touches[0];
+
+    if (!touch) return;
+
+    setPlayerTarget(touch.clientX, touch.clientY);
+  },
+  {
+    passive: true,
+  },
+);
+
+hockeyTable?.addEventListener("touchend", () => {
+  hockeyControlsActive = false;
+});
+
+/* =========================================================
+   PLAYER MOVEMENT LOOP
+========================================================= */
+
+function updatePlayerMovement() {
+  const movementSpeed = 0.32;
+
+  /*
+   * Remember previous position.
+   */
+
+  previousPlayerX = playerX;
+  previousPlayerY = playerY;
+
+  /* =============================================
+     MOVE PLAYER
+  ============================================= */
+
+  playerX += (targetPlayerX - playerX) * movementSpeed;
+
+  playerY += (targetPlayerY - playerY) * movementSpeed;
+
+  /* =============================================
+     CALCULATE VELOCITY
+  ============================================= */
+
+  playerVelocityX = playerX - previousPlayerX;
+
+  playerVelocityY = playerY - previousPlayerY;
+
+  updatePlayerPaddle();
+
+  requestAnimationFrame(updatePlayerMovement);
+}
+/* =========================================================
+   PLAYER VELOCITY
+========================================================= */
+
+/*
+ * We need to know how quickly the player's paddle
+ * is moving.
+ *
+ * This lets fast paddle movements hit the puck harder.
+ */
+
+let previousPlayerX = 0;
+let previousPlayerY = 0;
+
+let playerVelocityX = 0;
+let playerVelocityY = 0;
+/* =========================================================
+   INITIALISE
+========================================================= */
+
+// resetPlayerPosition();
+
+updatePlayerMovement();
+
+/* =========================================================
+   STEP 2D - CPU / MATCH STATE
+========================================================= */
+
+const cpuPaddle = document.getElementById("cpu-paddle");
+
+const playerScoreElement = document.getElementById("player-score");
+
+const cpuScoreElement = document.getElementById("cpu-score");
+
+const hockeyStatusText = document.getElementById("hockey-status-text");
+
+let cpuX = 0;
+let cpuY = 0;
+
+let previousCpuX = 0;
+let previousCpuY = 0;
+
+let cpuVelocityX = 0;
+let cpuVelocityY = 0;
+
+let playerScore = 0;
+let cpuScore = 0;
+
+const winningScore = 7;
+
+let matchRunning = false;
+let puckInPlay = false;
+let matchOver = false;
+
+function resetCpuPosition() {
+  if (!hockeyTable || !cpuPaddle) return;
+
+  cpuX = hockeyTable.clientWidth / 2;
+
+  cpuY = hockeyTable.clientHeight * 0.22;
+
+  previousCpuX = cpuX;
+  previousCpuY = cpuY;
+
+  cpuVelocityX = 0;
+  cpuVelocityY = 0;
+
+  updateCpuPosition();
+}
+
+function updateCpuPosition() {
+  if (!cpuPaddle) return;
+
+  cpuPaddle.style.left = `${cpuX}px`;
+
+  cpuPaddle.style.top = `${cpuY}px`;
+}
+
+/* =========================================================
+   CPU AI
+========================================================= */
+
+function updateCpuMovement() {
+  if (!hockeyTable || !cpuPaddle) {
+    requestAnimationFrame(updateCpuMovement);
+
+    return;
+  }
+
+  const width = hockeyTable.clientWidth;
+
+  const height = hockeyTable.clientHeight;
+
+  const centreLine = height / 2;
+
+  const radius = cpuPaddle.offsetWidth / 2;
+
+  /* =============================================
+     CPU HOME POSITION
+  ============================================= */
+
+  let targetX = width / 2;
+
+  let targetY = height * 0.22;
+
+  /* =============================================
+     PUCK IS ON CPU SIDE
+  ============================================= */
+
+  if (puckInPlay && puckY < centreLine) {
+    /*
+     * Follow puck horizontally.
+     */
+
+    targetX = puckX;
+
+    /*
+     * Don't chase all the way to centre immediately.
+     */
+
+    targetY = Math.min(puckY, centreLine - radius - 10);
+  }
+
+  /* =============================================
+     CPU MOVEMENT SPEED
+  ============================================= */
+
+  const cpuSpeed = 0.075;
+
+  previousCpuX = cpuX;
+  previousCpuY = cpuY;
+
+  cpuX += (targetX - cpuX) * cpuSpeed;
+
+  cpuY += (targetY - cpuY) * cpuSpeed;
+
+  /* =============================================
+     KEEP CPU INSIDE TABLE
+  ============================================= */
+
+  cpuX = Math.max(radius, Math.min(cpuX, width - radius));
+
+  cpuY = Math.max(radius, Math.min(cpuY, centreLine - radius));
+
+  /* =============================================
+     CPU VELOCITY
+  ============================================= */
+
+  cpuVelocityX = cpuX - previousCpuX;
+
+  cpuVelocityY = cpuY - previousCpuY;
+
+  updateCpuPosition();
+
+  requestAnimationFrame(updateCpuMovement);
+}
+
+updateCpuMovement();
+
+/* =========================================================
+   WINDOW RESIZE
+========================================================= */
+
+window.addEventListener("resize", () => {
+  resetPlayerPosition();
+});
+
+// ===========================================================================================
+
+/* =========================================================
+   AIR HOCKEY
+   STEP 2C - PUCK PHYSICS
+========================================================= */
+
+const hockeyPuck = document.getElementById("hockey-puck");
+
+/* =========================================================
+   PUCK STATE
+========================================================= */
+
+let puckX = 0;
+let puckY = 0;
+
+let puckVelocityX = 0;
+let puckVelocityY = 0;
+
+/*
+ * Physics settings
+ */
+
+const puckFriction = 0.998;
+
+const puckMaxSpeed = 16;
+
+const puckMinSpeed = 0.02;
+
+/* =========================================================
+   GENERIC PADDLE COLLISION
+========================================================= */
+
+function handlePaddlePuckCollision(
+  paddleX,
+  paddleY,
+  paddleVelocityX,
+  paddleVelocityY,
+  paddleElement,
+) {
+  if (!paddleElement || !hockeyPuck) {
+    return;
+  }
+
+  const dx = puckX - paddleX;
+
+  const dy = puckY - paddleY;
+
+  const distance = Math.hypot(dx, dy);
+
+  const paddleRadius = paddleElement.offsetWidth / 2;
+
+  const puckRadius = hockeyPuck.offsetWidth / 2;
+
+  const minimumDistance = paddleRadius + puckRadius;
+
+  if (distance >= minimumDistance || distance === 0) {
+    return;
+  }
+
+  /* COLLISION NORMAL */
+
+  const normalX = dx / distance;
+
+  const normalY = dy / distance;
+
+  /* REMOVE OVERLAP */
+
+  const overlap = minimumDistance - distance;
+
+  puckX += normalX * overlap;
+
+  puckY += normalY * overlap;
+
+  /* RELATIVE VELOCITY */
+
+  const paddleImpact = paddleVelocityX * normalX + paddleVelocityY * normalY;
+
+  const puckImpact = puckVelocityX * normalX + puckVelocityY * normalY;
+
+  const relativeImpact = paddleImpact - puckImpact;
+
+  if (relativeImpact > 0) {
+    const bounceStrength = 1.65;
+
+    puckVelocityX += normalX * relativeImpact * bounceStrength;
+
+    puckVelocityY += normalY * relativeImpact * bounceStrength;
+  }
+
+  /*
+   * Minimum bounce so a stationary paddle
+   * can still deflect the puck.
+   */
+
+  const speed = Math.hypot(puckVelocityX, puckVelocityY);
+
+  if (speed < 4) {
+    puckVelocityX += normalX * 4;
+
+    puckVelocityY += normalY * 4;
+  }
+
+  limitPuckSpeed();
+}
+
+/* =========================================================
+   RESET PUCK
+========================================================= */
+
+function resetPuck() {
+  if (!hockeyTable || !hockeyPuck) return;
+
+  puckX = hockeyTable.clientWidth / 2;
+  puckY = hockeyTable.clientHeight / 2;
+
+  puckVelocityX = 0;
+  puckVelocityY = 0;
+
+  updatePuckPosition();
+}
+
+/* =========================================================
+   POSITION PUCK
+========================================================= */
+
+function updatePuckPosition() {
+  if (!hockeyPuck) return;
+
+  hockeyPuck.style.left = `${puckX}px`;
+  hockeyPuck.style.top = `${puckY}px`;
+}
+
+/* =========================================================
+   START / SERVE PUCK
+========================================================= */
+
+function servePuck() {
+  /*
+   * Random horizontal direction.
+   */
+
+  const horizontalDirection = Math.random() > 0.5 ? 1 : -1;
+
+  /*
+   * Randomly serve towards either player.
+   */
+
+  const verticalDirection = Math.random() > 0.5 ? 1 : -1;
+
+  puckVelocityX = horizontalDirection * (2 + Math.random() * 2);
+
+  puckVelocityY = verticalDirection * (4 + Math.random() * 2);
+}
+
+/* =========================================================
+   WALL COLLISIONS
+========================================================= */
+
+function handlePuckWallCollisions() {
+  if (!hockeyTable || !hockeyPuck || !puckInPlay) {
+    return;
+  }
+
+  const radius = hockeyPuck.offsetWidth / 2;
+
+  const width = hockeyTable.clientWidth;
+
+  const height = hockeyTable.clientHeight;
+
+  /* =============================================
+     GOAL DIMENSIONS
+  ============================================= */
+
+  /*
+   * Matches approximately the 42% CSS goal width.
+   */
+
+  const goalWidth = width * 0.42;
+
+  const goalLeft = (width - goalWidth) / 2;
+
+  const goalRight = goalLeft + goalWidth;
+
+  const insideGoal = puckX > goalLeft + radius && puckX < goalRight - radius;
+
+  /* =============================================
+     LEFT WALL
+  ============================================= */
+
+  if (puckX - radius <= 0) {
+    puckX = radius;
+
+    puckVelocityX = Math.abs(puckVelocityX);
+  }
+
+  /* =============================================
+     RIGHT WALL
+  ============================================= */
+
+  if (puckX + radius >= width) {
+    puckX = width - radius;
+
+    puckVelocityX = -Math.abs(puckVelocityX);
+  }
+
+  /* =============================================
+     TOP
+  ============================================= */
+
+  if (puckY - radius <= 0) {
+    if (insideGoal) {
+      /*
+       * Player scored in CPU goal.
+       */
+
+      scoreGoal("player");
+
+      return;
+    }
+
+    /*
+     * Hit top wall outside goal.
+     */
+
+    puckY = radius;
+
+    puckVelocityY = Math.abs(puckVelocityY);
+  }
+
+  /* =============================================
+     BOTTOM
+  ============================================= */
+
+  if (puckY + radius >= height) {
+    if (insideGoal) {
+      /*
+       * CPU scored.
+       */
+
+      scoreGoal("cpu");
+
+      return;
+    }
+
+    puckY = height - radius;
+
+    puckVelocityY = -Math.abs(puckVelocityY);
+  }
+}
+/* =========================================================
+   PLAYER → PUCK COLLISION
+========================================================= */
+
+function handlePlayerPuckCollision() {
+  if (!playerPaddle || !hockeyPuck) return;
+
+  /*
+   * Distance between the centres.
+   */
+
+  const dx = puckX - playerX;
+
+  const dy = puckY - playerY;
+
+  const distance = Math.sqrt(dx * dx + dy * dy);
+
+  /*
+   * Get radius from actual CSS dimensions.
+   */
+
+  const paddleRadius = playerPaddle.offsetWidth / 2;
+
+  const puckRadius = hockeyPuck.offsetWidth / 2;
+
+  const minimumDistance = paddleRadius + puckRadius;
+
+  /*
+   * No collision.
+   */
+
+  if (distance >= minimumDistance || distance === 0) {
+    return;
+  }
+
+  /* =============================================
+     COLLISION NORMAL
+  ============================================= */
+
+  /*
+   * Direction pointing from paddle
+   * towards puck.
+   */
+
+  const normalX = dx / distance;
+
+  const normalY = dy / distance;
+
+  /* =============================================
+     SEPARATE PUCK FROM PADDLE
+  ============================================= */
+
+  /*
+   * Prevents the puck getting trapped
+   * inside the paddle.
+   */
+
+  const overlap = minimumDistance - distance;
+
+  puckX += normalX * overlap;
+
+  puckY += normalY * overlap;
+
+  /* =============================================
+     PLAYER IMPACT
+  ============================================= */
+
+  /*
+   * How quickly the paddle is moving in the
+   * direction of the collision.
+   */
+
+  const paddleImpact = playerVelocityX * normalX + playerVelocityY * normalY;
+
+  /*
+   * Current puck velocity in collision direction.
+   */
+
+  const puckImpact = puckVelocityX * normalX + puckVelocityY * normalY;
+
+  /*
+   * Only bounce if puck and paddle are
+   * moving towards each other.
+   */
+
+  const relativeImpact = paddleImpact - puckImpact;
+
+  if (relativeImpact > 0) {
+    const bounceStrength = 1.55;
+
+    puckVelocityX += normalX * relativeImpact * bounceStrength;
+
+    puckVelocityY += normalY * relativeImpact * bounceStrength;
+  }
+
+  /*
+   * Give even slow paddle collisions
+   * a minimum amount of energy.
+   */
+
+  const currentSpeed = Math.hypot(puckVelocityX, puckVelocityY);
+
+  if (currentSpeed < 4) {
+    puckVelocityX += normalX * 4;
+
+    puckVelocityY += normalY * 4;
+  }
+
+  limitPuckSpeed();
+}
+
+/* =========================================================
+   LIMIT PUCK SPEED
+========================================================= */
+
+function limitPuckSpeed() {
+  const speed = Math.hypot(puckVelocityX, puckVelocityY);
+
+  if (speed <= puckMaxSpeed) return;
+
+  const scale = puckMaxSpeed / speed;
+
+  puckVelocityX *= scale;
+  puckVelocityY *= scale;
+}
+
+/* =========================================================
+   PUCK PHYSICS LOOP
+========================================================= */
+
+function updatePuckPhysics() {
+  if (!hockeyPuck || !hockeyTable) {
+    requestAnimationFrame(updatePuckPhysics);
+
+    return;
+  }
+
+  if (puckInPlay) {
+    /* MOVE PUCK */
+
+    puckX += puckVelocityX;
+    puckY += puckVelocityY;
+
+    /* FRICTION */
+
+    puckVelocityX *= puckFriction;
+    puckVelocityY *= puckFriction;
+
+    /* REMOVE TINY VELOCITIES */
+
+    if (Math.abs(puckVelocityX) < puckMinSpeed) {
+      puckVelocityX = 0;
+    }
+
+    if (Math.abs(puckVelocityY) < puckMinSpeed) {
+      puckVelocityY = 0;
+    }
+
+    /* WALL / GOAL COLLISION */
+
+    handlePuckWallCollisions();
+
+    /* PLAYER COLLISION */
+
+    handlePaddlePuckCollision(
+      playerX,
+      playerY,
+      playerVelocityX,
+      playerVelocityY,
+      playerPaddle,
+    );
+
+    /* CPU COLLISION */
+
+    handlePaddlePuckCollision(
+      cpuX,
+      cpuY,
+      cpuVelocityX,
+      cpuVelocityY,
+      cpuPaddle,
+    );
+
+    limitPuckSpeed();
+  }
+
+  updatePuckPosition();
+
+  requestAnimationFrame(updatePuckPhysics);
+}
+
+/* =========================================================
+   START PHYSICS
+========================================================= */
+
+updatePuckPhysics();
+
+/* =========================================================
+   RESTART MATCH
+========================================================= */
+
+const restartHockey = document.getElementById("restart-hockey");
+restartHockey?.addEventListener("click", () => {
+  resetPlayerPosition();
+
+  resetPuck();
+
+  setTimeout(() => {
+    servePuck();
+  }, 500);
+
+  function servePuck() {
+    puckInPlay = true;
+
+    const horizontalDirection = Math.random() > 0.5 ? 1 : -1;
+
+    const verticalDirection = Math.random() > 0.5 ? 1 : -1;
+
+    puckVelocityX = horizontalDirection * (2 + Math.random() * 2);
+
+    puckVelocityY = verticalDirection * (4 + Math.random() * 2);
+  }
+});
+
+/* =========================================================
+   SCOREBOARD
+========================================================= */
+
+function updateScoreboard() {
+  if (playerScoreElement) {
+    playerScoreElement.textContent = playerScore;
+  }
+
+  if (cpuScoreElement) {
+    cpuScoreElement.textContent = cpuScore;
+  }
+}
+
+/* =========================================================
+   STATUS
+========================================================= */
+
+function setHockeyStatus(message) {
+  if (!hockeyStatusText) return;
+
+  hockeyStatusText.textContent = message;
+}
+
+/* =========================================================
+   GOAL
+========================================================= */
+
+function scoreGoal(scorer) {
+  if (!puckInPlay) return;
+
+  puckInPlay = false;
+
+  puckVelocityX = 0;
+  puckVelocityY = 0;
+
+  if (scorer === "player") {
+    playerScore++;
+
+    setHockeyStatus("GOAL — YOU");
+  } else {
+    cpuScore++;
+
+    setHockeyStatus("GOAL — CPU");
+  }
+
+  updateScoreboard();
+
+  /* CHECK WINNER */
+
+  if (playerScore >= winningScore || cpuScore >= winningScore) {
+    endHockeyMatch();
+
+    return;
+  }
+
+  /* RESET ROUND */
+
+  setTimeout(() => {
+    resetPlayerPosition();
+
+    resetCpuPosition();
+
+    resetPuck();
+
+    setHockeyStatus("READY");
+
+    setTimeout(() => {
+      servePuck();
+    }, 700);
+  }, 900);
+}
+
+/* =========================================================
+   GAME OVER
+========================================================= */
+
+function endHockeyMatch() {
+  matchOver = true;
+
+  matchRunning = false;
+
+  puckInPlay = false;
+
+  puckVelocityX = 0;
+  puckVelocityY = 0;
+
+  if (playerScore >= winningScore) {
+    setHockeyStatus("YOU WIN");
+  } else {
+    setHockeyStatus("CPU WINS");
+  }
+}
+
+/* =========================================================
+   RESET MATCH
+========================================================= */
+
+function resetHockeyMatch() {
+  playerScore = 0;
+  cpuScore = 0;
+
+  matchOver = false;
+  matchRunning = false;
+  puckInPlay = false;
+
+  updateScoreboard();
+
+  resetPlayerPosition();
+
+  resetCpuPosition();
+
+  resetPuck();
+
+  setHockeyStatus("READY");
+}
