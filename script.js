@@ -362,23 +362,35 @@ window.addEventListener("DOMContentLoaded", () => {
   }
 
   const closeButtons = document.querySelectorAll(".close-btn");
+
   closeButtons.forEach((button) => {
-    button.addEventListener("click", () => {
+    button.addEventListener("click", (e) => {
+      e.stopPropagation();
+
       const appWindow = button.closest(".app-window");
+
       if (!appWindow) return;
 
-      const windowId = appWindow.id;
       appWindow.classList.remove("active-window");
+      appWindow.classList.remove("window-focused");
+      appWindow.classList.remove("is-dragging");
+
+      const windowId = appWindow.id;
 
       const matchingIcon = document.querySelector(
         `[data-window="${windowId}"]`,
       );
-      if (!matchingIcon) return;
 
-      const taskbarId = matchingIcon.dataset.taskbar;
-      const taskbarApp = document.getElementById(taskbarId);
-      if (taskbarApp) {
-        taskbarApp.classList.remove("active-taskbar-app");
+      if (matchingIcon) {
+        const taskbarId = matchingIcon.dataset.taskbar;
+
+        if (taskbarId) {
+          const taskbarApp = document.getElementById(taskbarId);
+
+          if (taskbarApp) {
+            taskbarApp.classList.remove("active-taskbar-app");
+          }
+        }
       }
     });
   });
@@ -394,9 +406,67 @@ window.addEventListener("DOMContentLoaded", () => {
     });
   }
 
-  const windows = document.querySelectorAll(".app-window");
-  windows.forEach((windowEl) => {
+  /* =========================================================
+   PORTFOLIO OS — WINDOW MANAGER
+   ========================================================= */
+
+  const appWindows = document.querySelectorAll(".app-window");
+
+  function bringWindowToFront(windowEl) {
+    if (!windowEl) return;
+
+    appWindows.forEach((win) => {
+      win.classList.remove("window-focused");
+    });
+
+    windowEl.classList.add("window-focused");
+  }
+
+  function openAppWindow(windowEl, taskbarId = null) {
+    if (!windowEl) return;
+
+    windowEl.classList.add("active-window");
+    bringWindowToFront(windowEl);
+
+    if (taskbarId) {
+      const taskbarApp = document.getElementById(taskbarId);
+
+      if (taskbarApp) {
+        taskbarApp.classList.add("active-taskbar-app");
+      }
+    }
+  }
+
+  function closeAppWindow(windowEl) {
+    if (!windowEl) return;
+
+    windowEl.classList.remove("active-window");
+    windowEl.classList.remove("window-focused");
+
+    const windowId = windowEl.id;
+
+    const matchingIcon = document.querySelector(`[data-window="${windowId}"]`);
+
+    if (matchingIcon) {
+      const taskbarId = matchingIcon.dataset.taskbar;
+
+      if (taskbarId) {
+        const taskbarApp = document.getElementById(taskbarId);
+
+        if (taskbarApp) {
+          taskbarApp.classList.remove("active-taskbar-app");
+        }
+      }
+    }
+  }
+
+  /* =========================================================
+   WINDOW DRAGGING
+   ========================================================= */
+
+  appWindows.forEach((windowEl) => {
     const header = windowEl.querySelector(".window-header");
+
     if (!header) return;
 
     let isDraggingWindow = false;
@@ -404,19 +474,81 @@ window.addEventListener("DOMContentLoaded", () => {
     let windowOffsetY = 0;
 
     header.addEventListener("mousedown", (e) => {
+      /*
+      Don't start dragging when clicking window controls.
+    */
+      if (
+        e.target.closest(
+          ".close-btn, .minimize-btn, .expand-btn, button, a, input, textarea, select",
+        )
+      ) {
+        return;
+      }
+
+      e.preventDefault();
+
+      bringWindowToFront(windowEl);
+
+      /*
+      Convert the window from CSS positioning into
+      explicit pixel positioning before dragging.
+
+      This prevents conflicts with:
+      left: 50%;
+      transform: translateX(-50%);
+    */
+      const rect = windowEl.getBoundingClientRect();
+
+      windowEl.style.transform = "none";
+      windowEl.style.position = "fixed";
+      windowEl.style.left = `${rect.left}px`;
+      windowEl.style.top = `${rect.top}px`;
+
+      windowOffsetX = e.clientX - rect.left;
+      windowOffsetY = e.clientY - rect.top;
+
       isDraggingWindow = true;
-      windowOffsetX = e.clientX - windowEl.offsetLeft;
-      windowOffsetY = e.clientY - windowEl.offsetTop;
+
+      windowEl.classList.add("is-dragging");
     });
 
     document.addEventListener("mousemove", (e) => {
       if (!isDraggingWindow) return;
-      windowEl.style.left = `${e.clientX - windowOffsetX}px`;
-      windowEl.style.top = `${e.clientY - windowOffsetY}px`;
+
+      const windowWidth = windowEl.offsetWidth;
+      const windowHeight = windowEl.offsetHeight;
+
+      const maxX = window.innerWidth - windowWidth;
+      const maxY = window.innerHeight - windowHeight;
+
+      let newX = e.clientX - windowOffsetX;
+      let newY = e.clientY - windowOffsetY;
+
+      /*
+      Keep the window at least partially inside
+      the viewport.
+    */
+      newX = Math.max(0, Math.min(newX, Math.max(0, maxX)));
+
+      newY = Math.max(0, Math.min(newY, Math.max(0, maxY)));
+
+      windowEl.style.left = `${newX}px`;
+      windowEl.style.top = `${newY}px`;
     });
 
     document.addEventListener("mouseup", () => {
+      if (!isDraggingWindow) return;
+
       isDraggingWindow = false;
+
+      windowEl.classList.remove("is-dragging");
+    });
+
+    /*
+    Clicking anywhere inside a window brings it forward.
+  */
+    windowEl.addEventListener("mousedown", () => {
+      bringWindowToFront(windowEl);
     });
   });
 
@@ -629,6 +761,7 @@ window.addEventListener("DOMContentLoaded", () => {
   });
 
   const fullscreenToggle = document.getElementById("fullscreen-toggle");
+
   if (fullscreenToggle) {
     fullscreenToggle.addEventListener("click", toggleFullscreen);
   }
@@ -777,343 +910,6 @@ trashCards.forEach((card) => {
     );
   });
 });
-
-// =========== DAW Music Player ============
-
-/* =================================
-   FL STUDIO APP
-================================= */
-
-// ELEMENTS
-// const player = document.getElementById("beatPlayer");
-
-// const projects = document.querySelectorAll(".fl-project");
-
-// const bpmDisplay = document.querySelector(".bpm-display");
-
-// const genreDisplay = document.querySelector(".genre-display");
-
-// const playBtn = document.getElementById("playBeat");
-
-// const pauseBtn = document.getElementById("pauseBeat");
-
-// const volumeSlider = document.getElementById("volumeSlider");
-
-// const musicTaskbar = document.getElementById("music-taskbar");
-
-// const flWindow = document.getElementById("fl-window");
-
-// const flClose = document.querySelector(".fl-close");
-
-/* =================================
-   PROJECT SWITCHING
-================================= */
-
-// projects.forEach((project) => {
-//   project.addEventListener("click", () => {
-//     // ACTIVE PROJECT
-
-// projects.forEach((p) => {
-//   p.classList.remove("active-project");
-// });
-
-// project.classList.add("active-project");
-
-// UPDATE AUDIO
-
-//     const audio = project.dataset.audio;
-//     console.log(audio);
-
-//     const bpm = project.dataset.bpm;
-
-//     const genre = project.dataset.genre;
-
-//     player.src = audio;
-
-//     player.load();
-
-//     // UPDATE UI
-
-//     bpmDisplay.textContent = bpm;
-
-//     genreDisplay.textContent = genre;
-//   });
-// });
-
-/* =================================
-   PLAY
-================================= */
-
-// if (playBtn) {
-//   playBtn.addEventListener("click", () => {
-//     console.log(player.src);
-
-//     player
-//       .play()
-//       .then(() => {
-//         console.log("Playing");
-//       })
-//       .catch((err) => {
-//         console.error(err);
-//       });
-//   });
-// }
-
-/* =================================
-   PAUSE
-================================= */
-
-// if (pauseBtn) {
-//   pauseBtn.addEventListener("click", () => {
-//     player.pause();
-//   });
-// }
-
-/* =================================
-   VOLUME
-================================= */
-
-// if (volumeSlider) {
-//   volumeSlider.addEventListener("input", () => {
-//     player.volume = volumeSlider.value;
-//   });
-// }
-
-/* =================================
-   LOAD FIRST PROJECT
-================================= */
-
-// const firstProject = document.querySelector(".fl-project");
-
-// if (firstProject) {
-//   player.src = firstProject.dataset.audio;
-
-//   player.load();
-
-//   bpmDisplay.textContent = firstProject.dataset.bpm;
-
-//   genreDisplay.textContent = firstProject.dataset.genre;
-// }
-
-/* =================================
-   OPEN WINDOW
-================================= */
-
-// if (musicTaskbar && flWindow) {
-//   musicTaskbar.addEventListener("click", () => {
-//     console.log("FL Studio Opened");
-
-//     flWindow.classList.add("show-window");
-//   });
-// }
-
-/* =================================
-   CLOSE WINDOW
-================================= */
-
-// if (flClose && flWindow) {
-//   flClose.addEventListener("click", () => {
-//     flWindow.classList.remove("show-window");
-//   });
-// }
-
-/* =================================
-   SPACEBAR PLAY / PAUSE
-================================= */
-
-// document.addEventListener("keydown", (e) => {
-//   if (e.code !== "Space") return;
-
-// Ignore if typing in inputs
-
-//   if (
-//     document.activeElement.tagName === "INPUT" ||
-//     document.activeElement.tagName === "TEXTAREA"
-//   )
-//     return;
-
-//   e.preventDefault();
-
-//   if (player.paused) {
-//     player.play();
-//   } else {
-//     player.pause();
-//   }
-// });
-
-/* =================================
-   AUTO UPDATE PLAY BUTTON
-================================= */
-
-// player.addEventListener("play", () => {
-//   playBtn.textContent = "⏵";
-// });
-
-// player.addEventListener("pause", () => {
-//   playBtn.textContent = "▶";
-// });
-
-/* =================================
-   SONG ENDED
-================================= */
-
-// player.addEventListener("ended", () => {
-//   playBtn.textContent = "▶";
-// });
-
-// document.getElementById("track1").textContent = "Recorder";
-
-// document.getElementById("track2").textContent = "Bass";
-
-// document.getElementById("track3").textContent = "Drums";
-
-// document.getElementById("track4").textContent = "Keys";
-
-// document.getElementById("track5").textContent = "FX";
-
-// Add clip functionality
-// const addClip = document.getElementById("addClip");
-
-// const firstLane = document.querySelector(".track-lane");
-
-// addClip.addEventListener("click", () => {
-//   const clip = document.createElement("div");
-
-//   clip.classList.add("clip");
-
-//   clip.textContent = "New Stem.wav";
-
-//   const gridSize = 40;
-
-//   const snapped = Math.round(x / gridSize) * gridSize;
-
-//   clip.style.left = `${snapped}px`;
-
-//   firstLane.appendChild(clip);
-
-//   makeClipInteractive(clip);
-// });
-
-// Drag clips
-// document.querySelectorAll(".clip").forEach(makeClipDraggable);
-
-// function makeClipDraggable(clip) {
-//   let isDragging = false;
-
-//   let offsetX = 0;
-
-//   clip.addEventListener("mousedown", (e) => {
-//     isDragging = true;
-
-//     offsetX = e.clientX - clip.offsetLeft;
-
-//     clip.style.cursor = "grabbing";
-//   });
-
-//   document.addEventListener("mousemove", (e) => {
-//     if (!isDragging) return;
-
-//     let x = e.clientX - offsetX;
-
-//     x = Math.max(0, x);
-
-//     clip.style.left = `${x}px`;
-//   });
-
-//   document.addEventListener("mouseup", () => {
-//     isDragging = false;
-
-//     clip.style.cursor = "grab";
-//   });
-// }
-
-// document.querySelectorAll(".resize-handle").forEach((handle) => {
-//   handle.addEventListener("mousedown", startResize);
-// });
-
-// Resize clips
-// function startResize(e) {
-//   const clip = e.target.parentElement;
-
-//   const startWidth = clip.offsetWidth;
-
-//   const startX = e.clientX;
-
-//   function resize(moveEvent) {
-//     const newWidth = startWidth + (moveEvent.clientX - startX);
-
-//     clip.style.width = `${Math.max(80, newWidth)}px`;
-//   }
-
-//   function stopResize() {
-//     document.removeEventListener("mousemove", resize);
-
-//     document.removeEventListener("mouseup", stopResize);
-//   }
-
-//   document.addEventListener("mousemove", resize);
-
-//   document.addEventListener("mouseup", stopResize);
-// }
-
-// document.querySelectorAll(".clip").forEach((clip) => {
-//   clip.addEventListener("contextmenu", (e) => {
-//     e.preventDefault();
-
-//     if (confirm("Delete stem?")) {
-//       clip.remove();
-//     }
-//   });
-// });
-
-// Animate Meters
-// setInterval(() => {
-//   document.querySelectorAll(".meter").forEach((meter) => {
-//     meter.style.height = `${20 + Math.random() * 80}px`;
-//   });
-// }, 150);
-
-// CPU meter
-// const cpuMeter = document.getElementById("cpuMeter");
-
-// setInterval(() => {
-//   cpuMeter.textContent = Math.floor(Math.random() * 15 + 10) + "%";
-// }, 2000);
-
-// Meters Animation
-// const meters = document.querySelectorAll(".meter");
-
-// setInterval(() => {
-//   if (player.paused) return;
-
-//   meters.forEach((meter) => {
-//     meter.style.height = `${20 + Math.random() * 80}px`;
-//   });
-// }, 100);
-
-// player.addEventListener("play", () => {
-//   document.querySelector(".playhead").classList.add("playing");
-// });
-
-// player.addEventListener("pause", () => {
-//   document.querySelector(".playhead").classList.remove("playing");
-// });
-
-// projectTitle.textContent = project.dataset.name;
-
-// projectBpm.textContent = project.dataset.bpm;
-
-// projectGenre.textContent = project.dataset.genre;
-
-// ========================================Arcade
-
-/* =========================================================
-   PORTFOLIO OS - ARCADE
-========================================================= */
-
-// ========================================
-// ARCADE
-// ========================================
 
 const arcadeWindow = document.getElementById("arcade-window");
 

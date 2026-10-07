@@ -1,0 +1,361 @@
+/* ======================================== */
+/* Desktop */
+/* ======================================== */
+
+.os-desktop {
+  position: relative;
+  width: 100%;
+  height: 100dvh;
+  min-height: 700px;
+  overflow: hidden;
+}
+
+.label {
+  position: absolute;
+  top: 50px;
+  left: 20px;
+  font-size: 24px;
+  color: var(--text-tertiary);
+  background-color: rgba(0, 0, 0, 0.5);
+  padding: 10px 20px;
+  border-radius: 5px;
+}
+
+.task-bar {
+  position: fixed;
+
+  bottom: 20px;
+  left: 50%;
+
+  transform: translateX(-50%);
+
+  width: fit-content;
+
+  display: flex;
+  align-items: center;
+  gap: 12px;
+
+  padding: 14px 18px;
+
+  border-radius: 1000px;
+
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
+
+  background: var(--surface);
+
+  border: 1px solid rgba(255, 255, 255, 0.08);
+
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+
+  z-index: 999;
+}
+/* .task-bar .start-button {
+  background-color: transparent;
+  border: none;
+  color: var(--text-tertiary);
+  font-size: 18px;
+  margin-right: 20px;
+  cursor: pointer;
+} */
+.start-menu {
+  position: fixed;
+
+  bottom: 130px;
+  left: 540px;
+  transform: translateX(-50%);
+
+  width: auto;
+  height: 490px;
+
+  padding: 20px;
+
+  border-radius: 32px;
+
+  backdrop-filter: blur(40px);
+  -webkit-backdrop-filter: blur(40px);
+
+  background: var(--surface);
+
+  border: 1px solid rgba(255, 255, 255, 0.08);
+
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.4);
+
+  overflow: hidden;
+
+  z-index: 998;
+
+  /* HIDDEN STATE */
+
+  opacity: 0;
+
+  visibility: hidden;
+
+  transform: translateY(40px) scale(0.95);
+
+  transform-origin: bottom left;
+
+  transition:
+    opacity 0.35s ease,
+    transform 0.35s ease,
+    visibility 0.35s ease;
+}
+.start-pop-up {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+}
+
+.start-menu-logo {
+  width: 10%;
+  height: auto;
+}
+.start-menu-text {
+  font-size: 26px;
+  color: var(--text-tertiary);
+}
+.start-menu.active {
+  opacity: 1;
+
+  visibility: visible;
+
+  transform: translateY(0) scale(1);
+}
+
+.start-button {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+
+  padding: 12px 18px;
+
+  border-radius: 1000px;
+
+  background: rgba(255, 255, 255, 0.05);
+
+  border: 1px solid rgba(255, 255, 255, 0.08);
+
+  cursor: pointer;
+
+  transition: 0.3s ease;
+}
+
+.start-button:hover {
+  background: rgba(255, 122, 0, 0.12);
+
+  border-color: rgba(255, 122, 0, 0.25);
+}
+.start-button img {
+  width: 40px;
+  height: 40px;
+  object-fit: contain;
+}
+
+.start-menu-logo {
+  width: 40px;
+  height: 40px;
+
+  background-image: var(--btn-image);
+  background-size: contain;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+/* ======================================== */
+/* PINNED SECTION */
+/* ======================================== */
+
+.pinned-section {
+  margin-top: 30px;
+}
+
+.section-title {
+  margin-bottom: 18px;
+}
+
+.section-title p {
+  font-size: 14px;
+  color: var(--text-secondary);
+
+  letter-spacing: 0.08em;
+}
+
+/* ======================================== */
+/* PINNED GRID */
+/* ======================================== */
+
+.pinned-grid {
+  display: grid;
+
+  grid-template-columns: repeat(5, 1fr);
+
+  gap: 5px;
+}
+.pinned-grid a {
+  text-decoration: none;
+}
+
+/* ======================================== */
+/* PINNED APP */
+/* ======================================== */
+
+.pinned-app {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+
+  padding: 16px 12px;
+
+  border-radius: 22px;
+
+  background: var(--surface-light);
+
+  border: 1px solid rgba(255, 255, 255, 0.06);
+
+  cursor: pointer;
+
+  transition: 0.3s ease;
+}
+
+.pinned-app:hover {
+  transform: translateY(-4px);
+
+  background: rgba(255, 122, 0, 0.08);
+
+  border-color: rgba(255, 122, 0, 0.22);
+}
+
+/* ======================================== */
+/* ICON */
+/* ======================================== */
+
+.pinned-app img {
+  width: 35px;
+  height: 35px;
+
+  object-fit: contain;
+}
+
+/* ======================================== */
+/* LABEL */
+/* ======================================== */
+
+.pinned-app span {
+  font-size: 13px;
+
+  color: var(--text-secondary);
+}
+
+#console pre {
+  padding: 30px;
+
+  border-radius: 20px;
+
+  background: var(--bg-terminal);
+
+  color: #00ff88;
+
+  font-family: monospace;
+
+  line-height: 2;
+}
+
+/* ======================================== */
+/* DESKTOP ICONS */
+/* ======================================== */
+
+.desktop-icons {
+  position: absolute;
+  top: 110px;
+  left: 28px;
+
+  width: 110px;
+
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+
+  z-index: 10;
+}
+
+/* ======================================== */
+/* DESKTOP ITEM */
+/* ======================================== */
+
+.desktop-item {
+  position: relative;
+
+  width: 90px;
+  min-height: 90px;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  gap: 8px;
+  padding: 10px;
+
+  border-radius: 18px;
+
+  cursor: grab;
+  user-select: none;
+
+  transition:
+    background 0.3s ease,
+    transform 0.2s ease;
+}
+
+/* ACTIVE DRAG */
+
+.desktop-item.dragging {
+  cursor: grabbing;
+
+  transform: scale(1.05);
+
+  z-index: 999;
+}
+
+/* HOVER */
+
+.desktop-item:hover {
+  background: rgba(255, 255, 255, 0.06);
+
+  transform: translateY(-4px);
+}
+
+/* ICON */
+
+.desktop-item img {
+  width: 58px;
+  height: 58px;
+
+  object-fit: contain;
+}
+
+/* LABEL */
+
+.desktop-item span {
+  font-size: 13px;
+  line-height: 1.2;
+
+  text-align: center;
+  color: var(--text);
+
+  white-space: nowrap;
+}
+
+/* INDIVIDUAL POSITIONS */
+
+.desktop-item:nth-child(1),
+.desktop-item:nth-child(2),
+.desktop-item:nth-child(3),
+.desktop-item:nth-child(4),
+.desktop-item:nth-child(5),
+.desktop-item:nth-child(6) {
+  position: relative;
+  top: auto;
+  left: auto;
+}

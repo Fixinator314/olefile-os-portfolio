@@ -1,0 +1,269 @@
+/* * -----------------Start Menu Search Tab ----------------- */
+.containerInput {
+  background-color: var(--bg-light);
+  position: relative;
+  overflow: hidden;
+  margin: 0;
+  padding: 0 0 4px 0;
+  z-index: 1;
+  font-size: 15px;
+  width: 100%;
+  border-radius: 10px;
+}
+
+.containerInput::before {
+  content: "";
+  width: 110%;
+  aspect-ratio: 1;
+  position: absolute;
+  inset: 0 0 0 0;
+  margin: auto;
+  animation: rotate6234 2.5s ease-in-out infinite;
+  z-index: -1;
+  background-image: conic-gradient(
+    from 0deg at 50% 50%,
+    #073aff00 0%,
+    var(--accent) 25%,
+    #073aff00 25%
+  );
+}
+
+.containerInput > input {
+  width: 210px;
+  height: 50px;
+  font-size: inherit;
+  color: var(--text-tertiary);
+  border: none;
+  padding: 12px;
+  background-color: #0a0a0a;
+  outline: 5px solid #0a0a0a;
+  width: 100%;
+}
+
+.containerInput > input:focus {
+  outline: none;
+}
+
+.containerInput > input:not(:placeholder-shown) {
+  outline: none;
+}
+
+.containerInput > input:not(:placeholder-shown):valid {
+  outline: 4px solid #ff7b0086;
+  border-radius: 0;
+}
+
+@keyframes rotate6234 {
+  from {
+    transform: rotate(0deg);
+  }
+
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.email-section {
+  display: none;
+}
+
+.email-section.active-section {
+  display: block;
+}
+
+.log-card,
+.status-card {
+  padding: 24px;
+
+  margin-bottom: 20px;
+
+  border-radius: 20px;
+
+  background: var(--surface-light);
+
+  border: 1px solid var(--border);
+}
+
+.log-card span {
+  color: var(--accent);
+
+  font-size: 12px;
+
+  letter-spacing: 2px;
+}
+
+.log-card h4,
+.status-card h4 {
+  color: var(--text-secondary);
+
+  margin-top: 10px;
+}
+
+.log-card p,
+.status-card p {
+  color: var(--text-secondary);
+
+  margin-top: 10px;
+}
+
+.log-card:hover,
+.status-card:hover {
+  background: rgba(255, 122, 0, 0.08);
+
+  border-color: rgba(255, 122, 0, 0.22);
+  transform: translateY(-4px);
+  animation: pulselog 1.5s infinite;
+}
+@keyframes pulselog {
+  0% {
+    box-shadow: 0 0 0px rgba(255, 122, 0, 0.18);
+  }
+  50% {
+    box-shadow: 0 0 12px rgba(255, 122, 0, 0.18);
+  }
+  100% {
+    box-shadow: 0 0 0px rgba(255, 122, 0, 0.18);
+  }
+}
+
+#console pre {
+  padding: 30px;
+
+  border-radius: 20px;
+
+  background: var(--bg-terminal);
+
+  color: #00ff88;
+
+  font-family: monospace;
+
+  line-height: 2;
+}
+
+/* -----------------Start Menu Search Tab ----------------- */
+.containerInput {
+  background-color: var(--bg-light);
+  position: relative;
+  overflow: hidden;
+  margin: 0;
+  padding: 0 0 4px 0;
+  z-index: 1;
+  font-size: 15px;
+  width: 100%;
+  border-radius: 10px;
+}
+
+.containerInput::before {
+  content: "";
+  width: 110%;
+  aspect-ratio: 1;
+  position: absolute;
+  inset: 0 0 0 0;
+  margin: auto;
+  animation: rotate6234 2.5s ease-in-out infinite;
+  z-index: -1;
+  background-image: conic-gradient(
+    from 0deg at 50% 50%,
+    #073aff00 0%,
+    var(--accent) 25%,
+    #073aff00 25%
+  );
+}
+
+.containerInput > input {
+  width: 210px;
+  height: 50px;
+  font-size: inherit;
+  color: var(--text-tertiary);
+  border: none;
+  padding: 12px;
+  background-color: #0a0a0a;
+  outline: 5px solid #0a0a0a;
+  width: 100%;
+}
+
+.containerInput > input:focus {
+  outline: none;
+}
+
+.containerInput > input:not(:placeholder-shown) {
+  outline: none;
+}
+
+.containerInput > input:not(:placeholder-shown):valid {
+  outline: 4px solid #ff7b0086;
+  border-radius: 0;
+}
+
+@keyframes rotate6234 {
+  from {
+    transform: rotate(0deg);
+  }
+
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.email-section {
+  display: none;
+}
+
+.email-section.active-section {
+  display: block;
+}
+
+.log-card,
+.status-card {
+  padding: 24px;
+
+  margin-bottom: 20px;
+
+  border-radius: 20px;
+
+  background: var(--surface-light);
+
+  border: 1px solid var(--border);
+}
+
+.log-card span {
+  color: var(--accent);
+
+  font-size: 12px;
+
+  letter-spacing: 2px;
+}
+
+.log-card h4,
+.status-card h4 {
+  color: var(--text-secondary);
+
+  margin-top: 10px;
+}
+
+.log-card p,
+.status-card p {
+  color: var(--text-secondary);
+
+  margin-top: 10px;
+}
+
+.log-card:hover,
+.status-card:hover {
+  background: rgba(255, 122, 0, 0.08);
+
+  border-color: rgba(255, 122, 0, 0.22);
+  transform: translateY(-4px);
+  animation: pulselog 1.5s infinite;
+}
+@keyframes pulselog {
+  0% {
+    box-shadow: 0 0 0px rgba(255, 122, 0, 0.18);
+  }
+  50% {
+    box-shadow: 0 0 12px rgba(255, 122, 0, 0.18);
+  }
+  100% {
+    box-shadow: 0 0 0px rgba(255, 122, 0, 0.18);
+  }
+}

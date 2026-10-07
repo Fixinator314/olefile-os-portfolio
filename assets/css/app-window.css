@@ -1,0 +1,76 @@
+/* ======================================== */
+/* APP WINDOW */
+/* ======================================== */
+
+.app-window {
+  position: fixed;
+
+  top: 50%;
+  left: 50%;
+
+  width: min(900px, calc(100vw - 80px));
+  height: min(
+    620px,
+    calc(100dvh - var(--navbar-height) - var(--taskbar-height) - 40px)
+  );
+
+  min-width: 420px;
+  min-height: 300px;
+
+  transform: translate(-50%, -50%);
+
+  box-sizing: border-box;
+
+  display: none;
+
+  overflow: hidden;
+
+  border-radius: 22px;
+
+  background: var(--surface);
+
+  border: 1px solid rgba(255, 255, 255, 0.08);
+
+  box-shadow: 0 25px 70px rgba(0, 0, 0, 0.45);
+
+  z-index: 100;
+
+  isolation: isolate;
+}
+/* ACTIVE WINDOW */
+
+.app-window.active-window {
+  display: block;
+}
+
+.app-window::before {
+  content: "";
+
+  position: absolute;
+  inset: 0;
+
+  background: radial-gradient(
+    circle at top left,
+    rgba(255, 122, 0, 0.14),
+    transparent 35%
+  );
+
+  pointer-events: none;
+}
+
+.work-wrapper,
+.archive-wrapper {
+  display: grid;
+
+  grid-template-columns: 230px minmax(0, 1fr);
+
+  height: 100%;
+  overflow: hidden;
+}
+
+.window-content {
+  width: 100%;
+  height: calc(100% - 60px);
+
+  overflow: auto;
+}

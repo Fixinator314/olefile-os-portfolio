@@ -1,0 +1,111 @@
+/* ================================= */
+/* CUSTOM SCROLLBAR */
+/* ================================= */
+
+.projects-grid::-webkit-scrollbar,
+.projects-grid2::-webkit-scrollbar,
+.projects-grid3::-webkit-scrollbar,
+.beat-grid::-webkit-scrollbar {
+  width: 10px;
+}
+
+/* TRACK */
+
+.projects-grid::-webkit-scrollbar-track,
+.projects-grid2::-webkit-scrollbar-track,
+.projects-grid3::-webkit-scrollbar-track,
+.beat-grid::-webkit-scrollbar-track {
+  background: transparent;
+
+  margin-block: 10px;
+}
+
+/* THUMB */
+
+.projects-grid::-webkit-scrollbar-thumb,
+.projects-grid2::-webkit-scrollbar-thumb,
+.projects-grid3::-webkit-scrollbar-thumb,
+.beat-grid::-webkit-scrollbar-thumb {
+  background: linear-gradient(
+    to bottom,
+    rgba(255, 122, 0, 0.2),
+    rgba(255, 122, 0, 0.6)
+  );
+
+  border-radius: 999px;
+
+  border: 2px solid transparent;
+
+  background-clip: padding-box;
+
+  transition: 0.3s ease;
+
+  box-shadow:
+    inset 0 0 8px rgba(255, 255, 255, 0.08),
+    0 0 12px rgba(255, 122, 0, 0.2);
+}
+
+/* HOVER */
+
+.projects-grid::-webkit-scrollbar-thumb:hover,
+.projects-grid2::-webkit-scrollbar-thumb:hover,
+.projects-grid3::-webkit-scrollbar-thumb:hover,
+.beat-grid::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(
+    to bottom,
+    rgba(255, 122, 0, 0.4),
+    rgba(255, 122, 0, 0.9)
+  );
+
+  box-shadow: 0 0 18px rgba(255, 122, 0, 0.45);
+}
+
+/* =================================
+   ARCHIVE SCROLLBAR
+================================= */
+
+.archive-catalogue::-webkit-scrollbar {
+  width: 10px;
+}
+
+/* TRACK */
+
+.archive-catalogue::-webkit-scrollbar-track {
+  background: transparent;
+
+  margin-block: 10px;
+}
+
+/* THUMB */
+
+.archive-catalogue::-webkit-scrollbar-thumb {
+  background: linear-gradient(
+    to bottom,
+    rgba(255, 122, 0, 0.2),
+    rgba(255, 122, 0, 0.6)
+  );
+
+  border-radius: 999px;
+
+  border: 2px solid transparent;
+
+  background-clip: padding-box;
+
+  transition: 0.3s ease;
+
+  box-shadow:
+    inset 0 0 8px rgba(255, 255, 255, 0.08),
+    0 0 12px rgba(255, 122, 0, 0.2);
+}
+
+/* HOVER */
+
+.archive-catalogue::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(
+    to bottom,
+    rgba(255, 122, 0, 0.4),
+    rgba(255, 122, 0, 0.9)
+  );
+
+  box-shadow: 0 0 18px rgba(255, 122, 0, 0.45);
+}

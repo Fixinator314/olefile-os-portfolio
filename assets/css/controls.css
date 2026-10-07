@@ -1,0 +1,75 @@
+/* ======================================== */
+/* CONTROLS */
+/* ======================================== */
+
+.window-controls {
+  display: flex;
+  gap: 10px;
+}
+
+.window-controls span {
+  width: 14px;
+  height: 14px;
+
+  border-radius: 20%;
+}
+
+.close-btn {
+  background: #ff5f57;
+}
+
+.minimize-btn {
+  background: #febc2e;
+}
+
+.expand-btn {
+  background: #28c840;
+}
+
+.opn-website {
+  background-color: #ff7b00;
+
+  border: none;
+
+  border-radius: 20px;
+
+  padding: 10px 15px;
+
+  margin-top: 10px;
+
+  color: var(--text-tertiary);
+
+  font-size: 14px;
+
+  cursor: pointer;
+
+  transition:
+    background-color 0.3s ease,
+    color 0.3s ease,
+    transform 0.3s ease,
+    box-shadow 0.3s ease;
+}
+
+.opn-website:hover {
+  background-color: #da904b;
+
+  color: black;
+
+  transform: translateY(-3px) scale(1.03);
+
+  box-shadow: 0 10px 20px rgba(255, 123, 0, 0.25);
+}
+
+/* ======================================== */
+/* CONTENT */
+/* ======================================== */
+
+/* .window-content {
+  padding: 40px;
+} */
+
+#finder-window .window-content {
+  padding: 0;
+
+  height: calc(100% - 70px);
+}

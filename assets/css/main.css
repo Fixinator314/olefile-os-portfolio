@@ -1,0 +1,135 @@
+/* ================================= */
+/* MAIN */
+/* ================================= */
+
+.work-main {
+  display: flex;
+
+  flex-direction: column;
+
+  padding: 40px;
+
+  height: 100%;
+
+  overflow: hidden;
+}
+.archive-main {
+  display: flex;
+
+  flex-direction: column;
+
+  padding: 40px;
+
+  height: 100%;
+
+  overflow: hidden;
+}
+
+.work-top {
+  margin-bottom: 30px;
+}
+.archive-top {
+  margin-bottom: 30px;
+}
+
+.work-top h2 {
+  font-size: 32px;
+
+  margin-bottom: 10px;
+  color: var(--text-secondary);
+}
+
+.archive-top h2 {
+  font-size: 32px;
+
+  margin-bottom: 10px;
+  color: var(--text-secondary);
+}
+
+.work-top p {
+  color: var(--text-secondary);
+}
+.archive-top p {
+  color: var(--text-secondary);
+}
+
+.work-main::-webkit-scrollbar {
+  width: 8px;
+}
+
+.work-main::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.12);
+
+  border-radius: 999px;
+}
+
+.work-section {
+  display: none;
+  height: 100%;
+}
+
+.archive-section {
+  display: none;
+  height: 100%;
+}
+
+.work-section.active-section {
+  display: block;
+}
+
+.archive-section.active-section {
+  display: block;
+}
+.web-banner {
+  display: flex;
+  flex-direction: row;
+
+  gap: 10px;
+}
+.project-overlay p {
+  padding-top: 20px;
+  color: #ff7b00e8;
+}
+
+/* ================================= */
+/* GRID */
+/* ================================= */
+
+.projects-grid {
+  display: grid;
+
+  grid-template-columns: repeat(2, 1fr);
+
+  gap: 24px;
+  overflow-y: visible;
+  overflow-x: hidden;
+}
+.projects-grid2 {
+  display: flex;
+
+  flex-direction: column;
+
+  gap: 20px;
+
+  height: 100%;
+
+  overflow-y: visible;
+  overflow-x: hidden;
+
+  padding-right: 10px;
+}
+
+.projects-grid3 {
+  display: flex;
+
+  flex-direction: column;
+
+  gap: 10px;
+
+  height: 100%;
+
+  overflow-y: visible;
+  overflow-x: hidden;
+
+  padding-right: 10px;
+}

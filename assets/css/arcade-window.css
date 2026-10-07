@@ -1,0 +1,181 @@
+/* ========================================
+        ARCADE
+======================================== */
+
+#arcade-window {
+  width: min(1100px, 90vw);
+  height: min(720px, 85vh);
+
+  top: 100px;
+  left: 50%;
+
+  transform: translateX(-50%);
+}
+
+.arcade-content {
+  height: calc(100% - 70px);
+
+  overflow: hidden;
+
+  padding: 40px;
+
+  background: radial-gradient(
+    circle at top left,
+    rgba(255, 122, 0, 0.12),
+    transparent 35%
+  );
+}
+
+/* ======================================== */
+
+.arcade-home {
+  height: 100%;
+
+  display: flex;
+
+  flex-direction: column;
+}
+
+/* ======================================== */
+
+.arcade-logo {
+  text-align: center;
+
+  margin-bottom: 50px;
+}
+
+.arcade-logo h1 {
+  font-size: 58px;
+
+  letter-spacing: 10px;
+
+  color: var(--accent);
+}
+
+.arcade-logo p {
+  margin-top: 12px;
+
+  color: var(--text-secondary);
+}
+
+/* ======================================== */
+
+.game-grid {
+  display: grid;
+
+  grid-template-columns: repeat(3, 1fr);
+
+  gap: 30px;
+}
+
+/* ======================================== */
+
+.game-card {
+  padding: 30px;
+
+  border-radius: 30px;
+
+  background: var(--surface-light);
+
+  border: 1px solid rgba(255, 255, 255, 0.08);
+
+  transition: 0.35s;
+
+  display: flex;
+
+  flex-direction: column;
+
+  align-items: center;
+
+  text-align: center;
+}
+
+/* ======================================== */
+
+.game-card:hover {
+  transform: translateY(-10px);
+
+  border-color: rgba(255, 122, 0, 0.3);
+
+  box-shadow:
+    0 25px 50px rgba(0, 0, 0, 0.35),
+    0 0 30px rgba(255, 122, 0, 0.15);
+}
+
+/* ======================================== */
+
+.game-image {
+  width: 130px;
+
+  height: 130px;
+
+  border-radius: 24px;
+
+  display: flex;
+
+  align-items: center;
+
+  justify-content: center;
+
+  font-size: 64px;
+
+  margin-bottom: 24px;
+
+  background: rgba(255, 255, 255, 0.04);
+}
+
+/* ======================================== */
+
+.game-card h2 {
+  color: var(--text);
+
+  margin-bottom: 10px;
+}
+
+.game-card p {
+  color: var(--text-secondary);
+
+  margin-bottom: 25px;
+}
+
+/* ======================================== */
+
+.launch-air-hockey {
+  padding: 14px 36px;
+
+  border: none;
+
+  border-radius: 999px;
+
+  background: var(--accent);
+
+  color: white;
+
+  font-size: 15px;
+
+  cursor: pointer;
+
+  transition: 0.3s;
+}
+
+/* ======================================== */
+
+.launch-air-hockey:hover {
+  transform: translateY(-3px);
+
+  background: #ff9335;
+}
+
+/* ======================================== */
+
+.disabled {
+  opacity: 0.45;
+}
+
+.disabled:hover {
+  transform: none;
+
+  box-shadow: none;
+
+  border-color: rgba(255, 255, 255, 0.08);
+}

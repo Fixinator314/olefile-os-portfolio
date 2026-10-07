@@ -1,0 +1,46 @@
+.music-section {
+  display: none;
+
+  flex-direction: column;
+
+  flex: 1;
+
+  min-height: 0;
+
+  overflow: hidden;
+}
+
+/* ================================= */
+/* MUSIC ITEM */
+/* ================================= */
+.music-item {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  justify-content: flex-start;
+  padding: 10px;
+  gap: 20px;
+
+  border-radius: 18px;
+  background: var(--surface-light);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  transition: 0.3s ease;
+  cursor: pointer;
+}
+.music-item:hover {
+  background: rgba(255, 122, 0, 0.12);
+  transform: translateX(4px);
+}
+.music-overlay {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  height: 100%;
+  color: var(--text-secondary);
+}
+.music-item img {
+  width: 100px;
+  height: 100px;
+  object-fit: cover;
+  border-radius: 20%;
+}

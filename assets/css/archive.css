@@ -1,0 +1,109 @@
+.archive-section {
+  display: none;
+
+  flex-direction: column;
+
+  flex: 1;
+
+  min-height: 0;
+
+  overflow: hidden;
+}
+.archive-catalogue {
+  display: grid;
+
+  grid-template-columns: repeat(3, 1fr);
+
+  gap: 20px;
+
+  width: 100%;
+  height: 100%;
+
+  overflow-y: auto;
+  overflow-x: hidden;
+
+  padding-right: 10px;
+}
+.work-section {
+  display: none;
+
+  flex-direction: column;
+
+  flex: 1;
+
+  min-height: 0;
+
+  overflow: hidden;
+}
+
+.music-section.active-section {
+  display: flex;
+}
+.work-section.active-section {
+  display: flex;
+}
+
+.archive-card {
+  background: rgba(255, 255, 255, 0.03);
+
+  border: 1px solid rgba(255, 255, 255, 0.06);
+
+  border-radius: 18px;
+
+  overflow: hidden;
+
+  transition: 0.3s ease;
+
+  cursor: pointer;
+}
+
+.archive-card:hover {
+  transform: translateY(-4px);
+
+  border-color: rgba(255, 122, 0, 0.3);
+}
+
+.archive-card img {
+  width: 100%;
+  height: 140px;
+
+  object-fit: cover;
+
+  display: block;
+}
+
+.archive-info {
+  padding: 14px;
+}
+
+.archive-date {
+  font-size: 11px;
+
+  color: var(--accent);
+
+  letter-spacing: 1px;
+}
+
+.archive-info h4 {
+  margin-top: 10px;
+
+  font-size: 15px;
+
+  color: var(--text-secondary);
+}
+
+.archive-info p {
+  margin-top: 4px;
+
+  color: var(--text-secondary);
+
+  font-size: 13px;
+}
+
+.archive-info small {
+  display: block;
+
+  margin-top: 10px;
+
+  color: var(--text-secondary);
+}

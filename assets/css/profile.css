@@ -1,0 +1,272 @@
+/* ======================================== */
+/* HEADER */
+/* ======================================== */
+
+.window-header {
+  height: 70px;
+
+  padding: 0 24px;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+}
+.window-header p {
+  color: var(--text-secondary);
+}
+
+/* ======================================== */
+/* USER PROFILE CARD */
+/* ======================================== */
+
+.user-profile-card {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+
+  padding: 18px;
+
+  border-radius: 24px;
+
+  background: var(--surface-light);
+
+  border: 1px solid rgba(255, 255, 255, 0.06);
+
+  margin-bottom: 24px;
+  width: 400px;
+}
+
+/* ======================================== */
+/* AVATAR */
+/* ======================================== */
+
+.profile-avatar {
+  width: 72px;
+  height: 72px;
+
+  border-radius: 50%;
+
+  overflow: hidden;
+
+  border: 2px solid rgba(255, 122, 0, 0.25);
+
+  box-shadow: 0 0 30px rgba(255, 122, 0, 0.15);
+}
+
+.profile-avatar img {
+  width: 100%;
+  height: 100%;
+
+  object-fit: cover;
+}
+
+/* ======================================== */
+/* INFO */
+/* ======================================== */
+
+.profile-info h3 {
+  font-size: 18px;
+  font-weight: 600;
+  color: var(--text-secondary);
+}
+.profile-info {
+  color: var(--text-secondary);
+}
+
+.profile-info p {
+  font-size: 13px;
+
+  color: var(--text-secondary);
+
+  margin-top: 4px;
+}
+
+/* STATUS */
+
+.profile-info span {
+  display: inline-flex;
+
+  margin-top: 10px;
+
+  padding: 6px 10px;
+
+  border-radius: 999px;
+
+  background: rgba(255, 122, 0, 0.12);
+
+  border: 1px solid rgba(255, 122, 0, 0.2);
+
+  color: var(--accent);
+
+  font-size: 11px;
+
+  letter-spacing: 0.08em;
+}
+
+/* ======================================== */
+/* USER PROFILE CARD */
+/* ======================================== */
+
+.user-profile-card {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+
+  padding: 18px;
+
+  border-radius: 24px;
+
+  background: var(--surface-light);
+
+  border: 1px solid rgba(255, 255, 255, 0.06);
+
+  margin-bottom: 24px;
+
+  cursor: pointer;
+
+  transition: 0.3s ease;
+}
+
+.user-profile-card:hover {
+  transform: translateY(-4px);
+
+  background: rgba(255, 122, 0, 0.08);
+
+  border-color: rgba(255, 122, 0, 0.22);
+}
+
+/* ======================================== */
+/* SYSTEM WINDOW */
+/* ======================================== */
+
+.system-content {
+  display: grid;
+
+  grid-template-columns: 320px 1fr;
+
+  gap: 30px;
+
+  height: 500px;
+}
+
+.w-content-holder {
+  display: grid;
+  grid-template-columns: 410px 1fr;
+  gap: 30px;
+
+  padding: 30px 20px 20px 20px;
+}
+
+/* ======================================== */
+/* LEFT PANEL */
+/* ======================================== */
+
+.system-left-panel {
+  padding: 30px;
+
+  border-radius: 28px;
+
+  background: var(--surface-light);
+
+  border: 1px solid rgba(255, 255, 255, 0.06);
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.system-avatar {
+  width: 160px;
+  height: 160px;
+
+  border-radius: 50%;
+
+  overflow: hidden;
+
+  margin-bottom: 24px;
+
+  border: 3px solid rgba(255, 122, 0, 0.25);
+
+  box-shadow: 0 0 50px rgba(255, 122, 0, 0.2);
+}
+
+.system-avatar img {
+  width: 100%;
+  height: 100%;
+
+  object-fit: cover;
+}
+
+.system-left-panel h2 {
+  font-size: 28px;
+  color: var(--text-secondary);
+}
+
+.system-left-panel p {
+  margin-top: 10px;
+
+  line-height: 1.6;
+
+  color: var(--text-secondary);
+}
+
+.system-status {
+  margin-top: 20px;
+
+  padding: 10px 16px;
+
+  border-radius: 999px;
+
+  background: rgba(255, 122, 0, 0.12);
+
+  border: 1px solid rgba(255, 122, 0, 0.2);
+
+  color: var(--accent);
+}
+
+/* ======================================== */
+/* RIGHT PANEL */
+/* ======================================== */
+
+.system-right-panel {
+  display: grid;
+
+  grid-template-columns: repeat(2, 1fr);
+
+  gap: 20px;
+}
+
+/* ======================================== */
+/* SPEC CARD */
+/* ======================================== */
+
+.spec-card {
+  padding: 24px;
+
+  border-radius: 24px;
+
+  background: var(--surface-light);
+
+  border: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.spec-card span {
+  font-size: 12px;
+
+  letter-spacing: 0.08em;
+
+  color: var(--text-secondary);
+}
+
+.spec-card h3 {
+  margin-top: 12px;
+
+  font-size: 22px;
+
+  line-height: 1.4;
+
+  color: var(--text-secondary);
+}

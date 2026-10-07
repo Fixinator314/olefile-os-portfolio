@@ -1,0 +1,237 @@
+/* ----------------------------Top Nav Bar ------------------------*/
+/* ======================================== */
+/* SYSTEM NAVBAR */
+/* ======================================== */
+
+.system-navbar {
+  position: fixed;
+
+  top: 0px; /* hidden */
+
+  left: 50%;
+  transform: translateX(-50%);
+
+  width: 100%;
+
+  padding: 14px 20px;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
+
+  background: var(--surface);
+
+  border: 1px solid rgba(255, 255, 255, 0.08);
+
+  z-index: 999;
+
+  transition: top 0.4s ease;
+}
+/* SHOW STATE */
+.system-navbar.show-navbar {
+  top: 0;
+}
+/* ======================================== */
+/* LEFT */
+/* ======================================== */
+
+.system-name {
+  font-size: 14px;
+
+  color: var(--text-secondary);
+
+  letter-spacing: 0.08em;
+}
+
+/* ======================================== */
+/* RIGHT */
+/* ======================================== */
+
+.system-right {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+/* ======================================== */
+/* SYSTEM ITEM */
+/* ======================================== */
+
+.system-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+
+  padding: 10px 14px;
+
+  border-radius: 999px;
+
+  background: var(--sys-item2);
+
+  border: 1px solid rgba(255, 255, 255, 0.05);
+}
+.system-item:hover {
+  background: rgba(255, 122, 0, 0.12);
+
+  border-color: rgba(255, 122, 0, 0.25);
+}
+
+.wifi-logo {
+  width: 18px;
+  height: 18px;
+
+  background-image: var(--wifi-logo);
+  background-size: contain;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+.volume-logo {
+  width: 18px;
+  height: 18px;
+
+  background-image: var(--volume-logo);
+  background-size: contain;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+.fullscreen-mode {
+  width: 18px;
+  height: 18px;
+
+  background-image: var(--fullscr-toggle-img);
+  background-size: contain;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+/* ======================================== */
+/*Battery System*/
+/* ======================================== */
+
+.battery {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+/* Outer shell */
+
+.battery-shell {
+  width: 28px;
+  height: 14px;
+
+  border: 2px solid white;
+
+  border-radius: 4px;
+
+  position: relative;
+
+  overflow: hidden;
+}
+
+/* Battery tip */
+
+.battery-shell::after {
+  content: "";
+
+  position: absolute;
+
+  right: -4px;
+  top: 3px;
+
+  width: 3px;
+  height: 6px;
+
+  background: white;
+
+  border-radius: 0 2px 2px 0;
+}
+
+/* Dynamic fill */
+
+.battery-fill {
+  position: absolute;
+
+  left: 0;
+  top: 0;
+
+  height: 100%;
+  width: 100%;
+
+  background: white;
+
+  transition:
+    width 0.4s ease,
+    background 0.4s ease;
+}
+
+.battery-fill.charging {
+  animation: pulseBattery 1.5s infinite;
+}
+
+@keyframes pulseBattery {
+  0% {
+    opacity: 0.5;
+  }
+  50% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0.5;
+  }
+}
+/* ======================================== */
+/* TIME + DATE */
+/* ======================================== */
+
+.system-time {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-end;
+
+  padding: 8px 14px;
+
+  gap: 10px;
+
+  border-radius: 18px;
+
+  background: var(--sys-item2);
+
+  border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.system-time p {
+  font-size: 14px;
+  font-weight: 500;
+
+  color: var(--text-secondary);
+}
+
+.system-time span {
+  font-size: 14px;
+
+  color: var(--text-secondary);
+}
+
+/* ICONS */
+
+.system-item img {
+  width: 18px;
+  height: 18px;
+
+  object-fit: contain;
+
+  opacity: 0.9;
+}
+
+/* TEXT */
+
+.system-item span {
+  font-size: 13px;
+
+  color: var(--text-secondary);
+}

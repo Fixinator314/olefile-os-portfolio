@@ -1,0 +1,304 @@
+/* --------------------Start Menu Taskbar Apps ----------------- *
+/* ======================================== */
+/* TASKBAR APPS */
+/* ======================================== */
+
+.taskbar-apps {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+}
+
+/* ======================================== */
+/* TASKBAR ICON */
+/* ======================================== */
+
+.taskbar-icon {
+  width: 54px;
+  height: 54px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  border-radius: 14px;
+
+  background: var(--surface-light);
+
+  border: 1px solid rgba(255, 255, 255, 0.06);
+
+  cursor: pointer;
+
+  transition:
+    transform 0.3s ease,
+    background 0.3s ease,
+    border-color 0.3s ease;
+}
+
+/* HOVER */
+
+.taskbar-icon:hover {
+  transform: translateY(-3px);
+
+  background: rgba(255, 122, 0, 0.12);
+
+  border-color: rgba(255, 122, 0, 0.25);
+}
+
+/* ICON */
+
+.taskbar-icon img {
+  width: 26px;
+  height: 26px;
+
+  object-fit: contain;
+}
+
+/* ACTIVE APP */
+
+.active-taskbar-app {
+  position: relative;
+
+  background: rgba(255, 122, 0, 0.12);
+
+  border-color: rgba(255, 122, 0, 0.25);
+}
+
+/* ACTIVE DOT */
+
+.active-taskbar-app::after {
+  content: "";
+
+  position: absolute;
+
+  bottom: -7px;
+
+  width: 5px;
+  height: 5px;
+
+  border-radius: 50%;
+
+  background: var(--accent);
+
+  box-shadow: 0 0 10px var(--accent);
+}
+
+/* =================================
+   EMAIL MODAL
+================================= */
+
+.email-modal {
+  position: fixed;
+  inset: 0;
+
+  background: transparent;
+  backdrop-filter: none;
+
+  opacity: 0;
+  pointer-events: none;
+
+  transition: 0.3s ease;
+
+  z-index: 9999;
+}
+
+.email-modal.show-email {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+/* WINDOW */
+
+.email-window {
+  position: absolute;
+
+  width: 100%;
+  height: 100%;
+
+  top: -695px;
+  left: 50%;
+
+  transform: translateX(-50%);
+
+  border-radius: 28px;
+
+  overflow: hidden;
+
+  background: rgba(10, 10, 10, 0.85);
+
+  backdrop-filter: blur(30px);
+  -webkit-backdrop-filter: blur(30px);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+
+  box-shadow: 0 30px 80px rgba(0, 0, 0, 0.5);
+
+  display: flex;
+  flex-direction: column;
+
+  transition: opacity 0.3s ease;
+}
+
+.email-wrapper {
+  display: flex;
+  flex-direction: row;
+  align-items: stretch;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+}
+
+/* TOPBAR */
+
+.email-topbar {
+  height: 70px;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  padding: 0 24px;
+
+  border-bottom: 1px solid var(--border);
+  cursor: grab;
+  user-select: none;
+
+  background: var(--surface-light);
+}
+
+.email-topbar:active {
+  cursor: grabbing;
+}
+
+.email-topbar p {
+  color: var(--text-secondary);
+  font-size: 15px;
+  letter-spacing: 1px;
+}
+
+/* BODY */
+
+.email-body {
+  flex: 1;
+  display: flex;
+}
+
+/* SIDEBAR */
+
+.email-sidebar {
+  width: 220px;
+
+  border-right: 1px solid rgba(255, 255, 255, 0.06);
+
+  padding: 24px;
+
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+
+  background: var(--surface-light);
+}
+
+.email-nav {
+  padding: 14px 18px;
+
+  border-radius: 14px;
+
+  color: var(--text-secondary);
+
+  transition: 0.3s ease;
+
+  cursor: pointer;
+}
+
+.email-nav:hover,
+.active-mail {
+  background: rgba(255, 122, 0, 0.12);
+
+  border: 1px solid rgba(255, 122, 0, 0.25);
+
+  color: var(--accent);
+}
+
+/* CONTENT */
+
+.email-content {
+  flex: 1;
+
+  padding: 32px;
+
+  overflow-y: auto;
+  background: var(--surface);
+}
+
+/* FORM */
+
+#contact-form {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.input-group {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.input-group label {
+  color: var(--text-secondary);
+  font-size: 14px;
+}
+
+.input-group input,
+.input-group textarea {
+  width: 100%;
+
+  background: var(--mail-field);
+
+  border: 1px solid rgba(255, 255, 255, 0.08);
+
+  border-radius: 18px;
+
+  padding: 18px;
+
+  color: var(--text-secondary);
+
+  outline: none;
+
+  transition: 0.3s ease;
+}
+
+.input-group input:focus,
+.input-group textarea:focus {
+  border-color: rgba(255, 122, 0, 0.4);
+
+  background: rgba(255, 122, 0, 0.04);
+}
+
+/* BUTTON */
+
+.send-btn {
+  width: fit-content;
+
+  padding: 16px 28px;
+
+  border-radius: 999px;
+
+  border: none;
+
+  background: var(--accent);
+
+  color: var(--text);
+
+  font-weight: 600;
+
+  cursor: pointer;
+
+  transition: 0.3s ease;
+}
+
+.send-btn:hover {
+  transform: translateY(-2px);
+
+  background: #ff8f2f;
+}
