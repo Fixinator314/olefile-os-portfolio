@@ -171,6 +171,10 @@
           <span class="arcade-shortcut-icon" aria-hidden="true">🎮</span>
           <span>Arcade</span>
         </button>
+        <a class="desktop-item desktop-file" href="./assets/Olefile Makganye 2-page A4 CV.pdf" target="_blank" rel="noopener" aria-label="Open CV PDF">
+          <img src="./assets/Icons/PDF.png" alt="" />
+          <span>CV.pdf</span>
+        </a>
       </div>
 
  <!-- ======================================== -->
@@ -945,9 +949,9 @@
 
         <div class="window-header">
           <div class="window-controls">
-            <span class="close-btn"></span>
-            <span class="minimize-btn"></span>
-            <span class="expand-btn"></span>
+            <button class="close-btn" type="button" aria-label="Close Settings"></button>
+            <button class="minimize-btn" type="button" aria-label="Minimize Settings"></button>
+            <button class="expand-btn" type="button" aria-label="Resize Settings"></button>
           </div>
 
           <p>SETTINGS</p>
@@ -958,41 +962,16 @@
         <div class="window-content settings-content">
           <!-- SIDEBAR -->
 
-          <div class="settings-sidebar">
-  <div
-    class="settings-tab active-settings-tab"
-    data-tab="appearance"
-  >
-    Appearance
-  </div>
+          <div class="settings-sidebar" role="group" aria-label="Settings sections">
+  <button class="settings-tab" type="button" data-tab="appearance" aria-controls="appearance" aria-pressed="true">Appearance</button>
 
-  <div
-    class="settings-tab"
-    data-tab="wallpaper"
-  >
-    Wallpaper
-  </div>
+  <button class="settings-tab" type="button" data-tab="wallpaper" aria-controls="wallpaper" aria-pressed="false">Wallpaper</button>
 
-  <div
-    class="settings-tab"
-    data-tab="workspace"
-  >
-    Workspace
-  </div>
+  <button class="settings-tab" type="button" data-tab="workspace" aria-controls="workspace" aria-pressed="false">Workspace</button>
 
-  <div
-    class="settings-tab"
-    data-tab="audio"
-  >
-    Audio
-  </div>
+  <button class="settings-tab" type="button" data-tab="audio" aria-controls="audio" aria-pressed="false">Audio</button>
 
-  <div
-    class="settings-tab"
-    data-tab="performance"
-  >
-    Performance
-  </div>
+  <button class="settings-tab" type="button" data-tab="performance" aria-controls="performance" aria-pressed="false">Performance</button>
 </div>
 
           <!-- MAIN -->
@@ -1018,7 +997,7 @@
       </div>
 
       <label class="switch">
-        <input type="checkbox" id="themeToggle">
+        <input type="checkbox" id="themeToggle" aria-label="Light mode">
         <span class="slider"></span>
       </label>
 
@@ -1034,7 +1013,7 @@
       <label class="switch">
         <input
           type="checkbox"
-          id="glowToggle"
+          id="glowToggle" aria-label="UI glow effects"
           checked
         >
         <span class="slider"></span>
@@ -1052,7 +1031,7 @@
       <label class="switch">
         <input
           type="checkbox"
-          id="transparencyToggle"
+          id="transparencyToggle" aria-label="Reduce transparency"
         >
         <span class="slider"></span>
       </label>
@@ -1078,53 +1057,37 @@
 
       <div class="wallpaper-grid">
 
-        <div
-          class="wallpaper-option"
+        <button type="button" aria-label="Wallpaper 1" aria-pressed="false" class="wallpaper-option"
           data-wallpaper="./assets/desktop-images/background1.png"
-          style="background-image:url('./assets/desktop-images/background1.png')"
-        ></div>
+          style="background-image:url('./assets/desktop-images/background1.png')"></button>
 
-        <div
-          class="wallpaper-option"
+        <button type="button" aria-label="Wallpaper 2" aria-pressed="false" class="wallpaper-option"
           data-wallpaper="./assets/desktop-images/background2.png"
-          style="background-image:url('./assets/desktop-images/background2.png')"
-        ></div>
+          style="background-image:url('./assets/desktop-images/background2.png')"></button>
 
-        <div
-          class="wallpaper-option"
+        <button type="button" aria-label="Wallpaper 3" aria-pressed="false" class="wallpaper-option"
           data-wallpaper="./assets/desktop-images/background3.png"
-          style="background-image:url('./assets/desktop-images/background3.png')"
-        ></div>
+          style="background-image:url('./assets/desktop-images/background3.png')"></button>
 
-        <div
-          class="wallpaper-option"
+        <button type="button" aria-label="Wallpaper 4" aria-pressed="false" class="wallpaper-option"
           data-wallpaper="./assets/desktop-images/background4.png"
-          style="background-image:url('./assets/desktop-images/background4.png')"
-        ></div>
+          style="background-image:url('./assets/desktop-images/background4.png')"></button>
 
-        <div
-          class="wallpaper-option"
+        <button type="button" aria-label="Wallpaper 5" aria-pressed="false" class="wallpaper-option"
           data-wallpaper="./assets/desktop-images/background5.png"
-          style="background-image:url('./assets/desktop-images/background5.png')"
-        ></div>
+          style="background-image:url('./assets/desktop-images/background5.png')"></button>
 
-         <div
-          class="wallpaper-option"
+         <button type="button" aria-label="Wallpaper 6" aria-pressed="false" class="wallpaper-option"
           data-wallpaper="./assets/desktop-images/background6.png"
-          style="background-image:url('./assets/desktop-images/background6.png')"
-        ></div>
+          style="background-image:url('./assets/desktop-images/background6.png')"></button>
 
-         <div
-          class="wallpaper-option"
+         <button type="button" aria-label="Wallpaper 7" aria-pressed="false" class="wallpaper-option"
           data-wallpaper="./assets/desktop-images/background7.png"
-          style="background-image:url('./assets/desktop-images/background7.png')"
-        ></div>
+          style="background-image:url('./assets/desktop-images/background7.png')"></button>
 
-         <div
-          class="wallpaper-option"
+         <button type="button" aria-label="Wallpaper 8" aria-pressed="false" class="wallpaper-option"
           data-wallpaper="./assets/desktop-images/background8.png"
-          style="background-image:url('./assets/desktop-images/background8.png')"
-        ></div>
+          style="background-image:url('./assets/desktop-images/background8.png')"></button>
 
       </div>
 
@@ -1147,14 +1110,13 @@
 
       <div>
         <h3>Auto Hide Navbar</h3>
-        <p>Hide menu bar until hovered</p>
+        <p>On pointer devices, move to the top edge to reveal the bar.</p>
       </div>
 
       <label class="switch">
         <input
           type="checkbox"
-          id="navbarToggle"
-          checked
+          id="navbarToggle" aria-label="Auto-hide navbar"
         >
         <span class="slider"></span>
       </label>
@@ -1171,7 +1133,7 @@
       <label class="switch">
         <input
           type="checkbox"
-          id="lockIconsToggle"
+          id="lockIconsToggle" aria-label="Lock desktop icons"
         >
         <span class="slider"></span>
       </label>
@@ -1184,7 +1146,8 @@
         <h3>Fullscreen</h3>
         <p>Switch between fullscreen and windowed mode</p>
       </div>
-      <button class="reset-btn" id="settings-fullscreen" type="button">Toggle fullscreen</button>
+      <button class="reset-btn" id="settings-fullscreen" type="button">Enter fullscreen</button>
+      <p id="fullscreen-status" class="settings-status" role="status"></p>
 
     </div>
 
@@ -1211,7 +1174,7 @@
       <label class="switch">
         <input
           type="checkbox"
-          id="uiSoundToggle"
+          id="uiSoundToggle" aria-label="UI sounds"
         >
         <span class="slider"></span>
       </label>
@@ -1228,7 +1191,7 @@
       <label class="switch">
         <input
           type="checkbox"
-          id="startupSoundToggle"
+          id="startupSoundToggle" aria-label="Startup sound"
         >
         <span class="slider"></span>
       </label>
@@ -1252,13 +1215,13 @@
 
       <div>
         <h3>Performance Mode</h3>
-        <p>Disable heavy animations</p>
+        <p>Reduce motion and transitions in the desktop windows</p>
       </div>
 
       <label class="switch">
         <input
           type="checkbox"
-          id="performanceToggle"
+          id="performanceToggle" aria-label="Performance mode"
         >
         <span class="slider"></span>
       </label>
@@ -1269,13 +1232,13 @@
 
       <div>
         <h3>Disable Background Videos</h3>
-        <p>Reduce GPU usage</p>
+        <p>Pause the background video on the Internet page</p>
       </div>
 
       <label class="switch">
         <input
           type="checkbox"
-          id="videoToggle"
+          id="videoToggle" aria-label="Disable background videos"
         >
         <span class="slider"></span>
       </label>

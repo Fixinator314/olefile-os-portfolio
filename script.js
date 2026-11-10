@@ -85,32 +85,22 @@ function getBookSize() {
   return { width: 600, height: 840 };
 }
 
-function toggleFullscreen() {
-  const doc = document;
-  const docEl = document.documentElement;
+function isBrowserFullscreen() {
+  return Boolean(document.fullscreenElement || document.webkitFullscreenElement);
+}
 
-  const request =
-    docEl.requestFullscreen ||
-    docEl.webkitRequestFullscreen ||
-    docEl.mozRequestFullScreen ||
-    docEl.msRequestFullscreen;
+async function toggleFullscreen() {
+  const target = isBrowserFullscreen() ? document : document.documentElement;
+  const action = target === document
+    ? target.exitFullscreen ?? target.webkitExitFullscreen
+    : target.requestFullscreen ?? target.webkitRequestFullscreen;
+  if (!action) return false;
 
-  const exit =
-    doc.exitFullscreen ||
-    doc.webkitExitFullscreen ||
-    doc.mozCancelFullScreen ||
-    doc.msExitFullscreen;
-
-  const isFullscreen =
-    doc.fullscreenElement ||
-    doc.webkitFullscreenElement ||
-    doc.mozFullScreenElement ||
-    doc.msFullscreenElement;
-
-  if (!isFullscreen) {
-    request?.call(docEl)?.catch(() => {});
-  } else {
-    exit?.call(doc)?.catch(() => {});
+  try {
+    await action.call(target);
+    return true;
+  } catch {
+    return false;
   }
 }
 
@@ -138,58 +128,6 @@ const settingsStore = {
     }
   },
 };
-
-function applySavedSettings(settings) {
-  const {
-    themeToggle,
-    glowToggle,
-    transparencyToggle,
-    lockIconsToggle,
-    navbarToggle,
-    performanceToggle,
-    videoToggle,
-  } = settings;
-
-  if (themeToggle) {
-    const savedTheme = settingsStore.getItem("theme");
-    if (savedTheme === "light") {
-      document.body.classList.add("light-mode");
-      themeToggle.checked = true;
-    } else {
-      document.body.classList.remove("light-mode");
-      themeToggle.checked = false;
-    }
-  }
-
-  if (glowToggle && settingsStore.getItem("glow") === "true") {
-    document.body.classList.add("disable-glow");
-    glowToggle.checked = false;
-  }
-
-  if (performanceToggle && settingsStore.getItem("performance") === "true") {
-    document.body.classList.add("performance-mode");
-    performanceToggle.checked = true;
-  }
-
-  if (transparencyToggle && settingsStore.getItem("transparency") === "true") {
-    document.body.classList.add("reduce-transparency");
-    transparencyToggle.checked = true;
-  }
-
-  if (lockIconsToggle && settingsStore.getItem("lockIcons") === "true") {
-    document.body.classList.add("icons-locked");
-    lockIconsToggle.checked = true;
-  }
-
-  if (navbarToggle && settingsStore.getItem("navbar") === "true") {
-    document.body.classList.add("disable-navbar-hide");
-    navbarToggle.checked = false;
-  }
-
-  if (videoToggle) {
-    videoToggle.checked = settingsStore.getItem("videosDisabled") === "true";
-  }
-}
 
 window.addEventListener("DOMContentLoaded", () => {
   const startButton = document.querySelector(".start-button");
@@ -723,67 +661,41 @@ window.addEventListener("DOMContentLoaded", () => {
   });
 
   const settingsTabs = document.querySelectorAll(".settings-tab");
-  const settingsSections = document.querySelectorAll(".settings-section");
   settingsTabs.forEach((tab) => {
     tab.addEventListener("click", () => {
-      settingsTabs.forEach((t) => t.classList.remove("active-settings-tab"));
-      settingsSections.forEach((s) => s.classList.remove("active-section"));
-
-      tab.classList.add("active-settings-tab");
-      const target = document.getElementById(tab.dataset.tab);
-      if (target) {
-        target.classList.add("active-section");
-      }
+      settingsTabs.forEach((item) => {
+        const selected = item === tab;
+        item.setAttribute("aria-pressed", selected);
+        document.getElementById(item.dataset.tab)?.classList.toggle("active-section", selected);
+      });
     });
   });
 
-  const themeToggle = document.getElementById("themeToggle");
-  const glowToggle = document.getElementById("glowToggle");
-  const navbarToggle = document.getElementById("navbarToggle");
-  const transparencyToggle = document.getElementById("transparencyToggle");
-  const lockIconsToggle = document.getElementById("lockIconsToggle");
-  const performanceToggle = document.getElementById("performanceToggle");
-  const videoToggle = document.getElementById("videoToggle");
+  const settingsToggles = [
+    ["themeToggle", "theme", "light-mode", "light", "dark"],
+    ["glowToggle", "glow", "disable-glow", "false", "true", true],
+    ["transparencyToggle", "transparency", "reduce-transparency", "true", "false"],
+    ["lockIconsToggle", "lockIcons", "icons-locked", "true", "false"],
+    ["navbarToggle", "navbar", "auto-hide-navbar", "false", "true"],
+    ["performanceToggle", "performance", "performance-mode", "true", "false"],
+    ["videoToggle", "videosDisabled", null, "true", "false"],
+  ];
 
-  if (glowToggle) {
-    glowToggle.addEventListener("change", () => {
-      document.body.classList.toggle("disable-glow", !glowToggle.checked);
-      settingsStore.setItem("glow", !glowToggle.checked);
-    });
-  }
+  for (const [id, key, bodyClass, on, off, inverted = false] of settingsToggles) {
+    const toggle = document.getElementById(id);
+    if (!toggle) continue;
+    const saved = settingsStore.getItem(key);
+    if (saved !== null) toggle.checked = saved === on;
 
-  if (transparencyToggle) {
-    transparencyToggle.addEventListener("change", () => {
-      document.body.classList.toggle("reduce-transparency");
-      settingsStore.setItem("transparency", transparencyToggle.checked);
-    });
-  }
+    const apply = () => {
+      if (bodyClass) document.body.classList.toggle(bodyClass, toggle.checked !== inverted);
+      if (id === "performanceToggle") syncCvMotion();
+    };
 
-  if (lockIconsToggle) {
-    lockIconsToggle.addEventListener("change", () => {
-      document.body.classList.toggle("icons-locked");
-      settingsStore.setItem("lockIcons", lockIconsToggle.checked);
-    });
-  }
-
-  if (navbarToggle) {
-    navbarToggle.addEventListener("change", () => {
-      document.body.classList.toggle("disable-navbar-hide", !navbarToggle.checked);
-      settingsStore.setItem("navbar", !navbarToggle.checked);
-    });
-  }
-
-  if (performanceToggle) {
-    performanceToggle.addEventListener("change", () => {
-      document.body.classList.toggle("performance-mode", performanceToggle.checked);
-      syncCvMotion();
-      settingsStore.setItem("performance", performanceToggle.checked);
-    });
-  }
-
-  if (videoToggle) {
-    videoToggle.addEventListener("change", () => {
-      settingsStore.setItem("videosDisabled", videoToggle.checked);
+    apply();
+    toggle.addEventListener("change", () => {
+      settingsStore.setItem(key, toggle.checked ? on : off);
+      apply();
     });
   }
 
@@ -822,66 +734,35 @@ window.addEventListener("DOMContentLoaded", () => {
     if (startupSoundToggle?.checked) playUiSound(660);
   }, { once: true, capture: true });
 
-  document.getElementById("settings-fullscreen")?.addEventListener("click", toggleFullscreen);
+  const fullscreenButton = document.getElementById("settings-fullscreen");
+  const fullscreenStatus = document.getElementById("fullscreen-status");
 
-  const resetButton = document.getElementById("resetOS");
-  if (resetButton) {
-    resetButton.addEventListener("click", () => {
-      for (const key of ["theme", "glow", "transparency", "lockIcons", "navbar",
-        "performance", "videosDisabled", "wallpaper", "uiSoundToggle", "startupSoundToggle"]) {
-        settingsStore.removeItem(key);
-      }
-      location.reload();
-    });
-  }
+  const syncFullscreenLabel = () => {
+    if (fullscreenButton) {
+      fullscreenButton.textContent = isBrowserFullscreen() ? "Exit fullscreen" : "Enter fullscreen";
+    }
+  };
+  syncFullscreenLabel();
+  document.addEventListener("fullscreenchange", syncFullscreenLabel);
+  document.addEventListener("webkitfullscreenchange", syncFullscreenLabel);
 
-  if (themeToggle) {
-    themeToggle.addEventListener("change", () => {
-      document.body.classList.toggle("light-mode");
-      settingsStore.setItem(
-        "theme",
-        document.body.classList.contains("light-mode") ? "light" : "dark",
-      );
-    });
-  }
+  const toggleBrowserFullscreen = async () => {
+    const changed = await toggleFullscreen();
+    if (fullscreenStatus) {
+      fullscreenStatus.textContent = changed ? "" : "Fullscreen is unavailable in this browser or view.";
+    }
+    syncFullscreenLabel();
+  };
+  fullscreenButton?.addEventListener("click", toggleBrowserFullscreen);
+  document.getElementById("fullscreen-toggle")?.addEventListener("click", toggleBrowserFullscreen);
 
-  applySavedSettings({
-    themeToggle,
-    glowToggle,
-    transparencyToggle,
-    lockIconsToggle,
-    navbarToggle,
-    performanceToggle,
-    videoToggle,
+  document.getElementById("resetOS")?.addEventListener("click", () => {
+    for (const key of [...settingsToggles.map(([, key]) => key),
+      "wallpaper", "uiSoundToggle", "startupSoundToggle"]) {
+      settingsStore.removeItem(key);
+    }
+    location.reload();
   });
-
-  const fullscreenToggle = document.getElementById("fullscreen-toggle");
-
-  if (fullscreenToggle) {
-    fullscreenToggle.addEventListener("click", toggleFullscreen);
-  }
-
-  const navbar = document.querySelector(".system-navbar");
-  if (navbar) {
-    document.addEventListener("mousemove", (e) => {
-      if (document.body.classList.contains("disable-navbar-hide")) {
-        navbar.classList.add("show-navbar");
-        return;
-      }
-
-      if (e.clientY <= 15 || navbar.matches(":hover")) {
-        navbar.classList.add("show-navbar");
-      } else {
-        navbar.classList.remove("show-navbar");
-      }
-    });
-
-    navbar.addEventListener("mouseleave", () => {
-      if (!document.body.classList.contains("disable-navbar-hide")) {
-        navbar.classList.remove("show-navbar");
-      }
-    });
-  }
 });
 
 // Battery Indicator

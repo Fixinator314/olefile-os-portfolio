@@ -350,21 +350,12 @@
   white-space: nowrap;
 }
 
-/* INDIVIDUAL POSITIONS */
-
-.desktop-item:nth-child(1),
-.desktop-item:nth-child(2),
-.desktop-item:nth-child(3),
-.desktop-item:nth-child(4),
-.desktop-item:nth-child(5),
-.desktop-item:nth-child(6) {
-  position: relative;
-  top: auto;
-  left: auto;
+.desktop-file {
+  text-decoration: none;
 }
 
-/* Keep all six shortcuts above the dock on shorter displays. */
-@media (max-height: 850px) {
+/* Keep desktop shortcuts above the dock on shorter displays. */
+@media (max-height: 950px) {
   .desktop-icons {
     top: 72px;
     width: auto;
@@ -374,14 +365,15 @@
   }
 }
 
-@media (max-height: 470px) {
+@media (max-height: 580px) {
   .desktop-icons {
-    top: 52px;
-    grid-template-columns: repeat(3, 82px);
+    left: 16px;
+    width: min(352px, calc(100vw - 32px));
+    grid-template-columns: repeat(4, minmax(0, 1fr));
   }
 
   .desktop-item {
-    width: 82px;
+    width: 100%;
     min-height: 68px;
     padding: 6px;
   }

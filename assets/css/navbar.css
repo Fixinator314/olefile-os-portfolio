@@ -32,10 +32,10 @@
 
   transition: top 0.4s ease;
 }
-/* SHOW STATE */
-.system-navbar.show-navbar,
-.disable-navbar-hide .system-navbar {
-  top: 0;
+@media (hover: hover) and (pointer: fine) {
+  .auto-hide-navbar .system-navbar:not(:hover):not(:focus-within):not(:has(.calendar-widget.active)) {
+    top: calc(8px - var(--navbar-height));
+  }
 }
 /* ======================================== */
 /* LEFT */
