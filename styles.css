@@ -25,10 +25,6 @@
   --bg-light: #0a1012;
   --sys-item: rgba(255, 255, 255, 0.61);
   --sys-item2: rgba(255, 255, 255, 0.171);
-  --btn-image: url(./assets/Logo/om-logo2.png);
-  --wifi-logo: url(./assets/Icons/Wifi-white.png);
-  --volume-logo: url(./assets/Icons/Volume-white.png);
-  --fullscr-toggle-img: url(./assets/Icons/preview1.png);
 
   --navbar-height: 64px;
   --taskbar-height: 110px;
@@ -52,10 +48,6 @@ body.light-mode {
   --bg-light: #a7a2a2;
   --sys-item: rgba(75, 73, 73, 0.13);
   --sys-item2: rgba(238, 118, 19, 0.336);
-  --btn-image: url(./assets/Logo/om-logo.png);
-  --wifi-logo: url(./assets/Icons/wifi.png);
-  --volume-logo: url(./assets/Icons/volume-up-interface-symbol.png);
-  --fullscr-toggle-img: url(./assets/Icons/preview.png);
 }
 
 body {

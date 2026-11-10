@@ -157,7 +157,7 @@
   width: 40px;
   height: 40px;
 
-  background-image: var(--btn-image);
+  background-image: url("../Logo/om-logo2.png");
   background-size: contain;
   background-position: center;
   background-repeat: no-repeat;
@@ -407,4 +407,8 @@
 .task-bar .start-menu-logo {
   width: clamp(24px, 5vw, 40px);
   height: clamp(24px, 5vw, 40px);
+}
+
+.light-mode .start-menu-logo {
+  background-image: url("../Logo/om-logo.png");
 }

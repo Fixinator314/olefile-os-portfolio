@@ -133,11 +133,14 @@ window.addEventListener("DOMContentLoaded", () => {
   const startButton = document.querySelector(".start-button");
   const startMenu = document.querySelector(".start-menu");
 
-  if (startButton && startMenu) {
-    startButton.addEventListener("click", () => {
-      startMenu.classList.toggle("active");
-    });
-  }
+  const setStartMenuOpen = (open) => {
+    startMenu?.classList.toggle("active", open);
+    startButton?.setAttribute("aria-expanded", open);
+  };
+
+  startButton?.addEventListener("click", () => {
+    setStartMenuOpen(!startMenu?.classList.contains("active"));
+  });
 
   document.addEventListener("click", (e) => {
     if (startMenu && startButton) {
@@ -145,7 +148,7 @@ window.addEventListener("DOMContentLoaded", () => {
         startMenu.contains(e.target) || startButton.contains(e.target);
 
       if (!isClickInside) {
-        startMenu.classList.remove("active");
+        setStartMenuOpen(false);
       }
     }
   });
@@ -466,7 +469,7 @@ window.addEventListener("DOMContentLoaded", () => {
     item.addEventListener("click", () => {
       const id = item.dataset.window;
       openAppWindow(document.getElementById(id), windowTaskbars.get(id));
-      startMenu?.classList.remove("active");
+      setStartMenuOpen(false);
     });
   });
 

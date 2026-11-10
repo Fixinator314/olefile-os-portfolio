@@ -86,7 +86,7 @@
   width: 18px;
   height: 18px;
 
-  background-image: var(--wifi-logo);
+  background-image: url("../Icons/Wifi-white.png");
   background-size: contain;
   background-position: center;
   background-repeat: no-repeat;
@@ -96,7 +96,7 @@
   width: 18px;
   height: 18px;
 
-  background-image: var(--volume-logo);
+  background-image: url("../Icons/Volume-white.png");
   background-size: contain;
   background-position: center;
   background-repeat: no-repeat;
@@ -106,7 +106,7 @@
   width: 18px;
   height: 18px;
 
-  background-image: var(--fullscr-toggle-img);
+  background-image: url("../Icons/preview1.png");
   background-size: contain;
   background-position: center;
   background-repeat: no-repeat;
@@ -282,4 +282,16 @@
   .battery-shell {
     width: 20px;
   }
+}
+
+.light-mode .wifi-logo {
+  background-image: url("../Icons/wifi.png");
+}
+
+.light-mode .volume-logo {
+  background-image: url("../Icons/volume-up-interface-symbol.png");
+}
+
+.light-mode .fullscreen-mode {
+  background-image: url("../Icons/preview.png");
 }
