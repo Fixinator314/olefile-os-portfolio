@@ -5,7 +5,7 @@
 .settings-content {
   display: grid;
 
-  grid-template-columns: 240px 1fr;
+  grid-template-columns: minmax(110px, 28%) minmax(0, 1fr);
 
   height: 100%;
 }
@@ -117,13 +117,19 @@
 
 .switch {
   position: relative;
+  flex: 0 0 56px;
 
   width: 56px;
   height: 30px;
 }
 
 .switch input {
-  display: none;
+  position: absolute;
+  opacity: 0;
+}
+
+.switch input:focus-visible + .slider {
+  outline: 2px solid var(--accent);
 }
 
 .reset-btn {
@@ -312,14 +318,16 @@
 .app-window.fullscreen {
   position: fixed !important;
 
-  top: 0 !important;
+  top: var(--navbar-height) !important;
   left: 0 !important;
 
   width: 100vw !important;
-  height: 100dvh !important;
+  height: calc(100dvh - var(--navbar-height) - var(--taskbar-height)) !important;
 
   max-width: none !important;
   max-height: none !important;
+  min-height: 0;
+  min-width: 0;
 
   transform: none !important;
 
@@ -336,5 +344,19 @@
 }
 
 .app-window.fullscreen .window-content {
-  height: calc(100vh - 50px);
+  height: calc(100% - 70px);
+}
+
+@media (max-width: 600px) {
+  #settings-window {
+    width: calc(100vw - 16px);
+    min-width: 0;
+  }
+
+  .settings-sidebar,
+  .settings-main,
+  .settings-tab,
+  .settings-option {
+    padding: 10px;
+  }
 }

@@ -11,7 +11,7 @@
 
   height: 100%;
 
-  overflow: hidden;
+  overflow: auto;
 }
 .archive-main {
   display: flex;
@@ -63,9 +63,10 @@
   border-radius: 999px;
 }
 
-.work-section {
+.work-main > .work-section {
   display: none;
-  height: 100%;
+  flex: 0 0 auto;
+  overflow: visible;
 }
 
 .archive-section {
@@ -73,7 +74,7 @@
   height: 100%;
 }
 
-.work-section.active-section {
+.work-main > .work-section.active-section {
   display: block;
 }
 
@@ -81,8 +82,8 @@
   display: block;
 }
 .web-banner {
-  display: flex;
-  flex-direction: row;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 220px), 1fr));
 
   gap: 10px;
 }

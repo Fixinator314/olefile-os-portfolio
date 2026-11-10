@@ -1,4 +1,5 @@
 window.addEventListener("load", () => {
+  if (!window.gsap || !window.ScrollTrigger) return;
   gsap.registerPlugin(ScrollTrigger);
   /* =================================
    TEXT REVEAL

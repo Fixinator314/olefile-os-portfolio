@@ -8,6 +8,7 @@
   --bg: #0a1012;
   --bg-terminal: #373c3d62;
   --surface: rgba(15, 15, 15, 0.58);
+  --window-surface: #18191d;
   --surface-light: rgba(255, 255, 255, 0.04);
   --surface-light2: rgba(255, 255, 255, 0.04);
   --surface-light3: rgba(255, 255, 255, 0.04);
@@ -24,18 +25,19 @@
   --bg-light: #0a1012;
   --sys-item: rgba(255, 255, 255, 0.61);
   --sys-item2: rgba(255, 255, 255, 0.171);
-  --btn-image: url(./assets/logo/om-logo2.png);
-  --wifi-logo: url(./assets/icons/wifi-white.png);
-  --volume-logo: url(./assets/icons/Volume-white.png);
-  --fullscr-toggle-img: url(./assets/icons/preview1.png);
+  --btn-image: url(./assets/Logo/om-logo2.png);
+  --wifi-logo: url(./assets/Icons/Wifi-white.png);
+  --volume-logo: url(./assets/Icons/Volume-white.png);
+  --fullscr-toggle-img: url(./assets/Icons/preview1.png);
 
-  --navbar-height: 62px;
-  --taskbar-height: 64px;
+  --navbar-height: 64px;
+  --taskbar-height: 110px;
 }
 body.light-mode {
   --bg: #f5f6f8;
   --bg-terminal: #0a101267;
   --surface: rgba(255, 255, 255, 0.8);
+  --window-surface: #f5f6f8;
   --surface-light: rgba(255, 255, 255, 0.9);
   --surface-light2: rgba(255, 255, 255, 0.288);
   --surface-light3: rgba(255, 255, 255, 0.26);
@@ -50,10 +52,10 @@ body.light-mode {
   --bg-light: #a7a2a2;
   --sys-item: rgba(75, 73, 73, 0.13);
   --sys-item2: rgba(238, 118, 19, 0.336);
-  --btn-image: url(./assets/logo/om-logo.png);
-  --wifi-logo: url(./assets/icons/wifi.png);
-  --volume-logo: url(./assets/icons/volume-up-interface-symbol.png);
-  --fullscr-toggle-img: url(./assets/icons/preview.png);
+  --btn-image: url(./assets/Logo/om-logo.png);
+  --wifi-logo: url(./assets/Icons/wifi.png);
+  --volume-logo: url(./assets/Icons/volume-up-interface-symbol.png);
+  --fullscr-toggle-img: url(./assets/Icons/preview.png);
 }
 
 body {
@@ -65,7 +67,7 @@ body {
       rgba(255, 122, 0, 0.15),
       transparent 35%
     ),
-    url(./assets/desktop-images/background1.png);
+    var(--wallpaper, url(./assets/desktop-images/background1.png));
 
   background-size: cover;
   background-position: center;
@@ -78,4 +80,10 @@ body {
   overflow: hidden;
 
   color: var(--text);
+}
+
+@media (max-height: 480px) {
+  :root {
+    --taskbar-height: 72px;
+  }
 }

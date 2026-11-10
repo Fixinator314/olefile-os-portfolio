@@ -29,13 +29,14 @@
 
   transform: translateX(-50%);
 
-  width: fit-content;
+  width: max-content;
+  max-width: calc(100vw - 16px);
 
   display: flex;
   align-items: center;
-  gap: 12px;
+  gap: clamp(4px, 1vw, 12px);
 
-  padding: 14px 18px;
+  padding: 10px clamp(6px, 1.4vw, 18px);
 
   border-radius: 1000px;
 
@@ -302,10 +303,15 @@
 
   cursor: grab;
   user-select: none;
+  touch-action: none;
 
   transition:
     background 0.3s ease,
     transform 0.2s ease;
+}
+
+.desktop-item.is-positioned {
+  z-index: 1;
 }
 
 /* ACTIVE DRAG */
@@ -313,9 +319,7 @@
 .desktop-item.dragging {
   cursor: grabbing;
 
-  transform: scale(1.05);
-
-  z-index: 999;
+  z-index: 2;
 }
 
 /* HOVER */
@@ -323,7 +327,6 @@
 .desktop-item:hover {
   background: rgba(255, 255, 255, 0.06);
 
-  transform: translateY(-4px);
 }
 
 /* ICON */
@@ -358,4 +361,58 @@
   position: relative;
   top: auto;
   left: auto;
+}
+
+/* Keep all six shortcuts above the dock on shorter displays. */
+@media (max-height: 850px) {
+  .desktop-icons {
+    top: 72px;
+    width: auto;
+    display: grid;
+    grid-template-columns: repeat(2, 90px);
+    gap: 8px;
+  }
+}
+
+@media (max-height: 470px) {
+  .desktop-icons {
+    top: 52px;
+    grid-template-columns: repeat(3, 82px);
+  }
+
+  .desktop-item {
+    width: 82px;
+    min-height: 68px;
+    padding: 6px;
+  }
+
+  .desktop-item img {
+    width: 40px;
+    height: 40px;
+  }
+}
+
+#arcade-icon {
+  background: #25212c;
+  border: 1px solid #ff7a00;
+  cursor: pointer;
+}
+
+#arcade-icon:hover,
+#arcade-icon:focus-visible {
+  background: #403044;
+}
+
+#arcade-icon .arcade-shortcut-icon {
+  font-size: 36px;
+}
+
+.task-bar .start-button {
+  flex-shrink: 0;
+  padding: 6px;
+}
+
+.task-bar .start-menu-logo {
+  width: clamp(24px, 5vw, 40px);
+  height: clamp(24px, 5vw, 40px);
 }

@@ -27,7 +27,7 @@
 
   border-radius: 22px;
 
-  background: var(--surface);
+  background: var(--window-surface);
 
   border: 1px solid rgba(255, 255, 255, 0.08);
 
@@ -37,10 +37,20 @@
 
   isolation: isolate;
 }
+.light-mode .app-window {
+  color: #20242b;
+  --text: #20242b;
+  --text-secondary: #434a54;
+}
+
 /* ACTIVE WINDOW */
 
 .app-window.active-window {
   display: block;
+}
+
+.app-window.active-window.window-focused {
+  z-index: 901;
 }
 
 .app-window::before {

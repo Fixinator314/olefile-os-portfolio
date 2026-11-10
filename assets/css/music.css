@@ -1,46 +1,156 @@
+.music-content {
+  height: calc(100% - 70px);
+  scrollbar-gutter: stable;
+}
+
 .music-section {
   display: none;
-
-  flex-direction: column;
-
-  flex: 1;
-
-  min-height: 0;
-
-  overflow: hidden;
 }
 
-/* ================================= */
-/* MUSIC ITEM */
-/* ================================= */
-.music-item {
-  display: flex;
-  flex-direction: row;
-  align-items: flex-start;
-  justify-content: flex-start;
-  padding: 10px;
-  gap: 20px;
+.music-section.active-section {
+  display: grid;
+  gap: 14px;
+}
 
-  border-radius: 18px;
+.music-collection .work-top {
+  margin: 0;
+}
+
+.music-collection .work-top h2 {
+  margin-bottom: 4px;
+  color: inherit;
+  font-size: clamp(1.3rem, 3vw, 1.8rem);
+  letter-spacing: -0.04em;
+}
+
+.music-collection .work-top p {
+  line-height: 1.5;
+}
+
+.music-collection :is(.projects-grid2, .projects-grid3, .beat-grid, .stats-grid) {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 210px), 1fr));
+  gap: 14px;
+  height: auto;
+  overflow: visible;
+  padding: 0;
+}
+
+.music-collection :is(.music-item, .release-banner, .beat-card, .feature-card, .stat-card) {
+  min-width: 0;
+  padding: 16px;
+  border: 1px solid var(--border);
+  border-radius: 16px;
   background: var(--surface-light);
-  border: 1px solid rgba(255, 255, 255, 0.06);
-  transition: 0.3s ease;
-  cursor: pointer;
 }
-.music-item:hover {
-  background: rgba(255, 122, 0, 0.12);
-  transform: translateX(4px);
+
+.music-item {
+  display: grid;
+  align-content: start;
+  gap: 14px;
 }
+
+.music-item img {
+  width: 100%;
+  aspect-ratio: 1;
+  object-fit: cover;
+  border-radius: 10px;
+}
+
 .music-overlay {
-  display: flex;
-  flex-direction: column;
+  display: grid;
+  justify-items: start;
   gap: 6px;
-  height: 100%;
+}
+
+.music-overlay h3,
+.music-collection :is(.beat-info h3, .feature-card h3, .stat-card h2, .release-info h2) {
+  color: inherit;
+}
+
+.music-overlay span {
   color: var(--text-secondary);
 }
-.music-item img {
-  width: 100px;
-  height: 100px;
-  object-fit: cover;
-  border-radius: 20%;
+
+.music-collection .release-banner {
+  grid-template-columns: minmax(120px, 240px) minmax(0, 1fr);
+  align-items: center;
+  gap: clamp(12px, 4vw, 32px);
+}
+
+.music-collection .release-banner img {
+  border-radius: 10px;
+}
+
+.music-collection .release-info h2 {
+  font-size: clamp(1.5rem, 4vw, 2.7rem);
+  line-height: 1.1;
+}
+
+.music-collection :is(.release-info, .beat-info) {
+  align-items: flex-start;
+}
+
+.music-collection .beat-grid {
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 220px), 280px));
+  justify-content: start;
+}
+
+.music-collection .beat-card {
+  padding: 12px;
+}
+
+.music-collection .beat-card:hover {
+  transform: none;
+  box-shadow: none;
+}
+
+.music-collection .beat-cover {
+  height: 80px;
+  border-radius: 10px;
+  margin-bottom: 4px;
+}
+
+.music-collection .beat-player {
+  display: block;
+  height: 40px;
+  margin: 8px 0 4px;
+  color-scheme: dark;
+  filter: none;
+}
+
+.light-mode .music-collection .beat-player {
+  color-scheme: light;
+}
+
+.music-collection .beat-note {
+  margin-top: 0;
+}
+
+.music-collection .feature-card {
+  display: grid;
+  gap: 8px;
+  align-content: start;
+  justify-content: stretch;
+}
+
+.music-collection .work-link {
+  justify-self: start;
+}
+
+.music-collection .stat-card h2 {
+  font-size: clamp(1.6rem, 4vw, 2.7rem);
+}
+
+@media (max-width: 600px) {
+  #music-window {
+    width: calc(100vw - 16px);
+    min-width: 0;
+  }
+}
+
+@media (max-width: 430px) {
+  .music-collection .release-banner {
+    grid-template-columns: 1fr;
+  }
 }

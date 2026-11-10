@@ -1130,3 +1130,9 @@
     justify-self: end;
   }
 }
+
+.hockey-screen {
+  color: #fff;
+  --text: #fff;
+  --text-secondary: #d4d4d8;
+}

@@ -1,101 +1,60 @@
-/* ======================================== */
-/* TRASH WINDOW */
-/* ======================================== */
-
-/* #trash-window {
-  width: 900px;
-  height: 650px;
-} */
-
-/* CONTENT */
-
 .trash-content {
-  height: calc(100% - 50px);
-
-  padding: 25px;
-
-  overflow-y: auto;
+  height: calc(100% - 70px);
+  scrollbar-gutter: stable;
 }
 
-/* TOP */
-
-.trash-top {
-  margin-bottom: 30px;
+.trash-list-heading {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 8px;
+  margin: 20px 0 10px;
 }
 
-.trash-top h2 {
-  font-size: 32px;
-  font-weight: 600;
+.trash-list-heading span,
+.trash-entry p {
+  color: var(--text-secondary);
+  font-size: 0.8rem;
 }
 
-.trash-top p {
-  margin-top: 10px;
-
-  color: rgba(255, 255, 255, 0.6);
+.trash-list {
+  overflow: hidden;
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  background: var(--surface-light);
+  list-style: none;
 }
 
-/* GRID */
-
-.trash-grid {
+.trash-entry {
   display: grid;
-
-  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
-
-  gap: 20px;
+  grid-template-columns: 36px minmax(0, 1fr);
+  align-items: center;
+  gap: 12px;
+  padding: 12px 14px;
 }
 
-/* CARD */
-
-.trash-card {
-  padding: 20px;
-
-  border-radius: 20px;
-
-  background: rgba(255, 255, 255, 0.04);
-
-  border: 1px solid rgba(255, 255, 255, 0.08);
-
-  cursor: pointer;
-
-  transition: 0.3s ease;
+.trash-entry + .trash-entry {
+  border-top: 1px solid var(--border);
 }
 
-.trash-card:hover {
-  transform: translateY(-4px);
-
-  border-color: rgba(255, 122, 0, 0.4);
-
-  background: rgba(255, 122, 0, 0.08);
+.trash-entry img {
+  width: 32px;
+  height: 32px;
+  object-fit: contain;
 }
 
-.trash-card img {
-  width: 50px;
-
-  margin-bottom: 15px;
+.trash-entry h3 {
+  overflow-wrap: anywhere;
+  font-size: 0.95rem;
 }
 
-.trash-card h3 {
-  font-size: 15px;
-
-  margin-bottom: 8px;
-
-  word-break: break-word;
+.trash-entry p {
+  margin-top: 3px;
 }
 
-.trash-card p {
-  font-size: 13px;
-
-  color: rgba(255, 255, 255, 0.55);
-}
-
-/* SCROLLBAR */
-
-.trash-content::-webkit-scrollbar {
-  width: 8px;
-}
-
-.trash-content::-webkit-scrollbar-thumb {
-  background: #ff7a00;
-
-  border-radius: 20px;
+@media (max-width: 600px) {
+  #trash-window {
+    width: calc(100vw - 16px);
+    min-width: 0;
+  }
 }

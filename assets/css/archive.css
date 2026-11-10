@@ -1,109 +1,46 @@
-.archive-section {
-  display: none;
-
-  flex-direction: column;
-
-  flex: 1;
-
-  min-height: 0;
-
-  overflow: hidden;
+#archive-window .archive-content {
+  height: calc(100% - 70px);
+  scrollbar-gutter: stable;
 }
-.archive-catalogue {
+
+#archive-window .archive-section:not([hidden]) {
   display: grid;
+  gap: 14px;
+  height: auto;
+}
 
-  grid-template-columns: repeat(3, 1fr);
+.archive-heading h3 {
+  margin-bottom: 4px;
+  font-size: clamp(1.3rem, 3vw, 1.8rem);
+  letter-spacing: -0.04em;
+}
 
-  gap: 20px;
+.archive-heading p {
+  color: var(--text-secondary);
+  line-height: 1.5;
+}
 
+.archive-section .work-entries {
+  grid-template-columns: repeat(auto-fill, minmax(min(100%, 210px), 1fr));
+}
+
+.archive-section .work-entry h4 {
+  font-size: 1.15rem;
+}
+
+.archive-section audio {
   width: 100%;
-  height: 100%;
-
-  overflow-y: auto;
-  overflow-x: hidden;
-
-  padding-right: 10px;
-}
-.work-section {
-  display: none;
-
-  flex-direction: column;
-
-  flex: 1;
-
-  min-height: 0;
-
-  overflow: hidden;
+  height: 40px;
+  color-scheme: dark;
 }
 
-.music-section.active-section {
-  display: flex;
-}
-.work-section.active-section {
-  display: flex;
+.light-mode .archive-section audio {
+  color-scheme: light;
 }
 
-.archive-card {
-  background: rgba(255, 255, 255, 0.03);
-
-  border: 1px solid rgba(255, 255, 255, 0.06);
-
-  border-radius: 18px;
-
-  overflow: hidden;
-
-  transition: 0.3s ease;
-
-  cursor: pointer;
-}
-
-.archive-card:hover {
-  transform: translateY(-4px);
-
-  border-color: rgba(255, 122, 0, 0.3);
-}
-
-.archive-card img {
-  width: 100%;
-  height: 140px;
-
-  object-fit: cover;
-
-  display: block;
-}
-
-.archive-info {
-  padding: 14px;
-}
-
-.archive-date {
-  font-size: 11px;
-
-  color: var(--accent);
-
-  letter-spacing: 1px;
-}
-
-.archive-info h4 {
-  margin-top: 10px;
-
-  font-size: 15px;
-
-  color: var(--text-secondary);
-}
-
-.archive-info p {
-  margin-top: 4px;
-
-  color: var(--text-secondary);
-
-  font-size: 13px;
-}
-
-.archive-info small {
-  display: block;
-
-  margin-top: 10px;
-
-  color: var(--text-secondary);
+@media (max-width: 600px) {
+  #archive-window {
+    width: calc(100vw - 16px);
+    min-width: 0;
+  }
 }

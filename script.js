@@ -108,11 +108,36 @@ function toggleFullscreen() {
     doc.msFullscreenElement;
 
   if (!isFullscreen) {
-    request?.call(docEl);
+    request?.call(docEl)?.catch(() => {});
   } else {
-    exit?.call(doc);
+    exit?.call(doc)?.catch(() => {});
   }
 }
+
+// Keep controls usable when the browser blocks access to saved preferences.
+const settingsStore = {
+  getItem(key) {
+    try {
+      return window.localStorage.getItem(key);
+    } catch {
+      return null;
+    }
+  },
+  setItem(key, value) {
+    try {
+      window.localStorage.setItem(key, value);
+    } catch {
+      // The current page can still apply the preference.
+    }
+  },
+  removeItem(key) {
+    try {
+      window.localStorage.removeItem(key);
+    } catch {
+      // There is no accessible saved value to clear.
+    }
+  },
+};
 
 function applySavedSettings(settings) {
   const {
@@ -126,7 +151,7 @@ function applySavedSettings(settings) {
   } = settings;
 
   if (themeToggle) {
-    const savedTheme = localStorage.getItem("theme");
+    const savedTheme = settingsStore.getItem("theme");
     if (savedTheme === "light") {
       document.body.classList.add("light-mode");
       themeToggle.checked = true;
@@ -136,42 +161,33 @@ function applySavedSettings(settings) {
     }
   }
 
-  if (glowToggle && localStorage.getItem("glow") === "true") {
+  if (glowToggle && settingsStore.getItem("glow") === "true") {
     document.body.classList.add("disable-glow");
-    glowToggle.checked = true;
+    glowToggle.checked = false;
   }
 
-  if (performanceToggle && localStorage.getItem("performance") === "true") {
+  if (performanceToggle && settingsStore.getItem("performance") === "true") {
     document.body.classList.add("performance-mode");
     performanceToggle.checked = true;
   }
 
-  if (transparencyToggle && localStorage.getItem("transparency") === "true") {
+  if (transparencyToggle && settingsStore.getItem("transparency") === "true") {
     document.body.classList.add("reduce-transparency");
     transparencyToggle.checked = true;
   }
 
-  if (lockIconsToggle && localStorage.getItem("lockIcons") === "true") {
+  if (lockIconsToggle && settingsStore.getItem("lockIcons") === "true") {
     document.body.classList.add("icons-locked");
     lockIconsToggle.checked = true;
   }
 
-  if (navbarToggle && localStorage.getItem("navbar") === "true") {
+  if (navbarToggle && settingsStore.getItem("navbar") === "true") {
     document.body.classList.add("disable-navbar-hide");
-    navbarToggle.checked = true;
+    navbarToggle.checked = false;
   }
 
   if (videoToggle) {
-    const videosDisabled = localStorage.getItem("videosDisabled") === "true";
-    videoToggle.checked = videosDisabled;
-
-    document.querySelectorAll("video").forEach((video) => {
-      if (videosDisabled) {
-        video.pause();
-      } else {
-        video.play();
-      }
-    });
+    videoToggle.checked = settingsStore.getItem("videosDisabled") === "true";
   }
 }
 
@@ -219,38 +235,99 @@ window.addEventListener("DOMContentLoaded", () => {
     });
   }
 
-  const desktopItems = document.querySelectorAll(".desktop-item");
-  desktopItems.forEach((item) => {
-    let offsetX = 0;
-    let offsetY = 0;
-    let isDragging = false;
+  const desktop = document.querySelector(".os-desktop");
+  const desktopIcons = document.querySelectorAll(".desktop-item");
 
-    item.addEventListener("mousedown", (e) => {
-      if (document.body.classList.contains("icons-locked")) return;
+  function placeDesktopIcon(icon, left, top) {
+    const bounds = desktop.getBoundingClientRect();
+    const dock = document.querySelector(".task-bar")?.getBoundingClientRect();
+    const position = icon.getBoundingClientRect();
+    const originX = position.left - (parseFloat(icon.style.left) || 0);
+    const originY = position.top - (parseFloat(icon.style.top) || 0);
+    const x = Math.max(bounds.left, Math.min(left, bounds.right - position.width));
+    let bottom = Math.min(bounds.bottom, window.innerHeight);
 
-      isDragging = true;
-      item.classList.add("dragging");
-      offsetX = e.clientX - item.offsetLeft;
-      offsetY = e.clientY - item.offsetTop;
+    if (dock && x < dock.right && x + position.width > dock.left) {
+      bottom = Math.min(bottom, dock.top);
+    }
+
+    const y = Math.max(bounds.top, Math.min(top, bottom - position.height));
+    icon.classList.add("is-positioned");
+    icon.style.left = `${x - originX}px`;
+    icon.style.top = `${y - originY}px`;
+  }
+
+  desktopIcons.forEach((icon) => {
+    let drag;
+    let moved = false;
+
+    icon.addEventListener("dragstart", (event) => event.preventDefault());
+    icon.addEventListener("pointerdown", (event) => {
+      moved = false;
+      if (!desktop || !event.isPrimary || event.button !== 0 ||
+          document.body.classList.contains("icons-locked")) return;
+
+      const bounds = icon.getBoundingClientRect();
+      icon.setPointerCapture(event.pointerId);
+      drag = {
+        id: event.pointerId,
+        startX: event.clientX,
+        startY: event.clientY,
+        left: bounds.left,
+        top: bounds.top,
+      };
     });
 
-    document.addEventListener("mousemove", (e) => {
-      if (!isDragging) return;
-      item.style.left = `${e.clientX - offsetX}px`;
-      item.style.top = `${e.clientY - offsetY}px`;
+    icon.addEventListener("pointermove", (event) => {
+      if (drag?.id !== event.pointerId) return;
+
+      const dx = event.clientX - drag.startX;
+      const dy = event.clientY - drag.startY;
+      if (!moved && Math.hypot(dx, dy) < 6) return;
+
+      if (!moved) {
+        moved = true;
+        icon.classList.add("dragging");
+      }
+
+      placeDesktopIcon(icon, drag.left + dx, drag.top + dy);
     });
 
-    document.addEventListener("mouseup", () => {
-      if (!isDragging) return;
-      isDragging = false;
-      item.classList.remove("dragging");
+    function finishDrag(event) {
+      if (drag?.id !== event.pointerId) return;
+      drag = undefined;
+      icon.classList.remove("dragging");
+    }
+
+    window.addEventListener("pointerup", finishDrag);
+    window.addEventListener("pointercancel", finishDrag);
+    icon.addEventListener("lostpointercapture", finishDrag);
+
+    icon.addEventListener("click", (event) => {
+      if (!moved || event.detail === 0) return;
+      event.stopImmediatePropagation();
+    }, true);
+
+    icon.addEventListener("dblclick", (event) => {
+      if (moved) event.stopImmediatePropagation();
+    }, true);
+
+    icon.addEventListener("pointerup", (event) => {
+      if (moved) event.stopImmediatePropagation();
+      finishDrag(event);
     });
   });
 
-  const desktopIcons = document.querySelectorAll(".desktop-item");
+  window.addEventListener("resize", () => {
+    desktopIcons.forEach((icon) => {
+      if (!icon.classList.contains("is-positioned")) return;
+      const bounds = icon.getBoundingClientRect();
+      placeDesktopIcon(icon, bounds.left, bounds.top);
+    });
+  });
 
   desktopIcons.forEach((icon) => {
-    icon.addEventListener("dblclick", () => {
+    const openIcon = () => {
       const windowId = icon.dataset.window;
       const taskbarId = icon.dataset.taskbar;
 
@@ -263,101 +340,50 @@ window.addEventListener("DOMContentLoaded", () => {
         return;
       }
 
-      // Open the window
-      targetWindow.classList.add("active-window");
+      openAppWindow(targetWindow, windowTaskbars.get(windowId) ?? taskbarId);
+    };
+    if (icon.id === "arcade-icon") {
+      icon.addEventListener("click", openIcon);
+      return;
+    }
 
-      // Only activate taskbar item if one exists
-      if (taskbarId) {
-        const taskbarApp = document.getElementById(taskbarId);
-
-        if (taskbarApp) {
-          taskbarApp.classList.add("active-taskbar-app");
-        }
-      }
-
-      // Portfolio book initialization
-      if (windowId === "books-window") {
-        setTimeout(() => {
-          initPortfolioBook?.();
-        }, 200);
-      }
+    icon.addEventListener("dblclick", openIcon);
+    icon.addEventListener("pointerup", (event) => {
+      if (event.pointerType === "touch") openIcon();
     });
   });
 
-  const emailTaskbar = document.getElementById("email-taskbar");
-  const emailModal = document.getElementById("emailModal");
-  const emailClose = document.querySelector(".email-close");
-  const emailWindow = document.querySelector(".email-window");
-  const emailTopbar = document.querySelector(".email-topbar");
-
-  if (emailTaskbar && emailModal) {
-    emailTaskbar.addEventListener("click", () => {
-      emailModal.classList.add("show-email");
-    });
-  }
-
-  if (emailClose && emailModal) {
-    emailClose.addEventListener("click", () => {
-      emailModal.classList.remove("show-email");
-    });
-  }
-
-  if (emailTopbar && emailWindow) {
-    let isDraggingEmail = false;
-    let emailOffsetX = 0;
-    let emailOffsetY = 0;
-
-    emailTopbar.addEventListener("mousedown", (e) => {
-      isDraggingEmail = true;
-      emailOffsetX = e.clientX - emailWindow.offsetLeft;
-      emailOffsetY = e.clientY - emailWindow.offsetTop;
-    });
-
-    document.addEventListener("mousemove", (e) => {
-      if (!isDraggingEmail) return;
-      emailWindow.style.position = "absolute";
-      emailWindow.style.left = `${e.clientX - emailOffsetX}px`;
-      emailWindow.style.top = `${e.clientY - emailOffsetY}px`;
-    });
-
-    document.addEventListener("mouseup", () => {
-      isDraggingEmail = false;
-    });
-  }
-
-  if (window.emailjs) {
-    emailjs.init("U5rZmh31ECmnHaw2K");
-  }
-
   const contactForm = document.getElementById("contact-form");
   if (contactForm) {
-    contactForm.addEventListener("submit", function (e) {
-      e.preventDefault();
+    const sendButton = contactForm.querySelector(".send-btn");
+    const status = document.getElementById("contact-status");
 
-      const sendBtn = document.querySelector(".send-btn");
-      if (!sendBtn) return;
+    contactForm.addEventListener("submit", async (event) => {
+      event.preventDefault();
+      if (sendButton.disabled) return;
 
-      sendBtn.innerText = "Sending...";
-      sendBtn.disabled = true;
+      const mail = window.emailjs;
+      if (!mail?.sendForm) {
+        status.textContent = "The sending service did not load. Reload to retry or email me directly.";
+        return;
+      }
 
-      emailjs
-        .sendForm("service_2ck1wkw", "template_x9em24t", "#contact-form")
-        .then(() => {
-          sendBtn.innerText = "Message Sent";
-          contactForm.reset();
-          setTimeout(() => {
-            sendBtn.innerText = "Send Message";
-            sendBtn.disabled = false;
-          }, 2500);
-        })
-        .catch((error) => {
-          console.log(error);
-          sendBtn.innerText = "Failed";
-          setTimeout(() => {
-            sendBtn.innerText = "Send Message";
-            sendBtn.disabled = false;
-          }, 2500);
+      sendButton.disabled = true;
+      sendButton.textContent = "Sending…";
+      status.textContent = "";
+
+      try {
+        await mail.sendForm("service_2ck1wkw", "template_x9em24t", contactForm, {
+          publicKey: "U5rZmh31ECmnHaw2K",
         });
+        contactForm.reset();
+        status.textContent = "Message sent.";
+      } catch {
+        status.textContent = "Your message could not be sent. Try again or email me directly.";
+      } finally {
+        sendButton.disabled = false;
+        sendButton.textContent = "Send Message";
+      }
     });
   }
 
@@ -371,27 +397,7 @@ window.addEventListener("DOMContentLoaded", () => {
 
       if (!appWindow) return;
 
-      appWindow.classList.remove("active-window");
-      appWindow.classList.remove("window-focused");
-      appWindow.classList.remove("is-dragging");
-
-      const windowId = appWindow.id;
-
-      const matchingIcon = document.querySelector(
-        `[data-window="${windowId}"]`,
-      );
-
-      if (matchingIcon) {
-        const taskbarId = matchingIcon.dataset.taskbar;
-
-        if (taskbarId) {
-          const taskbarApp = document.getElementById(taskbarId);
-
-          if (taskbarApp) {
-            taskbarApp.classList.remove("active-taskbar-app");
-          }
-        }
-      }
+      closeAppWindow(appWindow);
     });
   });
 
@@ -401,7 +407,7 @@ window.addEventListener("DOMContentLoaded", () => {
       const windowId = profileCard.dataset.window;
       const targetWindow = document.getElementById(windowId);
       if (targetWindow) {
-        targetWindow.classList.add("active-window");
+        openAppWindow(targetWindow, profileCard.dataset.taskbar);
       }
     });
   }
@@ -422,11 +428,49 @@ window.addEventListener("DOMContentLoaded", () => {
     windowEl.classList.add("window-focused");
   }
 
+  const cvWindow = document.getElementById("system-window");
+  const cvScroller = cvWindow?.querySelector(".cv-content");
+  const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
+  let cvMotion;
+
+  function syncCvMotion() {
+    cvMotion?.revert();
+    cvMotion = undefined;
+
+    const { gsap, ScrollTrigger } = window;
+    if (!cvScroller || !cvWindow.classList.contains("active-window") ||
+        reducedMotion.matches || document.body.classList.contains("performance-mode") ||
+        !gsap || !ScrollTrigger) return;
+
+    gsap.registerPlugin(ScrollTrigger);
+    cvMotion = gsap.context(() => {
+      gsap.from(".cv-hero", { y: 10, opacity: 0.75, duration: 0.4, ease: "power2.out" });
+      cvScroller.querySelectorAll("[data-cv-reveal]").forEach((section) => {
+        gsap.from(section, {
+          y: 14,
+          opacity: 0.7,
+          duration: 0.45,
+          ease: "power2.out",
+          scrollTrigger: {
+            trigger: section,
+            scroller: cvScroller,
+            start: "top 92%",
+            once: true,
+          },
+        });
+      });
+    }, cvScroller);
+  }
+
+  reducedMotion.addEventListener("change", syncCvMotion);
+
   function openAppWindow(windowEl, taskbarId = null) {
     if (!windowEl) return;
 
     windowEl.classList.add("active-window");
     bringWindowToFront(windowEl);
+    if (windowEl === cvWindow) syncCvMotion();
+    if (uiSoundToggle?.checked) playUiSound(520);
 
     if (taskbarId) {
       const taskbarApp = document.getElementById(taskbarId);
@@ -441,24 +485,56 @@ window.addEventListener("DOMContentLoaded", () => {
     if (!windowEl) return;
 
     windowEl.classList.remove("active-window");
-    windowEl.classList.remove("window-focused");
+    windowEl.classList.remove("window-focused", "is-dragging");
+    if (windowEl.id === "arcade-window") showArcadeHome();
+    if (windowEl === cvWindow) syncCvMotion();
+    if (windowEl.id === "archive-window") {
+      windowEl.querySelectorAll("audio").forEach((audio) => audio.pause());
+    }
 
     const windowId = windowEl.id;
 
-    const matchingIcon = document.querySelector(`[data-window="${windowId}"]`);
+    const taskbarId = windowTaskbars.get(windowId);
+    if (!taskbarId) return;
 
-    if (matchingIcon) {
-      const taskbarId = matchingIcon.dataset.taskbar;
-
-      if (taskbarId) {
-        const taskbarApp = document.getElementById(taskbarId);
-
-        if (taskbarApp) {
-          taskbarApp.classList.remove("active-taskbar-app");
-        }
-      }
-    }
+    const hasOpenWindow = [...windowTaskbars].some(([id, taskbar]) =>
+      taskbar === taskbarId &&
+      document.getElementById(id)?.classList.contains("active-window"),
+    );
+    document.getElementById(taskbarId)?.classList.toggle("active-taskbar-app", hasOpenWindow);
   }
+
+  const windowTaskbars = new Map(
+    [...document.querySelectorAll("[data-window][data-taskbar]")].map(
+      ({ dataset }) => [dataset.window, dataset.taskbar],
+    ),
+  );
+
+  for (const [windowId, taskbarId] of [
+    ["email-window", "email-taskbar"],
+    ["settings-window", "settings-taskbar"],
+    ["finder-window", "finder-taskbar"],
+    ["music-window", "music-taskbar"],
+    ["archive-window", "archive-taskbar"],
+    ["trash-window", "trash-taskbar"],
+  ]) {
+    windowTaskbars.set(windowId, taskbarId);
+    document.getElementById(taskbarId)?.addEventListener("click", () => {
+      openAppWindow(document.getElementById(windowId), taskbarId);
+    });
+  }
+
+  document.querySelectorAll(".pinned-app[data-window]").forEach((item) => {
+    item.addEventListener("click", () => {
+      const id = item.dataset.window;
+      openAppWindow(document.getElementById(id), windowTaskbars.get(id));
+      startMenu?.classList.remove("active");
+    });
+  });
+
+  document.querySelectorAll(".app-window .minimize-btn").forEach((button) => {
+    button.addEventListener("click", () => closeAppWindow(button.closest(".app-window")));
+  });
 
   /* =========================================================
    WINDOW DRAGGING
@@ -474,6 +550,7 @@ window.addEventListener("DOMContentLoaded", () => {
     let windowOffsetY = 0;
 
     header.addEventListener("mousedown", (e) => {
+      if (windowEl.classList.contains("fullscreen")) return;
       /*
       Don't start dragging when clicking window controls.
     */
@@ -530,7 +607,8 @@ window.addEventListener("DOMContentLoaded", () => {
     */
       newX = Math.max(0, Math.min(newX, Math.max(0, maxX)));
 
-      newY = Math.max(0, Math.min(newY, Math.max(0, maxY)));
+      const navbarBottom = document.querySelector(".system-navbar")?.getBoundingClientRect().bottom ?? 0;
+      newY = Math.max(navbarBottom, Math.min(newY, maxY));
 
       windowEl.style.left = `${newX}px`;
       windowEl.style.top = `${newY}px`;
@@ -552,93 +630,77 @@ window.addEventListener("DOMContentLoaded", () => {
     });
   });
 
-  const settingsTaskbar = document.getElementById("settings-taskbar");
-  const settingsWindow = document.getElementById("settings-window");
+  const wallpaperOptions = [...document.querySelectorAll(".wallpaper-option")];
 
-  if (settingsTaskbar && settingsWindow) {
-    settingsTaskbar.addEventListener("click", () => {
-      settingsWindow.classList.add("active-window");
-      settingsTaskbar.classList.add("active-taskbar-app");
+  function applyWallpaper(selected) {
+    document.body.style.setProperty("--wallpaper", `url("${selected.dataset.wallpaper}")`);
+    wallpaperOptions.forEach((option) => {
+      option.classList.toggle("active-wallpaper", option === selected);
+      option.setAttribute("aria-pressed", option === selected);
     });
   }
 
-  const wallpaperOptions = document.querySelectorAll(".wallpaper-option");
+  const savedWallpaper = settingsStore.getItem("wallpaper");
+  const initialWallpaper = wallpaperOptions.find(
+    (option) => option.dataset.wallpaper === savedWallpaper,
+  ) ?? wallpaperOptions[0];
+  if (initialWallpaper) applyWallpaper(initialWallpaper);
+
   wallpaperOptions.forEach((option) => {
     option.addEventListener("click", () => {
-      const wallpaper = option.dataset.wallpaper;
-      if (!wallpaper) return;
-
-      document.body.style.backgroundImage = `
-        radial-gradient(
-          circle at top left,
-          rgba(255,122,0,0.15),
-          transparent 35%
-        ),
-        url(${wallpaper})
-      `;
-      localStorage.setItem("wallpaper", wallpaper);
-
-      wallpaperOptions.forEach((item) =>
-        item.classList.remove("active-wallpaper"),
-      );
-      option.classList.add("active-wallpaper");
+      applyWallpaper(option);
+      settingsStore.setItem("wallpaper", option.dataset.wallpaper);
     });
   });
 
-  const accentOptions = document.querySelectorAll(".accent-option");
-  accentOptions.forEach((option) => {
-    option.addEventListener("click", () => {
-      const color = option.dataset.color;
-      if (!color) return;
-
-      document.documentElement.style.setProperty("--accent", color);
-      accentOptions.forEach((item) => item.classList.remove("active-accent"));
-      option.classList.add("active-accent");
+  const musicTabs = document.querySelectorAll("[data-music-tab]");
+  const musicSections = document.querySelectorAll("#music-window .music-section");
+  musicTabs.forEach((tab) => {
+    tab.addEventListener("click", () => {
+      musicTabs.forEach((button) => button.setAttribute("aria-pressed", button === tab));
+      musicSections.forEach((section) => {
+        section.classList.toggle("active-section", section.id === tab.dataset.musicTab);
+      });
     });
   });
 
-  const sidebarItems = document.querySelectorAll("#music-window .sidebar-item");
-  const musicSections = document.querySelectorAll(
-    "#music-window .music-section",
-  );
-  sidebarItems.forEach((item) => {
-    item.addEventListener("click", () => {
-      sidebarItems.forEach((i) => i.classList.remove("active-sidebar"));
-      item.classList.add("active-sidebar");
-
-      const target = item.dataset.tab;
-      musicSections.forEach((section) =>
-        section.classList.remove("active-section"),
-      );
-
-      const targetSection = document.getElementById(target);
-      if (targetSection) {
-        targetSection.classList.add("active-section");
-      }
+  const archiveTabs = document.querySelectorAll("[data-archive-tab]");
+  archiveTabs.forEach((tab) => {
+    tab.addEventListener("click", () => {
+      archiveTabs.forEach((item) => {
+        const selected = item === tab;
+        item.setAttribute("aria-pressed", selected);
+        const panel = document.getElementById(item.dataset.archiveTab);
+        if (!panel) return;
+        panel.hidden = !selected;
+        if (panel.hidden) panel.querySelectorAll("audio").forEach((audio) => audio.pause());
+      });
     });
   });
 
-  const sidebarItems2 = document.querySelectorAll(
-    "#finder-window .sidebar-item",
-  );
-  const workSections = document.querySelectorAll(
-    "#finder-window .work-section",
-  );
-  sidebarItems2.forEach((item) => {
-    item.addEventListener("click", () => {
-      sidebarItems2.forEach((i) => i.classList.remove("active-sidebar2"));
-      item.classList.add("active-sidebar2");
+  const workFilters = document.querySelectorAll("[data-work-filter]");
+  const workEntries = document.querySelectorAll("[data-work-category]");
+  const workEmpty = document.querySelector(".work-empty");
 
-      const target = item.dataset.tab;
-      workSections.forEach((section) =>
-        section.classList.remove("active-section"),
-      );
+  workFilters.forEach((filter) => {
+    filter.addEventListener("click", () => {
+      const category = filter.dataset.workFilter;
+      workFilters.forEach((button) => button.setAttribute("aria-pressed", button === filter));
+      let hasResults = false;
 
-      const targetSection = document.getElementById(target);
-      if (targetSection) {
-        targetSection.classList.add("active-section");
-      }
+      workEntries.forEach((entry) => {
+        const categories = entry.dataset.workCategory.split(" ");
+        entry.hidden = category === "all"
+          ? categories.includes("services")
+          : !categories.includes(category);
+        hasResults ||= !entry.hidden;
+      });
+      if (workEmpty) workEmpty.hidden = hasResults;
     });
+  });
+
+  document.getElementById("work-open-arcade")?.addEventListener("click", () => {
+    openAppWindow(document.getElementById("arcade-window"));
   });
 
   const emailNav = document.querySelectorAll(".email-nav");
@@ -685,57 +747,90 @@ window.addEventListener("DOMContentLoaded", () => {
 
   if (glowToggle) {
     glowToggle.addEventListener("change", () => {
-      document.body.classList.toggle("disable-glow");
-      localStorage.setItem("glow", glowToggle.checked);
+      document.body.classList.toggle("disable-glow", !glowToggle.checked);
+      settingsStore.setItem("glow", !glowToggle.checked);
     });
   }
 
   if (transparencyToggle) {
     transparencyToggle.addEventListener("change", () => {
       document.body.classList.toggle("reduce-transparency");
-      localStorage.setItem("transparency", transparencyToggle.checked);
+      settingsStore.setItem("transparency", transparencyToggle.checked);
     });
   }
 
   if (lockIconsToggle) {
     lockIconsToggle.addEventListener("change", () => {
       document.body.classList.toggle("icons-locked");
-      localStorage.setItem("lockIcons", lockIconsToggle.checked);
+      settingsStore.setItem("lockIcons", lockIconsToggle.checked);
     });
   }
 
   if (navbarToggle) {
     navbarToggle.addEventListener("change", () => {
-      document.body.classList.toggle("disable-navbar-hide");
-      localStorage.setItem("navbar", navbarToggle.checked);
+      document.body.classList.toggle("disable-navbar-hide", !navbarToggle.checked);
+      settingsStore.setItem("navbar", !navbarToggle.checked);
     });
   }
 
   if (performanceToggle) {
     performanceToggle.addEventListener("change", () => {
-      document.body.classList.toggle("performance-mode");
-      localStorage.setItem("performance", performanceToggle.checked);
+      document.body.classList.toggle("performance-mode", performanceToggle.checked);
+      syncCvMotion();
+      settingsStore.setItem("performance", performanceToggle.checked);
     });
   }
 
   if (videoToggle) {
     videoToggle.addEventListener("change", () => {
-      document.querySelectorAll("video").forEach((video) => {
-        if (videoToggle.checked) {
-          video.pause();
-        } else {
-          video.play();
-        }
-      });
-
-      localStorage.setItem("videosDisabled", videoToggle.checked);
+      settingsStore.setItem("videosDisabled", videoToggle.checked);
     });
   }
+
+  const uiSoundToggle = document.getElementById("uiSoundToggle");
+  const startupSoundToggle = document.getElementById("startupSoundToggle");
+  let audioContext;
+
+  function playUiSound(frequency) {
+    const AudioContext = window.AudioContext || window.webkitAudioContext;
+    if (!AudioContext) return;
+
+    audioContext ??= new AudioContext();
+    audioContext.resume().then(() => {
+      const oscillator = audioContext.createOscillator();
+      const gain = audioContext.createGain();
+      const now = audioContext.currentTime;
+      oscillator.frequency.value = frequency;
+      gain.gain.setValueAtTime(0.08, now);
+      gain.gain.exponentialRampToValueAtTime(0.001, now + 0.16);
+      oscillator.connect(gain).connect(audioContext.destination);
+      oscillator.start(now);
+      oscillator.stop(now + 0.16);
+    }).catch(() => {});
+  }
+
+  for (const toggle of [uiSoundToggle, startupSoundToggle]) {
+    if (!toggle) continue;
+    toggle.checked = settingsStore.getItem(toggle.id) === "true";
+    toggle.addEventListener("change", () => {
+      settingsStore.setItem(toggle.id, toggle.checked);
+      if (toggle.checked) playUiSound(toggle === startupSoundToggle ? 660 : 520);
+    });
+  }
+
+  window.addEventListener("click", () => {
+    if (startupSoundToggle?.checked) playUiSound(660);
+  }, { once: true, capture: true });
+
+  document.getElementById("settings-fullscreen")?.addEventListener("click", toggleFullscreen);
 
   const resetButton = document.getElementById("resetOS");
   if (resetButton) {
     resetButton.addEventListener("click", () => {
-      localStorage.clear();
+      for (const key of ["theme", "glow", "transparency", "lockIcons", "navbar",
+        "performance", "videosDisabled", "wallpaper", "uiSoundToggle", "startupSoundToggle"]) {
+        settingsStore.removeItem(key);
+      }
       location.reload();
     });
   }
@@ -743,7 +838,7 @@ window.addEventListener("DOMContentLoaded", () => {
   if (themeToggle) {
     themeToggle.addEventListener("change", () => {
       document.body.classList.toggle("light-mode");
-      localStorage.setItem(
+      settingsStore.setItem(
         "theme",
         document.body.classList.contains("light-mode") ? "light" : "dark",
       );
@@ -810,7 +905,7 @@ if ("getBattery" in navigator) {
       } else if (level <= 50) {
         batteryFill.style.background = "#ff9500";
       } else {
-        batteryFill.style.background = "#ffffff";
+        batteryFill.style.background = "currentColor";
       }
 
       /* Charging */
@@ -865,52 +960,6 @@ document.querySelectorAll(".expand-btn").forEach((btn) => {
   });
 });
 
-// Full Screen Toggle for Taskbar
-document.getElementById("fullscreen-toggle").addEventListener("click", () => {
-  if (!document.fullscreenElement) {
-    document.documentElement.requestFullscreen();
-  } else {
-    document.exitFullscreen();
-  }
-});
-
-// Hide and Show navbar on hover
-const navbar = document.querySelector(".system-navbar");
-
-document.addEventListener("mousemove", (e) => {
-  if (document.body.classList.contains("disable-navbar-hide")) {
-    navbar.classList.add("show-navbar");
-
-    return;
-  }
-
-  if (e.clientY <= 15) {
-    navbar.classList.add("show-navbar");
-  }
-});
-
-navbar.addEventListener("mouseleave", () => {
-  if (document.body.classList.contains("disable-navbar-hide")) {
-    return;
-  }
-
-  navbar.classList.remove("show-navbar");
-});
-
-// ========================================
-// TRASH FILES
-// ========================================
-
-const trashCards = document.querySelectorAll(".trash-card");
-
-trashCards.forEach((card) => {
-  card.addEventListener("dblclick", () => {
-    alert(
-      `"${card.querySelector("h3").textContent}" was permanently deleted, You're not supposed to open this anyway🤦🏾`,
-    );
-  });
-});
-
 const arcadeWindow = document.getElementById("arcade-window");
 
 const launchAirHockey = document.getElementById("launch-air-hockey");
@@ -926,13 +975,7 @@ launchAirHockey?.addEventListener("click", () => {
 
   hockeyScreen.classList.add("active-arcade-screen");
 
-  requestAnimationFrame(() => {
-    resetHockeyMatch();
-
-    setTimeout(() => {
-      servePuck();
-    }, 700);
-  });
+  resetHockeyMatch();
 });
 
 arcadeBackBtn?.addEventListener("click", () => {
@@ -940,6 +983,9 @@ arcadeBackBtn?.addEventListener("click", () => {
 });
 
 function showArcadeHome() {
+  clearTimeout(hockeyRoundTimer);
+  cancelAnimationFrame(hockeyFrame);
+  puckInPlay = false;
   hockeyScreen?.classList.remove("active-arcade-screen");
   arcadeHome?.classList.add("active-arcade-screen");
 }
@@ -1155,7 +1201,7 @@ function updatePlayerMovement() {
 
   updatePlayerPaddle();
 
-  requestAnimationFrame(updatePlayerMovement);
+
 }
 /* =========================================================
    PLAYER VELOCITY
@@ -1179,7 +1225,6 @@ let playerVelocityY = 0;
 
 // resetPlayerPosition();
 
-updatePlayerMovement();
 
 /* =========================================================
    STEP 2D - CPU / MATCH STATE
@@ -1207,9 +1252,10 @@ let cpuScore = 0;
 
 const winningScore = 7;
 
-let matchRunning = false;
+let hockeyRoundTimer;
+let hockeyFrame;
 let puckInPlay = false;
-let matchOver = false;
+
 
 function resetCpuPosition() {
   if (!hockeyTable || !cpuPaddle) return;
@@ -1240,12 +1286,6 @@ function updateCpuPosition() {
 ========================================================= */
 
 function updateCpuMovement() {
-  if (!hockeyTable || !cpuPaddle) {
-    requestAnimationFrame(updateCpuMovement);
-
-    return;
-  }
-
   const width = hockeyTable.clientWidth;
 
   const height = hockeyTable.clientHeight;
@@ -1311,18 +1351,21 @@ function updateCpuMovement() {
 
   updateCpuPosition();
 
-  requestAnimationFrame(updateCpuMovement);
+
 }
 
-updateCpuMovement();
 
 /* =========================================================
    WINDOW RESIZE
 ========================================================= */
 
-window.addEventListener("resize", () => {
-  resetPlayerPosition();
+const hockeyResizeObserver = new ResizeObserver(() => {
+  if (hockeyTable.clientWidth && hockeyScreen?.classList.contains("active-arcade-screen") &&
+      playerScore < winningScore && cpuScore < winningScore) {
+    startHockeyRound();
+  }
 });
+if (hockeyTable) hockeyResizeObserver.observe(hockeyTable);
 
 // ===========================================================================================
 
@@ -1462,6 +1505,8 @@ function updatePuckPosition() {
 ========================================================= */
 
 function servePuck() {
+  puckInPlay = true;
+  setHockeyStatus("PLAY");
   /*
    * Random horizontal direction.
    */
@@ -1705,12 +1750,6 @@ function limitPuckSpeed() {
 ========================================================= */
 
 function updatePuckPhysics() {
-  if (!hockeyPuck || !hockeyTable) {
-    requestAnimationFrame(updatePuckPhysics);
-
-    return;
-  }
-
   if (puckInPlay) {
     /* MOVE PUCK */
 
@@ -1735,6 +1774,7 @@ function updatePuckPhysics() {
     /* WALL / GOAL COLLISION */
 
     handlePuckWallCollisions();
+    if (!puckInPlay) return;
 
     /* PLAYER COLLISION */
 
@@ -1761,41 +1801,10 @@ function updatePuckPhysics() {
 
   updatePuckPosition();
 
-  requestAnimationFrame(updatePuckPhysics);
 }
 
-/* =========================================================
-   START PHYSICS
-========================================================= */
-
-updatePuckPhysics();
-
-/* =========================================================
-   RESTART MATCH
-========================================================= */
-
 const restartHockey = document.getElementById("restart-hockey");
-restartHockey?.addEventListener("click", () => {
-  resetPlayerPosition();
-
-  resetPuck();
-
-  setTimeout(() => {
-    servePuck();
-  }, 500);
-
-  function servePuck() {
-    puckInPlay = true;
-
-    const horizontalDirection = Math.random() > 0.5 ? 1 : -1;
-
-    const verticalDirection = Math.random() > 0.5 ? 1 : -1;
-
-    puckVelocityX = horizontalDirection * (2 + Math.random() * 2);
-
-    puckVelocityY = verticalDirection * (4 + Math.random() * 2);
-  }
-});
+restartHockey?.addEventListener("click", resetHockeyMatch);
 
 /* =========================================================
    SCOREBOARD
@@ -1855,19 +1864,7 @@ function scoreGoal(scorer) {
 
   /* RESET ROUND */
 
-  setTimeout(() => {
-    resetPlayerPosition();
-
-    resetCpuPosition();
-
-    resetPuck();
-
-    setHockeyStatus("READY");
-
-    setTimeout(() => {
-      servePuck();
-    }, 700);
-  }, 900);
+  hockeyRoundTimer = setTimeout(startHockeyRound, 900);
 }
 
 /* =========================================================
@@ -1875,9 +1872,7 @@ function scoreGoal(scorer) {
 ========================================================= */
 
 function endHockeyMatch() {
-  matchOver = true;
-
-  matchRunning = false;
+  cancelAnimationFrame(hockeyFrame);
 
   puckInPlay = false;
 
@@ -1899,17 +1894,35 @@ function resetHockeyMatch() {
   playerScore = 0;
   cpuScore = 0;
 
-  matchOver = false;
-  matchRunning = false;
-  puckInPlay = false;
-
   updateScoreboard();
+  startHockeyRound();
+}
 
+function startHockeyRound() {
+  clearTimeout(hockeyRoundTimer);
+  cancelAnimationFrame(hockeyFrame);
   resetPlayerPosition();
-
   resetCpuPosition();
-
+  puckInPlay = false;
   resetPuck();
-
   setHockeyStatus("READY");
+  hockeyRoundTimer = setTimeout(servePuck, 700);
+
+  const frameDuration = 1000 / 60;
+  let lastFrame;
+  let elapsed = 0;
+
+  function tick(time) {
+    elapsed += Math.min(time - (lastFrame ?? time), 50);
+    lastFrame = time;
+    hockeyFrame = requestAnimationFrame(tick);
+    while (elapsed >= frameDuration) {
+      updatePlayerMovement();
+      updateCpuMovement();
+      updatePuckPhysics();
+      elapsed -= frameDuration;
+    }
+  }
+
+  hockeyFrame = requestAnimationFrame(tick);
 }

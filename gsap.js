@@ -1,4 +1,21 @@
+const backgroundVideo = document.querySelector(".expand-media video, video[muted][loop]");
+if (backgroundVideo) {
+  const syncBackgroundVideo = () => {
+    let disabled = false;
+    try {
+      disabled = localStorage.getItem("videosDisabled") === "true";
+    } catch {
+      // Storage can be unavailable when browsing privately.
+    }
+    if (disabled) backgroundVideo.pause();
+    else backgroundVideo.play().catch(() => {});
+  };
+  syncBackgroundVideo();
+  window.addEventListener("storage", syncBackgroundVideo);
+}
+
 window.addEventListener("load", () => {
+  if (!window.gsap || !window.ScrollTrigger) return;
   gsap.registerPlugin(ScrollTrigger);
 
   gsap.to(".expand-media", {
@@ -206,7 +223,7 @@ window.addEventListener("load", () => {
    TEXT REVEAL
 ================================= */
 
-gsap.to(".reveal-heading", {
+window.gsap?.to(".reveal-heading", {
   y: 0,
 
   opacity: 1,
@@ -231,7 +248,7 @@ let foodBook = null;
 let cocktailBook = null;
 
 window.addEventListener("load", () => {
-  if (window.innerWidth > 768) {
+  if (window.innerWidth > 768 && window.St?.PageFlip && !foodBook) {
     initFlipbooks();
   }
 });
@@ -265,11 +282,3 @@ function initFlipbooks() {
 function getBookSize() {
   return { width: 600, height: 840 };
 }
-
-window.addEventListener("resize", () => {
-  if (window.innerWidth > 768) {
-    initFlipbooks();
-  }
-});
-
-

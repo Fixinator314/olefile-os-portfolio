@@ -27,6 +27,7 @@
     <link rel="stylesheet" href="./assets/css/custon-scrollbar.css" />
     <link rel="stylesheet" href="./assets/css/archive.css" />
     <link rel="stylesheet" href="./assets/css/release.css" />
+    <link rel="stylesheet" href="./assets/css/music.css" />
     <link rel="stylesheet" href="./assets/css/trash.css" />
     <link rel="stylesheet" href="./assets/css/project.css" />
     <link rel="stylesheet" href="./assets/css/controls.css" />
@@ -41,13 +42,13 @@
       rel="icon"
       type="image/png"
       sizes="32x32"
-      href="./assets/HQ logo/HQ Logo.png"
+      href="./assets/Logo/om-logo2.png"
       alt="HQ Logo"
     />
 
     <!-- GSAP -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollToPlugin.min.js"></script>
+    <script defer src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script defer src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
   </head>
 
   <body>
@@ -61,7 +62,7 @@
       <!-- RIGHT -->
 
       <div class="system-right">
-        <div class="system-item" id="fullscreen-toggle"><div class="fullscreen-mode"></div> </div>
+        <button class="system-item" id="fullscreen-toggle" type="button" aria-label="Toggle browser fullscreen"><span class="fullscreen-mode"></span></button>
 
         <div class="system-time">
           <p id="top-time"></p>
@@ -146,7 +147,7 @@
 
         <div
           class="desktop-item"
-          data-window="about-window"
+          data-window="system-window"
           data-taskbar="finder-taskbar"
         >
           <img src="./assets/Icons/folder (2).png" alt="About Folder" />
@@ -166,14 +167,10 @@
         </div>
 
         <!-- Arcade Window desktop item -->
-        <div
-          class="desktop-item"
-          id="arcade-icon"
-          data-window="arcade-window"
-            >
-            <img src="./assets/icons/folder (2).png" alt="Arcade">
-            <span>Arcade</span>
-        </div>
+        <button class="desktop-item" id="arcade-icon" data-window="arcade-window" type="button">
+          <span class="arcade-shortcut-icon" aria-hidden="true">🎮</span>
+          <span>Arcade</span>
+        </button>
       </div>
 
  <!-- ======================================== -->
@@ -193,108 +190,156 @@
           <p>WORK</p>
         </div>
 
-        <div class="window-content">
-          <div class="work-wrapper">
-            <!-- SIDEBAR -->
-            <div class="work-sidebar">
-              <h3 class="sidebar-title">Workspace</h3>
+        <div class="window-content work-content">
+          <div class="work-collection">
+            <header class="work-intro">
+              <p class="work-eyebrow">OLEFILE MAKGANYE / WORK</p>
+              <h2>Selected work</h2>
+              <p>Websites, chatbots, interactive projects, and web services.</p>
+            </header>
 
-              <div class="sidebar-item active-sidebar2" data-tab="featured">
-                Featured
-              </div>
-
-              <div class="sidebar-item" data-tab="websites">Websites</div>
-
-              <div class="sidebar-item" data-tab="chatbots">Chatbots</div>
-
+            <div class="work-filters" role="group" aria-label="Filter projects">
+              <button type="button" data-work-filter="all" aria-pressed="true">All work</button>
+              <button type="button" data-work-filter="websites" aria-pressed="false">Websites</button>
+              <button type="button" data-work-filter="wordpress" aria-pressed="false">WordPress Websites</button>
+              <button type="button" data-work-filter="chatbots" aria-pressed="false">Chatbots</button>
+              <button type="button" data-work-filter="interactive" aria-pressed="false">Interactive</button>
+              <button type="button" data-work-filter="services" aria-pressed="false">Services</button>
             </div>
 
-            <!-- MAIN -->
-            <div class="work-main">
-              <div class="work-section active-section" id="featured">
-                <!-- TOP -->
-                <div class="work-top">
-                  <div>
-                    <h2>Selected Projects</h2>
-                    <p>Interactive design & development archive</p>
+            <div class="work-entries">
+              <article class="work-entry" data-work-category="websites">
+                <div class="work-media"><img src="./assets/STS website.png" alt="STS Africa preview" loading="lazy" /></div>
+                <div class="work-entry-body">
+                  <p class="work-meta"><span>01</span> Corporate website</p>
+                  <h3>STS Africa</h3>
+                  <p class="work-description">A corporate website with a clear presentation of the company and its services.</p>
+                  <a class="work-link" href="https://www.sts-africa.co.za/" target="_blank" rel="noopener">Visit website <span aria-hidden="true">↗</span></a>
+                </div>
+              </article>
+              <article class="work-entry" data-work-category="websites">
+                <div class="work-media"><img src="./assets/Thynk Box.png" alt="ThynkBox preview" loading="lazy" /></div>
+                <div class="work-entry-body">
+                  <p class="work-meta"><span>02</span> Built environment</p>
+                  <h3>ThynkBox</h3>
+                  <p class="work-description">A company website for a quantity surveying and project management firm.</p>
+                  <a class="work-link" href="https://thethynkbox.co.za/" target="_blank" rel="noopener">Visit website <span aria-hidden="true">↗</span></a>
+                </div>
+              </article>
+              <article class="work-entry" data-work-category="websites">
+                <div class="work-media"><img src="./assets/Ayanda2.png" alt="Ayanda Jiya preview" loading="lazy" /></div>
+                <div class="work-entry-body">
+                  <p class="work-meta"><span>03</span> Artist website</p>
+                  <h3>Ayanda Jiya</h3>
+                  <p class="work-description">An artist website design centered on Ayanda Jiya and her music.</p>
+                  <a class="work-link" href="https://ayanda-jiya.omakganye11.workers.dev/" target="_blank" rel="noopener">Visit website <span aria-hidden="true">↗</span></a>
+                </div>
+              </article>
+              <article class="work-entry" data-work-category="websites">
+                <div class="work-media"><div class="work-art" aria-hidden="true"><span>BF</span></div></div>
+                <div class="work-entry-body">
+                  <p class="work-meta"><span>04</span> Website</p>
+                  <h3>Bavuke Foundation</h3>
+                  <a class="work-link" href="https://bavukefoundation.co.za/" target="_blank" rel="noopener">Visit website <span aria-hidden="true">↗</span></a>
+                </div>
+              </article>
+              <article class="work-entry" data-work-category="websites wordpress">
+                <div class="work-media"><div class="work-art" aria-hidden="true"><span>PS</span></div></div>
+                <div class="work-entry-body">
+                  <p class="work-meta"><span>05</span> WordPress website</p>
+                  <h3>Prodigy SA</h3>
+                  <a class="work-link" href="https://prodigysa.co.za/" target="_blank" rel="noopener">Visit website <span aria-hidden="true">↗</span></a>
+                </div>
+              </article>
+              <article class="work-entry" data-work-category="websites">
+                <div class="work-media"><div class="work-art" aria-hidden="true"><span>HQ</span></div></div>
+                <div class="work-entry-body">
+                  <p class="work-meta"><span>06</span> Website</p>
+                  <h3>HQ Kyalami</h3>
+                  <a class="work-link" href="https://www.hqkyalami.co.za/" target="_blank" rel="noopener">Visit website <span aria-hidden="true">↗</span></a>
+                </div>
+              </article>
+              <article class="work-entry" data-work-category="websites interactive">
+                <div class="work-media"><img src="./assets/OS ui.png" alt="Portfolio OS preview" loading="lazy" /></div>
+                <div class="work-entry-body">
+                  <p class="work-meta"><span>07</span> Interactive portfolio</p>
+                  <h3>Portfolio OS</h3>
+                  <p class="work-description">A desktop-inspired portfolio with draggable shortcuts, app windows, and a customizable workspace.</p>
+                  <a class="work-link" href="https://olefile-os-portfolio.pages.dev/internet" target="_blank" rel="noopener">Open web edition <span aria-hidden="true">↗</span></a>
+                </div>
+              </article>
+              <article class="work-entry" data-work-category="interactive">
+                <div class="work-media"><div class="work-art work-art-05" aria-hidden="true"><span>AIR<br />HOCKEY</span></div></div>
+                <div class="work-entry-body">
+                  <p class="work-meta"><span>08</span> Browser game</p>
+                  <h3>Air Hockey</h3>
+                  <p class="work-description">A single-player arcade game with mouse and touch controls, puck physics, and a CPU opponent.</p>
+                  <button class="work-link" id="work-open-arcade" type="button">Open Arcade <span aria-hidden="true">↗</span></button>
+                </div>
+              </article>
+              <article class="work-entry" data-work-category="interactive">
+                <div class="work-media"><div class="work-art work-art-06" aria-hidden="true"><span>WEB<br />DAW</span></div></div>
+                <div class="work-entry-body">
+                  <p class="work-meta"><span>09</span> Audio prototype</p>
+                  <h3>Web DAW</h3>
+                  <p class="work-description">A browser-based audio workstation prototype with a playlist, channel rack, and mixer.</p>
+                  <a class="work-link" href="./studio-daw.html" target="_blank" rel="noopener">Open prototype <span aria-hidden="true">↗</span></a>
+                </div>
+              </article>
+              <article class="work-entry" data-work-category="websites interactive">
+                <div class="work-media work-media-mockup">
+                  <div class="work-browser">
+                    <div class="work-browser-bar" aria-hidden="true"><span></span><span></span><span></span></div>
+                    <img src="./assets/imisi-foundation-preview.png" alt="Imisi Foundation website preview" loading="lazy" />
                   </div>
                 </div>
-
-                <!-- GRID -->
-                <div class="projects-grid">
-                  <!-- CARD -->
-                  <div class="project-card large-card">
-                    <img src="./assets/STS website.png" alt="STS website" />
-
-                    <div class="project-overlay">
-                      <span>Corporate Website</span>
-
-                      <h3>STS Africa</h3>
-                      <a href="https://www.sts-africa.co.za" target="_blank">
-                        <button class="opn-website">View Website</button>
-                      </a>
-                    </div>
-                  </div>
+                <div class="work-entry-body">
+                  <p class="work-meta"><span>10</span> Interactive 3D website</p>
+                  <h3>Imisi Foundation</h3>
+                  <p class="work-description">A responsive website with GSAP motion and an interactive 3D basket modelled in Blender and brought to the browser with Three.js.</p>
+                  <a class="work-link" href="https://imisi-website-main-2.pages.dev/" target="_blank" rel="noopener">Visit website <span aria-hidden="true">↗</span></a>
                 </div>
-              </div>
-              <!-- ================================= -->
-              <!-- Websites -->
-              <!-- ================================= -->
-              <div class="work-section" id="websites">
-                <!-- TOP -->
-                <div class="work-top">
-                  <div>
-                    <h2>Websites</h2>
-                    <p>Digital experiences & responsive systems</p>
-                  </div>
-                  <div class="web-banner">
-                    <!-- CARD -->
-                    <div class="project-card">
-                      <img src="./assets/Thynk Box.png" alt="ThynkBox" />
-
-                      <div class="project-overlay">
-                        <span>Creative Development</span>
-                        <!-- <p class="live">live</p> -->
-
-                        <h3>ThynkBox</h3>
-                        <a href="https://thethynkbox.co.za" target="_blank">
-                          <button class="opn-website">View Website</button>
-                        </a>
-                      </div>
-                    </div>
-                    <!-- CARD -->
-                    <div class="project-card">
-                      <img src="./assets/OS ui.png" alt="OS UI" />
-
-                      <div class="project-overlay">
-                        <span>UI Experience</span>
-                        <!-- <p class="live">live</p> -->
-
-                        <h3>Portfolio OS</h3>
-                        <a href="https://thethynkbox.co.za" target="_blank">
-                          <button class="opn-website">View Website</button>
-                        </a>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="we-banner2">
-                    <!-- CARD -->
-                    <div class="project-card2">
-                      <img src="./assets/Ayanda2.png" alt="Ayanda's Website" />
-
-                      <div class="project-overlay">
-                        <span>Artists Websites</span>
-                        <!-- <p class="live">live</p> -->
-
-                        <h3>Ayanda Jiya's Website</h3>
-                        <a href="https://thethynkbox.co.za" target="_blank">
-                          <button class="opn-website">View Website</button>
-                        </a>
-                      </div>
-                    </div>
-                  </div>
+              </article>
+              <article class="work-entry" data-work-category="services" hidden>
+                <div class="work-entry-body">
+                  <p class="work-meta">Measurement</p>
+                  <h3>Website analytics</h3>
+                  <p class="work-description">Set up tracking for enquiries, form submissions, and key page visits. Use reports to see where visitors come from and which pages lead to action.</p>
                 </div>
-              </div>
+              </article>
+              <article class="work-entry" data-work-category="services" hidden>
+                <div class="work-entry-body">
+                  <p class="work-meta">Visibility</p>
+                  <h3>Search optimisation</h3>
+                  <p class="work-description">Review page titles, descriptions, and site structure so search engines can understand and index your pages.</p>
+                </div>
+              </article>
+              <article class="work-entry" data-work-category="services" hidden>
+                <div class="work-entry-body">
+                  <p class="work-meta">Performance</p>
+                  <h3>Website performance</h3>
+                  <p class="work-description">Review load times and mobile usability, then identify fixes such as compressing images and reducing unnecessary scripts.</p>
+                </div>
+              </article>
+              <article class="work-entry" data-work-category="services" hidden>
+                <div class="work-entry-body">
+                  <p class="work-meta">Support</p>
+                  <h3>Website maintenance</h3>
+                  <p class="work-description">Keep content current, check links and contact forms, and maintain WordPress plugins and themes where applicable.</p>
+                </div>
+              </article>
+              <article class="work-entry" data-work-category="services" hidden>
+                <div class="work-entry-body">
+                  <p class="work-meta">Digital publishing</p>
+                  <h3>Online PDF flipbooks</h3>
+                  <p class="work-description">Turn PDFs into online books with page-turn controls and a shareable link. Use them for portfolios, catalogues, brochures, and reports.</p>
+                  <a class="work-link" href="./internet.html#menus-section" target="_blank" rel="noopener">View example <span aria-hidden="true">↗</span></a>
+                </div>
+              </article>
+            </div>
+            <div class="work-empty" hidden>
+              <h3>Chatbots</h3>
+              <p>Chatbot case studies will be added here.</p>
             </div>
           </div>
         </div>
@@ -313,110 +358,83 @@
           <p>Music</p>
         </div>
 
-        <div class="window-content">
-          <div class="work-wrapper">
-            <!-- SIDEBAR -->
-            <div class="work-sidebar2">
-              <h3 class="sidebar-title">Audio Workspace</h3>
-
-              <div class="sidebar-item active-sidebar" data-tab="catalogue">
-                Catalogue
-              </div>
-
-              <div class="sidebar-item" data-tab="new-releases">
-                New Releases
-              </div>
-
-              <div class="sidebar-item" data-tab="beatstore">Beat Store</div>
-
-              <div class="sidebar-item" data-tab="features">Features</div>
-
-              <div class="sidebar-item" data-tab="stats">Analytics</div>
+        <div class="window-content music-content">
+          <div class="work-collection music-collection">
+            <header class="work-intro">
+              <p class="work-eyebrow">OLEFILE MAKGANYE / MUSIC</p>
+              <h2>FIXINATOR</h2>
+              <p>Releases, production credits, and instrumentals.</p>
+            </header>
+            <div class="work-filters" role="group" aria-label="Music sections">
+              <button type="button" data-music-tab="catalogue" aria-controls="catalogue" aria-pressed="true">Catalogue</button>
+              <button type="button" data-music-tab="new-releases" aria-controls="new-releases" aria-pressed="false">New Releases</button>
+              <button type="button" data-music-tab="beatstore" aria-controls="beatstore" aria-pressed="false">Beat Store</button>
+              <button type="button" data-music-tab="features" aria-controls="features" aria-pressed="false">Features</button>
+              <button type="button" data-music-tab="stats" aria-controls="stats" aria-pressed="false">Analytics</button>
             </div>
-
-            <!-- MAIN -->
-            <div class="work-main">
-              <!-- ================================= -->
-              <!-- CATALOGUE -->
-              <!-- ================================= -->
-
               <div class="music-section active-section" id="catalogue">
                 <div class="work-top">
-                  <h2>Albums & EP's</h2>
+                  <h2>Albums & EPs</h2>
                   <p>Selected catalogue releases</p>
                 </div>
 
                 <div class="projects-grid2">
                   <!-- ITEM 1 -->
                   <div class="music-item">
-                    <img src="./assets/Music-items/Space Station.jpg" />
+                    <img src="./assets/Music-items/Space Station.jpg" alt="" loading="lazy" />
 
                     <div class="music-overlay">
-                      <span>Space Station EP</span>
-
-                      <h3>FIXINATOR</h3>
+                      <h3>Space Station EP</h3>
+                      <span>FIXINATOR</span>
 
                       <a
                         href="https://ditto.fm/space-station-fixinator"
                         target="_blank"
-                      >
-                        <button class="opn-website">Stream Project</button>
-                      </a>
+                       rel="noopener" class="work-link">Stream Project <span aria-hidden="true">↗</span></a>
                     </div>
                   </div>
 
                   <!-- ITEM 2 -->
                   <div class="music-item">
-                    <img src="./assets/Music-items/PastCurfew.jpg" />
+                    <img src="./assets/Music-items/PastCurfew.jpg" alt="" loading="lazy" />
 
                     <div class="music-overlay">
-                      <span>Past Curfew EP</span>
-
-                      <h3>FIXINATOR & Various Artists</h3>
+                      <h3>Past Curfew EP</h3>
+                      <span>FIXINATOR & Various Artists</span>
 
                       <a
                         href="https://ditto.fm/past-curfew-various-artists"
                         target="_blank"
-                      >
-                        <button class="opn-website">Stream Project</button>
-                      </a>
+                       rel="noopener" class="work-link">Stream Project <span aria-hidden="true">↗</span></a>
                     </div>
                   </div>
 
                   <!-- ITEM 3 -->
                   <div class="music-item">
                     <img
-                      src="data:image/jpeg;base64,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"
-                    />
+                      src="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wCEAAkGBxMTEhUTExMWFhUXGBkYGBgYGBYaHRgVGBgXFxgdFxcaHyggGholHRUVITEhJSkrLi4uGB8zODMtNygtLisBCgoKDQwOEhAQFi0lGiUtKysrLSswLSsrKysrKzcrLDcrMis4Ky0rKzcrLTgrLSsrOCsrNysrLisrLTcrKysrN//AABEIAOEA4QMBIgACEQEDEQH/xAAbAAABBQEBAAAAAAAAAAAAAAAEAAECAwUGB//EAEkQAAEDAgMFBQUEBwMLBQAAAAEAAhEDIQQSMQVBUWFxEyKBkaEGMrHB8BRC0eEHM1JicpLxIzSyFhckQ1NUc4KTotIVg8LD0//EABQBAQAAAAAAAAAAAAAAAAAAAAD/xAAUEQEAAAAAAAAAAAAAAAAAAAAA/9oADAMBAAIRAxEAPwAfbu3TQ/s6E1a9Uns8pcXloztz1agNx78MaGgXNoXB7ZxuNa7LXdVaTeCdZvYix1G/eFqY3bJw+NpVXDMG0W0yJJIaWzImLjNppqEB7TbcGIp06bM7gxxcXuFzqGjjEONzy4IMhmPrNMipUGt87t4jWear+11JnO6eJcSfNPTIPddI4cjzVTmwUE3Yuobdo/8Amcj9nYowJJMHj+Kz2UXHd4myLwbIBQbtXEAH3PNzist23HhzmloI0i49UdV3HiAsHGiHuQTxGOc/g0bg0AeuqHbJvfrJ+KjOivo1CLbjqN39UF1A5TIc4HiCQZPMXTVKzjZz3O/icT8Z5qipUunJkc0CABJ+umgutnBuEQCPz8VkssrGkmZ11G42QT2wAHDWYvwjduWeAERisSXxm1CpmYG78Y/BBJ2TL97Nv0iLab519E4c0TlzDSDmg2HECNVW55vc3ibm8aTxTAzwHz/NBOo4G8mesz4/NaNISzkPrRZErYwN2IMx7blF4LFZYGgn3h7w4QeSHr2ceqgHICMUXNNqji3cZI9Jsq6VV0iXExpJJjpPQK0EObG9DUTDkBrca+m8PBMzeSb9VfUrMqjuOdTcDOVzyWk6DKSbOvbRCYtndndKDDkGpj31HtzhziJJe3N7lQkySBoHag9RuuZ7M+0eIwj5p1HZZGZhOZpA3ZXSAdbiCsjCVjTcHtI4HmJBg+QPgi24UEGo33byBqwbrb27p890h3f+cR/DC/8AQqf/AKJLz3I3ifL80kBXtCy7T1WXSqFpkGCtz2hb3WnmsKUEn1J/JWUKROgHiqWPhEuxEiACI4IHdOjyZ8IHjvT4WxI5fP8ANPRqbi15HSURgqbS8A9wG3e+raIDgZY3pCydp0yXwBqAus/9IphoyYinlvd1o6+qxvaDKC0MeyrAPeYGjwN7+IlAJSpNptM3cbSNA1AuJBgKBDplysdVkEIIPPFVghJoJKfKeCCbXblaype91QXclJhQPXaAbTHwVYapPVUoJEhMSopwED1CtXZIlhWZToklbGAxbaQhwg9JueWnmgzsfTOc9JQrgtLaeJFR2YOJtvnyugi227zQRoVS0yiMR3ocB1/M8UM6mVdh6jhppvHEc0BGIZLUA5q0MQ9uUibws4BAgVqbLqwczCQ4ajiOXEclmBiswrocDMIOnml+zR/kH4JLI+0/veqSDV21Tlg6j1ssl2EeDAIMgcoW/tan/ZP5CfIhZVWnJAngT8kAlHCPd94+GiIp7Ldve5aFAAbwPJM7EtBu8eYQCjZYGrj5qTdms5lTqY+n+2FWdo0v2vQoHqbPYdcxjiVB2zqcEhhJ4K77UJy5XE8mk+qlWr5WlxY4AcY/FBg4ym5ti3LwVGZF7Q2h2lgIA80IGnhogQTE81e6nLZA01jhxVAQLVO4p4jj5Jgg0cPswvbmbUpG5AAf3nEfssIDxOgkCel1FmzXF/ZlhDpHdPdcZ0jNrNlThnuaczDlcJEiJggg2NiCCVr4XHMPZ9qT3ageaoE1AWghsE6gd3u6d0Re5Cqp7OPMhoOZoBhxZ3gZMsIMO0OnEcRIRohhy9mS82vYD8StyttqtQDXh1J1B5IawGiXhpzRPZ2zAQSJsbGELV2+4tILi9ptJHutAGUAG0jTpob2DMdSy2NjvHAc0O9xJlF1GOec2g0EwCTlzQAOSCa9ATQqzwVpKC0BI81E1DxPmgOJUS5B0jJu6B4/gVf9jcfcOfoRPlKC95Bv5qsiNwROEpQzvN73MfissvN0BgjgFFzRwCDVlF9wgsyjgEkdlbwHkkg6PGMljhOoPFcWY5rtnixHJcVXb3iOaCtRcUnqBQOkSmToOo2RUl4/eZ/8Z+KI2oJovHIrP2RUE0jyg9QXN+ELVxFOWkdR5oOJVtKtG6VXCZAdSxgaZAPO9/yU62KL50HIAX6nUrOCmCgIp4gttA/PrqrTVa494EO4iPUKn7QSIIBHPXzCi1o6ILHls6nwA+CgWE6d7pPwUXthRNtyA3BYp9KRAyugOzMa61xo4QbOJym0xvAIPquw9NoczM4n3O8Q6m4XDhYBwJ1Lm7hA1CxRWI0t0TCueXkEE8XiXP8AePhYDyFt581SFM1Qfut9RPrql2n7rfI/GUGrjcPloRwMz9dVjArVZii+k4GLA/j8llhx+gEDKTHEaWKiXJ81506fgg2cFjHObBNvrVAVsKcxiNVfszQhQxFd4JaCQOVvVAO7CvGojyUWs3q9rAdSZ4qGUc55ICkk/anh6N/BJB1lUyTzJXFbSZFR/VdlVcuT28yKpPGEGcE8A8lCU7kEU4CSdBrbKqQ0cnH5H8V0lc3PmuT2a6zhwIPx/JdS8yAf3R8EHH4unD3Dg4/EqhF4pwc9zhv0QrkCaFMMG8qsAlbWy9idoe+8t6D5lBkF0aaevmkJ3L0bZXsdhnjvNe4WvnI6+7C08X+jrCVGgUi+k7ccznz1a4+oIQeVsdxuk4BepM/RPSj+8VZ6U48o+afYf6OcOMWWVKrqrGNDnNIAEunKDGtgT5IPKXM3Ksr1n9IPsZSplgwoa2dWk2IAM6XGg80v0Y7AwzzU7djXVAcuU3iINuRBB/og8lTyu5/Sf7MU8NWDqIDWvkln7MHUDcLriGtQbOBwcU5J94fELEXT4Yjsh0XN1WwSOaCCZKE4aUBuyjcqvHmHqezrP5wm2mO8OnzQUCoVMulVsancEBHbc0lTCZB29Y3XNe0Y74PELp65usLb9MHKdNUHOwkaZ+iFaWwb6dFB0IIQUi1SyqVxogu2c7vEcvgQuppXpN/hI8iuWwRh45yPMFdNgHTS6E+o/qg57aFEB1t4B8foITKt6lTpGadTNLXOJLf2SAW8tZQG0cG6lUyayAQeP0QUDYWmLWW/gJtA1WHR1hdDs7F02XcQDayDu9jtLWAAXstdtJw3xO/8VxdL24psbAAnjCu/yoD2++JImDx5IO5Ae1hdnBABJ5AXPouA2Xth/wBofX7Use83iCI+6INjFhPVRxu25pPY03eMtj+1Y+kqk7KGSTb0QF18RUrVy5z3PLGXJ/afERwgMNhxWPVrGjXlxIp1gGEiRlqNMtcCNDFpW17P1GtpOe7Wq8uv+yO63/taD4rP9oKbKjHNJ105O3FBRtx7XmCCX5YLiSSTpc7/AOi4jGYYsMQV0vs3jJcWvN22vr9SAj/aDZTXCQYOougxtmmaQGhWNiabQ515uVqYEd0i9jfiFm42iC90G/DwQDF7eHyUHPnonLFJlKenFBZgLPCK2lREt8VRhhlcOKN2gbDqgFawbkPVV9G5lPi6X3miw15c+iAROop0HY4hzyTEa62WZtkE077itjEWcQdxI8QVm7UbNNyDnDwTQnhRJ5oJhwNiLpNCpJT5kBVN1weeviuh2Ue68cwfkuWa/iuk2W+55t/NAJj65o1Q8AEOBBB0PGfRUVsWHlg1yggQdBJIF+qM2zRzMHI8J16LO+zFrWu7upkyIhAfRpTN/rqj8KSLFuYfDj9BLZlOSRb4ytijgJPBAMK2EMg5b7iPO25ZeKwVFx/sqkX018hqurqbCYG5zEC5LspFt5m3msVtTDOdkFZovqWuAnk6I9UAmw8GWVSXGYiNNfFdLtfHxhy6dOV+HzWNs/BucHQZ77r8RJAtroOBUtpNIaKUyO0aPIFxsb7h5oMbFbUfanTDu40N3HQDgAgqmJeQMzyJ0Hev0haex3ua9xZucS6wM6gCCDxJ6woMFKjV7SC4NuGkgQ4eFxvhBj0sT2dUPDpvc3uu0qVe1a0tvLZjfOn11XEY0dpULgIzGeS6f2eZ3RJnIbnl0m+7yQA4lpY4G5DjEc93BZO0qoz+6DbfmBB813/tNslzqTajIIFxlNgdZA3eW5c9tjZratMVQIcR5Eag+NkHNNrfs2PJXtryO8frqgSCDGhC6HYew31SCRJJsOHhxQBUcMSZAmOF7K7GkZdRrvldLtqvTwdM0xBquEQPu8TK5XGu7h5mT5oBqbRxHmru1ywQWmNRxG8IWjdWVIHVBf2tH/ZHzd+CdZ9+KSDssSQXu6uPqShMWJY4ckRXNz1PxVNTgg5drRz9B6qLwOB8wVKq0gugGAb8lGN6CuRz9B8lMFvA+J/BJrZ3Kzsxvj4IIZhugeB+ZW5seqSWaXEaAcllto0YvUIPANJR+BfTAbkLzB3gRu5z6INHamHPZuIE2uLy08x81z1UjK0TZb+NqljXEEg8uaw6/egzdBobIxUWnRdRs/aQm64amcpB3Lbw5cMjyCGvmDxixjxQbvtPtTtnNoMcQxsF40zPsRPICPHoFfjfZfD9h2gqAHLJEic3ACVzWGPaPc7i4x0mPgjNo4gtbFzwHE7uqDd9m47Btt0cJIMfJZNV+fEOM2ph7p/eIyj4lbGzKbqdNgdrlvHE3InhKC2XSYKFas6BndGpvFxHi/0QczsioRUdO/X4ozG4ZmpiFZSwzNTYneDCA2oSwxMi3kgrq4F4Bc0AGLXBt4b0NsjEup1YNid3MaW+ty3qffba44Id+AzOGUgOBBBIBBAOhJCDt9kYjPRkRG8tuLaHkfJANqgvfRdJnvCfI/JD+yRc0PmxDrIz2gbmh7QM7bggXI3hBzW1NijtWkkAEgX9ASukx2MbhMOMoIqHTrHFCU3NrU4cAQRosTb9eqcjHkkNHdcfvAaZuY9UHNbRrufUc5xkyjsRdh6BZJMnqtT/AFfggDo25pVU7AmqoKkk8pIOuxNnO01O/mqVfiYzv4hxt4lDygwMcXNe9oMB0SOPBBnqtHa1M57BB/Zz/RBTPNIAIllBuhJB47kxYG7wgpFMo3AUyN28EfkhTUT0q5aZG9BrbYq5zA90RJ5lA1WdwO4GPBaGG2kHlocGhgN4aAR15LrWfZhDXtpuDhZ7QIcBEgjc4Wsg4NwBalRrHQEkiw5Ltdp7GIaXUm0nt1gtkDlIuFyjPeceza0i0DP5jvINLYDYBO4IzB0e0rBx91l/+b8vwVey2kUubj/TVadBzWCIvyO87yg1A4GVg0MLlpw50yTDeHM80eKxHkhRJdJ0CAdmDlw5XWHjG9rUcQYGg8Ft7SxWSi7L7x08d6wdl0SWExoUB2wsQabzTfvEtPGOC3DQBFuqwsNS7Q3BOUyOvVdBhcO4iEFuzCWyDxlaFSg54MKpmEcw96JhLHbR7NhA10QY7Ypvyyb3HCf6LM9p65cI4XB6zKbFVzLHbyfkZQe0XOAuDB3oMArWwzpYJ4LNe2bhG4T3YQU1JAltxv5KgPnVSo1i02jobg9VOs5hu0Fp3jUeG8dEFMJKSSDs8cB2r7ic7uQ94obIb7ovJ0A5lXbQ/W1B++7/ABH0QO0qg7Ig+EneL2H1qgDx9dpsHA8YuhO2aDYT14+CGD51TSBp6oL3VybaDkqHMUVYH2QVWTQp2+vxSaPJA1ORcWTsxLmmx0M+KYwmiUHfezGPIcwky1wuN1xHwnzWZtKln7So22Zz3DpmJA8lT7OuPZfwkj5hFYN2aj0HyQE4WnDQRwBHkrcKM2YcCqcC49iw/uj0ROyLh6DRw+GzQTwUq7RoNyuoPhVtbLieJ+CDNfsh9WbwFm7QoOoVA0nM1wjdru03XXc4aAFx/tbXGYch6zKDU9mmUgZe3d6onaGOYwnLHJc2MWR7uhVUE6lAfX2mSdVlY7Flwg71YWoOubhA+0HQGAIenjzdpMg2EqG0aklZ2a4hBbjsNlMjQqeCPd8VexwcIIJTU8OWyPTeOqAShg3PJiIk6kDS6k+i1tibjcFXUpOF8pAzRN4nhKY1XGMxJAJiZgTGaOdm+QQKGcSkl3Ofkkg6v2i2oHYmt3QP7RxJAAmTYeS5vEVgTOUeMz5zKI9o65diqzwdajtwEXiwiFmOM3kk754oJP4gR5/NQDkkxCCzgohMCkUDlqT+A3KTbapnMgoKypSmKUIOg9mTLXt5g+kfJT2dVhpbO4/XogNh4zK/LaHD1V1N0Tb7xHnxQa2Dq/6P6DwWnsMdzmVmYFk0cpIEE6rW2W0ZIBvFvrigOpu+vRTFrqigFMvv0QEvrZQVxHtFVzH64rqsW+0LkdumGzzCBsCTvRmZD4N4LVKoboJPrIN75KlUkKknVBTjKu6B5X81nb0TiveQqAxmJLXd0RPxWjRxD8sEESdw1O/NvlY77rU2VtIs7sAjfvPgSgrxVQlmQO/s82bLP34iesT5rMOq0to135y6Q5p35QP5o+8h/sxs4CxMeMTdANA4pIj7KeI9EkGp7ZPoDF1RRNWGveHCo1oh4e7Nlc1xJbuEgab9ViZbSj/alo+2YiP9q/xOY38UDhauU30OvTegaN6iVdlLXEWI+I3WUKxE2Ecju8UECE7LXTNVj4gQb3kcOF0DPeTfToAEp8kmjeNyllg6IExm/covVj6s9frcqboImQZGouj34oEGNSB4FAuCdqDewWMb2cON54i3hqtfB46nEF0aagiy4wORuG2jHvNzeMIO5w2NY4y17XdHAomxM2C86xD2uMhmXxn5KDMXVZ7r3DoTHlog73EgrlPaZ/dA4lVUvaKuLOcHDmB8oQW1cYapBIAjggfZ+LIstNleQufouLSFv4So2Agd8whXBadUtibLMrVAEANUGSqEVVMqttJBWUZgMpMOkHiEMYT4cwUGxU2TnaXh+g0y/mgabyA6m2/3jPEBaGzcY8z32iCBBLbz11VO2sMQc3A6AAfDwQZ3a8j5D8Ekvtz/ANo+n4JIOm9vdjVGYiu8U+66oXjK4OgP7xLmtJLLkDvAX0XHkLZ9qGxjcSWOb/eKrpDg0g53ftRcX0lZlQE3MTy/AWCCZaXMmNLGPmNVCZHMKeHIBgmAdT+SVXuOIIngeIQUBMSrHGdFVKCbCp9oQqpSaUEnFOCmKZoQSSCcNnRTp0XkGGkga2sPHcgqJTFWGmRyUHeqArBsa6zn5d19PPRPiME9pgnu6zNkECjsHtAAZKgzUzu3t5hAN2cnumfTyScC0wRE8RqPFEY3CZCHMcHMOhHzQhY43g+RQQqMg8ijMGJuCgybQr8M7gg16ZjVB4pvegIqmSRpO88uH4+KqqBwuGuA3OgiehQUVGZddUI9yNfgyW5gRb3hMkHlCEd+RQVuUqIk6qwUognTrFkgQ0yC48D7o8YM8osgg5rswABJ3AA68guowD2PZlrAtto497h7uu60wudq4lzhlkDpaep1Pimo52PESS60C5dyA3lB0P8Ak5Q/3gfyj/zTKj7FU/3er/0qn/imQU+1+zXtxuIHdvUc676Y97vb3c1mUsK/TLO6QWxPJ0wfA21XpGKoYZtet2kl3aVJc41iSQ8FslthrVNrackNiKGAyvJBFPISD/pH3WMYzprVHlrAQcF9iedGz0g36tNuI4oijhaj25XMhw9zNAJ5Q43HBZVNptxTl0INF+CqusQ2Ru7Wju1+/wBPRRdsyoBOSectjxMwBzKVDHwI1J1JifWdNyTnUyczsxn94SPSPBAzNlVzpTnfq30vfwUBsusf9WfSd+6Z3FRq4LulwhzQRfkZ1G7T1QxvcmSgL/8ATqw1pO8QfTiOeidmzq5zRSfbWGkxHEjchHNbAjXeIi89b2i9kzmDeJ1jr5HlZBqUsG7fRdI1FwHbt+l+atr4rEGA5kNAiGtBAHhPrcLFaATACuLRkBIMl1jaCALiNZB3oCn4eqLmm7hdjo84hCZDwjrISDWjKQ6D/DBF7QZv6KRcDq435T5XQV5DpFzoOPRS7F0+6VOm+BGd4B1AFiP5vkoFrRqT/KPjNvIoDME5zNWZmu1bbj8UY7A1IzUC8t1LTIgazfd1WQ2o0aMb1dJ9JjzCKwe1HsNjbeAAP6dAg28F7OvcC+tSi0+9ltYXAIvcawonBvZ+qwjCNz81Oob2s0OO/jItcIDE0Q/+1Y0Z/vCPeEX62kdFlFgDu74cf6oOmq4TFG1XusGgc+kwDWwaXADoFWMHTj3qeb/iU7xyzfksZmn5fn1SyTpMbzGnqg1qWHOeAaZDrfrKU+Wa3yRA2Ww3PZvtvr0Wkjn3xfmVhU2tDS+CYIaAdC5wcZceAy6b5GioqViSLm2nLoNAEGlicCdTVoNAtBqtf5ClnKqZRw7LOrPqTup07fz1HNP/AGIMv7m+7uW4D17y2sPh8O6hSqVXuB7UhzGwCKTQC/JmEZiCGgTMukzCAKrVosu3D572dVqucOYyUuz9SVaNuPgtY7sgQe7RZTpjpLRnI6krRwGA2fLhXr1MgqNDTTAl1Nz3XcHDuEMySRMEmxS2psDC06bBSrOr1XnRhpE5TNg0PIgQZeCR6gABlrf7Q/8AVCZdP/m+xPB3k78EkGf+lf8Av/8A7Tf8dRcY3X64JJIHCikkgQVm9JJBsbN/VVP4mf4aqxXJJIFvWpj/AO6Yb+PE/wD0JkkGSEQ733/83zTJIKwnSSQTb7p8PimekkgScJkkGvsvd4K6v7g/4h+CSSAJn3Prerq/6r/mHwKSSAKp+rP8bf8AC9DVNfAf4Qkkgmf1Y/jd/hpqDd/h80kkF+8eHxXonsN77/8AiU/jTSSQewpJJIP/2Q==" alt="" loading="lazy" />
 
                     <div class="music-overlay">
-                      <span>Kaimbelude</span>
+                      <h3>Kaimbelude</h3>
+                      <span>Khiry Lucas & FIXINATOR</span>
 
-                      <h3>Khiry Lucas & FIXINATOR</h3>
-
-                      <a href="https://ditto.fm/kaimbelude" target="_blank">
-                        <button class="opn-website">Stream Project</button>
-                      </a>
+                      <a href="https://ditto.fm/kaimbelude" target="_blank" rel="noopener" class="work-link">Stream Project <span aria-hidden="true">↗</span></a>
                     </div>
                   </div>
 
                   <!-- ITEM 4 -->
                   <div class="music-item">
                     <img
-                      src="data:image/jpeg;base64,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"
-                    />
+                      src="data:image/jpeg;base64,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" alt="" loading="lazy" />
 
                     <div class="music-overlay">
-                      <span>Mixed Feelings EP</span>
-
-                      <h3>TrxndyYK & FIXINATOR</h3>
+                      <h3>Mixed Feelings EP</h3>
+                      <span>TrxndyYK & FIXINATOR</span>
 
                       <a
                         href="https://ditto.fm/mixed-feelings-trendy"
                         target="_blank"
-                      >
-                        <button class="opn-website">Stream Project</button>
-                      </a>
+                       rel="noopener" class="work-link">Stream Project <span aria-hidden="true">↗</span></a>
                     </div>
                   </div>
                 </div>
@@ -428,17 +446,17 @@
 
               <div class="music-section" id="new-releases">
                 <div class="work-top">
-                  <h2>Latest Drops</h2>
+                  <h2>Latest releases</h2>
                   <p>Recently released music & previews</p>
                 </div>
 
                 <div class="release-banner">
-                  <img src="./assets/Music-items/Dont Lie To Me.jpg" />
+                  <img src="./assets/Music-items/Dont Lie To Me.jpg" alt="" loading="lazy" />
 
                   <div class="release-info">
                     <span>Ayanda Jiya</span>
 
-                    <h2>Dont Lie To Me</h2>
+                    <h2>Don’t Lie to Me</h2>
 
                     <p>
                       Production contribution on Ayanda Jiya’s latest single
@@ -447,9 +465,7 @@
                     <a
                       href="https://music.youtube.com/watch?v=vhfITupVfmc&si=v6aqcdIvYm-wkAIw"
                       target="_blank"
-                    >
-                      <button class="opn-website">Stream Project</button>
-                    </a>
+                     rel="noopener" class="work-link">Stream Project <span aria-hidden="true">↗</span></a>
                   </div>
                 </div>
               </div>
@@ -488,7 +504,7 @@
                       <p>120 BPM · Soul RnB</p>
 
                       <!-- AUDIO PLAYER -->
-                      <audio controls class="beat-player">
+                      <audio controls preload="none" class="beat-player">
                         <source
                           src="./assets/Music/Lead The Way - 120BPM.mp3"
                           type="audio/mpeg"
@@ -497,10 +513,8 @@
 
                       <!-- ENQUIRE -->
                       <a
-                        href="mailto:Omakganye11@gmail.com?subject=Beat Enquiry - OPIUM.wav"
-                      >
-                        <button class="opn-website">Enquire</button>
-                      </a>
+                        href="mailto:Omakganye11@gmail.com?subject=Beat%20Enquiry%20-%20Lead%20The%20Way"
+                       class="work-link">Enquire <span aria-hidden="true">↗</span></a>
                     </div>
                   </div>
 
@@ -511,7 +525,7 @@
                   <div class="beat-card">
                     <img
                       src="./assets/Beat Store/artcover1.png"
-                      alt="Nightdrive"
+                      alt="Roll Out cover"
                       class="beat-cover"
                     />
 
@@ -522,7 +536,7 @@
 
                       <p>142 BPM · R&B</p>
 
-                      <audio controls class="beat-player">
+                      <audio controls preload="none" class="beat-player">
                         <source
                           src="./assets/Music/Roll Out - 142BPM Final.mp3"
                           type="audio/mpeg"
@@ -530,10 +544,8 @@
                       </audio>
 
                       <a
-                        href="mailto:Omakganye11@gmail.com?subject=Beat Enquiry - NIGHTDRIVE.mp3"
-                      >
-                        <button class="opn-website">Enquire</button>
-                      </a>
+                        href="mailto:Omakganye11@gmail.com?subject=Beat%20Enquiry%20-%20Roll%20Out"
+                       class="work-link">Enquire <span aria-hidden="true">↗</span></a>
                     </div>
                   </div>
                 </div>
@@ -544,12 +556,8 @@
                   production enquiries, please get in touch directly.
                 </p>
                 <a
-                  href="mailto:Omakganye11@gmail.com?subject=Beat Enquiry - NIGHTDRIVE.mp3"
-                >
-                  <button class="opn-website" style="margin: 10px 0 0 5px">
-                    Official Beat Store
-                  </button>
-                </a>
+                  href="mailto:Omakganye11@gmail.com?subject=Beat%20Store%20Enquiry"
+                 class="work-link">Contact for licensing <span aria-hidden="true">↗</span></a>
               </div>
 
               <!-- ================================= -->
@@ -573,9 +581,7 @@
                     <a
                       href="https://music.youtube.com/watch?v=R_psyfVZFFc&si=JxxzSJazgJryewXG"
                       target="_blank"
-                    >
-                      <button class="opn-website">Open Song</button>
-                    </a>
+                     rel="noopener" class="work-link">Open Song <span aria-hidden="true">↗</span></a>
                   </div>
 
                   <!-- Feature Card2 -->
@@ -588,9 +594,7 @@
                     <a
                       href="https://music.youtube.com/watch?v=FNzYFvP-TkM&si=54QpNghDqHwS8cgj"
                       target="_blank"
-                    >
-                      <button class="opn-website">Open Song</button>
-                    </a>
+                     rel="noopener" class="work-link">Open Song <span aria-hidden="true">↗</span></a>
                   </div>
 
                   <!-- Feature Card4 -->
@@ -603,9 +607,7 @@
                     <a
                       href="https://music.youtube.com/playlist?list=OLAK5uy_nFSCmZoupJlkvc8xohIvafqcxN0oVtQ4k&si=6ueXioNl4V4c6d6w"
                       target="_blank"
-                    >
-                      <button class="opn-website">Open Song</button>
-                    </a>
+                     rel="noopener" class="work-link">Open Song <span aria-hidden="true">↗</span></a>
                   </div>
 
                   <!-- Feature Card4 -->
@@ -618,9 +620,7 @@
                     <a
                       href="https://music.youtube.com/playlist?list=OLAK5uy_ncVeQz43THIokoLSumFWtqEPnjrAPwG8o&si=C414NbZmrbj-dILh"
                       target="_blank"
-                    >
-                      <button class="opn-website">Open Song</button>
-                    </a>
+                     rel="noopener" class="work-link">Open Song <span aria-hidden="true">↗</span></a>
                   </div>
 
                   <!-- Feature Card4 -->
@@ -633,9 +633,7 @@
                     <a
                       href="https://music.youtube.com/playlist?list=OLAK5uy_lBfSkCYHfHbsLzW77uKVCbeBBHHUxm9CU&si=tzRNJi-vVKlVAHtD"
                       target="_blank"
-                    >
-                      <button class="opn-website">Open Song</button>
-                    </a>
+                     rel="noopener" class="work-link">Open Song <span aria-hidden="true">↗</span></a>
                   </div>
 
                   <!-- Feature Card3 -->
@@ -649,9 +647,7 @@
                     <a
                       href="https://music.youtube.com/watch?v=4oVkbeTuNe4&si=CrAK-qHvggAku7T1"
                       target="_blank"
-                    >
-                      <button class="opn-website">Open Song</button>
-                    </a>
+                     rel="noopener" class="work-link">Open Song <span aria-hidden="true">↗</span></a>
                   </div>
 
                   <!-- Feature Card5 -->
@@ -664,9 +660,7 @@
                     <a
                       href="https://music.youtube.com/playlist?list=OLAK5uy_mQx8pYkUP8swknJSDJuIEfNkHezRrUprM&si=by5bzby-m4linK-_"
                       target="_blank"
-                    >
-                      <button class="opn-website">Open Song</button>
-                    </a>
+                     rel="noopener" class="work-link">Open Song <span aria-hidden="true">↗</span></a>
                   </div>
 
                   <!-- Feature Card6 -->
@@ -679,9 +673,7 @@
                     <a
                       href="https://music.youtube.com/playlist?list=OLAK5uy_nh3MU1G-Se4nIwT3Bm-7SPGy9a0gMkU_Q&si=VKExxsKe_MAwGI31"
                       target="_blank"
-                    >
-                      <button class="opn-website">Open Song</button>
-                    </a>
+                     rel="noopener" class="work-link">Open Song <span aria-hidden="true">↗</span></a>
                   </div>
 
                   <!-- Feature Card7 -->
@@ -694,9 +686,7 @@
                     <a
                       href="https://music.youtube.com/playlist?list=OLAK5uy_kKx4EXMBFb6OpZo-AZfGuKcwy3eYIEJRE&si=RNS7mW-JiKh7s9pT"
                       target="_blank"
-                    >
-                      <button class="opn-website">Open Song</button>
-                    </a>
+                     rel="noopener" class="work-link">Open Song <span aria-hidden="true">↗</span></a>
                   </div>
                 </div>
               </div>
@@ -735,13 +725,8 @@
                 <a
                   href="./assets/Polished Fixinator Rate Card with Amber Accents/Polished Fixinator Rate Card with Amber Accents .pdf"
                   target="_blank"
-                >
-                  <button class="opn-website" style="padding-right: 10px">
-                    Download Rate Card
-                  </button>
-                </a>
+                 rel="noopener" class="work-link">Download Rate Card <span aria-hidden="true">↗</span></a>
               </div>
-            </div>
           </div>
         </div>
       </div>
@@ -751,248 +736,205 @@
       <div class="app-window" id="archive-window">
         <div class="window-header">
           <div class="window-controls">
-            <span class="close-btn"></span>
-            <span class="minimize-btn"></span>
-            <span class="expand-btn"></span>
+            <button class="close-btn" type="button" aria-label="Close Archive"></button>
+            <button class="minimize-btn" type="button" aria-label="Minimize Archive"></button>
+            <button class="expand-btn" type="button" aria-label="Resize Archive"></button>
           </div>
-
-          <p></p>
+          <p>Archive</p>
         </div>
 
-        <div class="window-content">
-          <div class="archive-wrapper">
-            <!-- SIDEBAR -->
-            <div class="work-sidebar3">
-              <h3 class="sidebar-title">Audio Workspace</h3>
+        <div class="window-content archive-content">
+          <div class="work-collection">
+            <header class="work-intro">
+              <p class="work-eyebrow">OLEFILE MAKGANYE / ARCHIVE</p>
+              <h2>Creative archive</h2>
+              <p>Design assets, photographs, studio recordings, and experiments.</p>
+            </header>
 
-              <div
-                class="sidebar-item active-sidebar"
-                data-tab="recovered-files"
-              >
-                Recovered Files
-              </div>
-
-              <div class="sidebar-item" data-tab="studio-sessions">
-                Studio Sessions
-              </div>
-
-              <div class="sidebar-item" data-tab="photography">Photography</div>
-
-              <div class="sidebar-item" data-tab="experiments">Experiments</div>
-
-              <div class="sidebar-item" data-tab="unreleased">Unreleased</div>
+            <div class="work-filters" role="group" aria-label="Archive categories">
+              <button type="button" data-archive-tab="recovered-files" aria-controls="recovered-files" aria-pressed="true">Recovered Files</button>
+              <button type="button" data-archive-tab="studio-sessions" aria-controls="studio-sessions" aria-pressed="false">Studio Sessions</button>
+              <button type="button" data-archive-tab="photography" aria-controls="photography" aria-pressed="false">Photography</button>
+              <button type="button" data-archive-tab="experiments" aria-controls="experiments" aria-pressed="false">Experiments</button>
+              <button type="button" data-archive-tab="unreleased" aria-controls="unreleased" aria-pressed="false">Unreleased</button>
             </div>
 
-            <!-- Main -->
-            <div class="archive-main">
-              <!-- ================================= -->
-              <!-- CATALOGUE -->
-              <!-- ================================= -->
-              <div class="archive-section active-section" id="recovered-files">
-                <div class="archive-top">
-                  <h2>Recovered Files</h2>
-                  <p>Old Ideas, Early Draft and Pieces of Process</p>
-                </div>
-                <div class="archive-catalogue">
-                  <!-- card1 -->
-                  <div class="archive-card">
-                    <img
-                      src="./assets/Beat Store/I’m a creative developer and music producer based in Johannesburg, working across digital experiences and sound. My work blends technology and creativity—whether I’m building immersive websites or (1).png"
-                      alt=""
-                    />
-
-                    <div class="archive-info">
-                      <span class="archive-date"> 2024-11-02 23:41:07 </span>
-
-                      <h4>ARCHIVE_001.jpg</h4>
-
-                      <p>City Lights Concept</p>
-
-                      <small>2.4 MB</small>
-                    </div>
+            <section class="archive-section" id="recovered-files">
+              <header class="archive-heading">
+                <h3>Recovered Files</h3>
+                <p>Design assets from the portfolio and Beat Store.</p>
+              </header>
+              <div class="work-entries">
+                <article class="work-entry">
+                  <div class="work-media"><img src="./assets/OS ui.png" alt="Portfolio OS design preview" loading="lazy" /></div>
+                  <div class="work-entry-body">
+                    <p class="work-meta">PNG</p>
+                    <h4>Portfolio OS design</h4>
+                    <a class="work-link" href="./assets/OS ui.png" target="_blank" rel="noopener">View image <span aria-hidden="true">↗</span></a>
                   </div>
-
-                  <!-- card2 -->
-                  <div class="archive-card">
-                    <img
-                      src="./assets/Beat Store/I’m a creative developer and music producer based in Johannesburg, working across digital experiences and sound. My work blends technology and creativity—whether I’m building immersive websites or (1).png"
-                      alt=""
-                    />
-
-                    <div class="archive-info">
-                      <span class="archive-date"> 2024-11-02 23:41:07 </span>
-
-                      <h4>ARCHIVE_001.jpg</h4>
-
-                      <p>City Lights Concept</p>
-
-                      <small>2.4 MB</small>
-                    </div>
+                </article>
+                <article class="work-entry">
+                  <div class="work-media"><img src="./assets/Portfolio Cover.png" alt="Portfolio cover preview" loading="lazy" /></div>
+                  <div class="work-entry-body">
+                    <p class="work-meta">PNG</p>
+                    <h4>Portfolio cover</h4>
+                    <a class="work-link" href="./assets/Portfolio Cover.png" target="_blank" rel="noopener">View image <span aria-hidden="true">↗</span></a>
                   </div>
-
-                  <!-- card3 -->
-                  <div class="archive-card">
-                    <img
-                      src="./assets/Beat Store/I’m a creative developer and music producer based in Johannesburg, working across digital experiences and sound. My work blends technology and creativity—whether I’m building immersive websites or (1).png"
-                      alt=""
-                    />
-
-                    <div class="archive-info">
-                      <span class="archive-date"> 2024-11-02 23:41:07 </span>
-
-                      <h4>ARCHIVE_001.jpg</h4>
-
-                      <p>City Lights Concept</p>
-
-                      <small>2.4 MB</small>
-                    </div>
+                </article>
+                <article class="work-entry">
+                  <div class="work-media"><img src="./assets/Beat Store/artcover1.png" alt="Beat Store artwork preview" loading="lazy" /></div>
+                  <div class="work-entry-body">
+                    <p class="work-meta">PNG</p>
+                    <h4>Beat Store artwork</h4>
+                    <a class="work-link" href="./assets/Beat Store/artcover1.png" target="_blank" rel="noopener">View image <span aria-hidden="true">↗</span></a>
                   </div>
-
-                  <!-- card4 -->
-                  <div class="archive-card">
-                    <img
-                      src="./assets/Beat Store/I’m a creative developer and music producer based in Johannesburg, working across digital experiences and sound. My work blends technology and creativity—whether I’m building immersive websites or (1).png"
-                      alt=""
-                    />
-
-                    <div class="archive-info">
-                      <span class="archive-date"> 2024-11-02 23:41:07 </span>
-
-                      <h4>ARCHIVE_001.jpg</h4>
-
-                      <p>City Lights Concept</p>
-
-                      <small>2.4 MB</small>
-                    </div>
-                  </div>
-
-                  <!-- card5 -->
-                  <div class="archive-card">
-                    <img
-                      src="./assets/Beat Store/I’m a creative developer and music producer based in Johannesburg, working across digital experiences and sound. My work blends technology and creativity—whether I’m building immersive websites or (1).png"
-                      alt=""
-                    />
-
-                    <div class="archive-info">
-                      <span class="archive-date"> 2024-11-02 23:41:07 </span>
-
-                      <h4>ARCHIVE_001.jpg</h4>
-
-                      <p>City Lights Concept</p>
-
-                      <small>2.4 MB</small>
-                    </div>
-                  </div>
-
-                  <!-- card6 -->
-                  <div class="archive-card">
-                    <img
-                      src="./assets/Beat Store/I’m a creative developer and music producer based in Johannesburg, working across digital experiences and sound. My work blends technology and creativity—whether I’m building immersive websites or (1).png"
-                      alt=""
-                    />
-
-                    <div class="archive-info">
-                      <span class="archive-date"> 2024-11-02 23:41:07 </span>
-
-                      <h4>ARCHIVE_001.jpg</h4>
-
-                      <p>City Lights Concept</p>
-
-                      <small>2.4 MB</small>
-                    </div>
-                  </div>
-                </div>
+                </article>
               </div>
-            </div>
+            </section>
+
+            <section class="archive-section" id="studio-sessions" hidden>
+              <header class="archive-heading">
+                <h3>Studio Sessions</h3>
+                <p>Instrumentals and recordings from the studio.</p>
+              </header>
+              <div class="work-entries">
+                <article class="work-entry">
+                  <div class="work-entry-body">
+                    <p class="work-meta">MP3 · 117 BPM</p>
+                    <h4>Guitar Rig</h4>
+                    <audio controls preload="none" aria-label="Preview Guitar Rig" src="./assets/audio/Guitar Rig -  117BPM Final.mp3"></audio>
+                    <a class="work-link" href="./assets/audio/Guitar Rig -  117BPM Final.mp3" target="_blank" rel="noopener">Open audio <span aria-hidden="true">↗</span></a>
+                  </div>
+                </article>
+              </div>
+            </section>
+
+            <section class="archive-section" id="photography" hidden>
+              <header class="archive-heading">
+                <h3>Photography</h3>
+                <p>Photographs from the archive.</p>
+              </header>
+              <div class="work-entries">
+                <article class="work-entry">
+                  <div class="work-media"><img src="./assets/DJI_0336.jpg" alt="Aerial photograph preview" loading="lazy" /></div>
+                  <div class="work-entry-body">
+                    <p class="work-meta">JPEG</p>
+                    <h4>Aerial photograph</h4>
+                    <a class="work-link" href="./assets/DJI_0336.jpg" target="_blank" rel="noopener">View image <span aria-hidden="true">↗</span></a>
+                  </div>
+                </article>
+              </div>
+            </section>
+
+            <section class="archive-section" id="experiments" hidden>
+              <header class="archive-heading">
+                <h3>Experiments</h3>
+                <p>Notes and prototypes from creative development.</p>
+              </header>
+              <div class="work-entries">
+                <article class="work-entry">
+                  <div class="work-entry-body">
+                    <p class="work-meta">Text file</p>
+                    <h4>Planet Orbital System</h4>
+                    <a class="work-link" href="./assets/Planet Orbital System.txt" target="_blank" rel="noopener">Read notes <span aria-hidden="true">↗</span></a>
+                  </div>
+                </article>
+              </div>
+            </section>
+
+            <section class="archive-section" id="unreleased" hidden>
+              <header class="archive-heading">
+                <h3>Unreleased</h3>
+                <p>Work-in-progress music and early ideas.</p>
+              </header>
+              <div class="work-entries">
+                <article class="work-entry">
+                  <div class="work-entry-body">
+                    <p class="work-meta">MP3 · 120 BPM</p>
+                    <h4>Bra KR Idea 2</h4>
+                    <audio controls preload="none" aria-label="Preview Bra KR Idea 2" src="./assets/audio/Bra KR Idea2 - 120BPM.mp3"></audio>
+                    <a class="work-link" href="./assets/audio/Bra KR Idea2 - 120BPM.mp3" target="_blank" rel="noopener">Open audio <span aria-hidden="true">↗</span></a>
+                  </div>
+                </article>
+              </div>
+            </section>
           </div>
         </div>
       </div>
-    
 
 <!-- ======================================== -->
 <!-- TRASH WINDOW -->
 <!-- ======================================== -->
 
-<div class="app-window" id="trash-window">
-  <!-- HEADER -->
+      <div class="app-window" id="trash-window">
+        <div class="window-header">
+          <div class="window-controls">
+            <button class="close-btn" type="button" aria-label="Close Trash"></button>
+            <button class="minimize-btn" type="button" aria-label="Minimize Trash"></button>
+            <button class="expand-btn" type="button" aria-label="Resize Trash"></button>
+          </div>
+          <p>Trash</p>
+        </div>
 
-  <div class="window-header">
-    <div class="window-controls">
-      <span class="close-btn"></span>
-      <span class="minimize-btn"></span>
-      <span class="expand-btn"></span>
-    </div>
+        <div class="window-content trash-content">
+          <div class="work-collection">
+            <header class="work-intro">
+              <p class="work-eyebrow">OLEFILE MAKGANYE / TRASH</p>
+              <h2>Recycle Bin</h2>
+              <p>Deleted items are listed for reference.</p>
+            </header>
 
-    <p>TRASH</p>
-  </div>
-
-  <!-- CONTENT -->
-
-  <div class="trash-content">
-
-    <div class="trash-top">
-      <h2>Recycle Bin</h2>
-
-      <p>
-        Files that should have stayed deleted.
-      </p>
-    </div>
-
-    <div class="trash-grid">
-
-      <div class="trash-card">
-        <img src="./assets/Icons/photoshop-file.png" alt="" />
-
-        <h3>final-final-v2.psd</h3>
-
-        <p>Deleted 2024</p>
+            <div class="trash-list-heading">
+              <h3>Deleted files</h3>
+              <span>6 items</span>
+            </div>
+            <ul class="trash-list" aria-label="Deleted files">
+              <li class="trash-entry">
+                <img src="./assets/Icons/photoshop-file.png" alt="" />
+                <div>
+                  <h3>final-final-real-final.psd</h3>
+                  <p>Photoshop document · Deleted <time datetime="2025">2025</time></p>
+                </div>
+              </li>
+              <li class="trash-entry">
+                <img src="./assets/Icons/js-file.png" alt="" />
+                <div>
+                  <h3>dont-touch-this.js</h3>
+                  <p>JavaScript file · Deleted <time datetime="2025">2025</time></p>
+                </div>
+              </li>
+              <li class="trash-entry">
+                <img src="./assets/Icons/photoshop-file.png" alt="" />
+                <div>
+                  <h3>final-final-v2.psd</h3>
+                  <p>Photoshop document · Deleted <time datetime="2024">2024</time></p>
+                </div>
+              </li>
+              <li class="trash-entry">
+                <img src="./assets/Icons/photoshop-file.png" alt="" />
+                <div>
+                  <h3>final-final-v3.psd</h3>
+                  <p>Photoshop document · Deleted <time datetime="2024">2024</time></p>
+                </div>
+              </li>
+              <li class="trash-entry">
+                <img src="./assets/Icons/FL studio icon.png" alt="" />
+                <div>
+                  <h3>broken-beat.flp</h3>
+                  <p>FL Studio project · Deleted <time datetime="2024">2024</time></p>
+                </div>
+              </li>
+              <li class="trash-entry">
+                <img src="./assets/Icons/zip-folder.png" alt="" />
+                <div>
+                  <h3>old_portfolio_v1.zip</h3>
+                  <p>ZIP archive · Deleted <time datetime="2023">2023</time></p>
+                </div>
+              </li>
+            </ul>
+          </div>
+        </div>
       </div>
-
-      <div class="trash-card">
-        <img src="./assets/Icons/photoshop-file.png" alt="" />
-
-        <h3>final-final-v3.psd</h3>
-
-        <p>Deleted 2024</p>
-      </div>
-
-      <div class="trash-card">
-        <img src="./assets/Icons/photoshop-file.png" alt="" />
-
-        <h3>final-final-real-final.psd</h3>
-
-        <p>Deleted 2025</p>
-      </div>
-
-      <div class="trash-card">
-        <img src="./assets/Icons/js-file.png" alt="" />
-
-        <h3>dont-touch-this.js</h3>
-
-        <p>Deleted 2025</p>
-      </div>
-
-      <div class="trash-card">
-        <img src="./assets/Icons/zip-folder.png" alt="" />
-
-        <h3>old_portfolio_v1.zip</h3>
-
-        <p>Deleted 2023</p>
-      </div>
-
-      <div class="trash-card">
-        <img src="./assets/Icons/FL studio icon.png" alt="" />
-
-        <h3>broken-beat.flp</h3>
-
-        <p>Deleted 2024</p>
-      </div>
-
-      
-
-    </div>
-  </div>
-</div>
 
       <!-- ======================================== -->
       <!-- SETTINGS WINDOW -->
@@ -1149,37 +1091,37 @@
         ></div>
 
         <div
-          class="wallpaper-option active-wallpaper"
+          class="wallpaper-option"
           data-wallpaper="./assets/desktop-images/background3.png"
           style="background-image:url('./assets/desktop-images/background3.png')"
         ></div>
 
         <div
-          class="wallpaper-option active-wallpaper"
+          class="wallpaper-option"
           data-wallpaper="./assets/desktop-images/background4.png"
           style="background-image:url('./assets/desktop-images/background4.png')"
         ></div>
 
         <div
-          class="wallpaper-option active-wallpaper"
+          class="wallpaper-option"
           data-wallpaper="./assets/desktop-images/background5.png"
           style="background-image:url('./assets/desktop-images/background5.png')"
         ></div>
 
          <div
-          class="wallpaper-option active-wallpaper"
+          class="wallpaper-option"
           data-wallpaper="./assets/desktop-images/background6.png"
           style="background-image:url('./assets/desktop-images/background6.png')"
         ></div>
 
          <div
-          class="wallpaper-option active-wallpaper"
+          class="wallpaper-option"
           data-wallpaper="./assets/desktop-images/background7.png"
           style="background-image:url('./assets/desktop-images/background7.png')"
         ></div>
 
          <div
-          class="wallpaper-option active-wallpaper"
+          class="wallpaper-option"
           data-wallpaper="./assets/desktop-images/background8.png"
           style="background-image:url('./assets/desktop-images/background8.png')"
         ></div>
@@ -1239,17 +1181,10 @@
     <div class="settings-option">
 
       <div>
-        <h3>Start In Fullscreen</h3>
-        <p>Launch OS in fullscreen mode</p>
+        <h3>Fullscreen</h3>
+        <p>Switch between fullscreen and windowed mode</p>
       </div>
-
-      <label class="switch">
-        <input
-          type="checkbox"
-          id="fullscreenStartup"
-        >
-        <span class="slider"></span>
-      </label>
+      <button class="reset-btn" id="settings-fullscreen" type="button">Toggle fullscreen</button>
 
     </div>
 
@@ -1277,7 +1212,6 @@
         <input
           type="checkbox"
           id="uiSoundToggle"
-          checked
         >
         <span class="slider"></span>
       </label>
@@ -1288,14 +1222,13 @@
 
       <div>
         <h3>Startup Sound</h3>
-        <p>Play sound when OS loads</p>
+        <p>Play a welcome sound on your first interaction</p>
       </div>
 
       <label class="switch">
         <input
           type="checkbox"
           id="startupSoundToggle"
-          checked
         >
         <span class="slider"></span>
       </label>
@@ -1356,7 +1289,7 @@
         <p>Clear saved preferences</p>
       </div>
 
-      <button class="reset-btn">
+      <button class="reset-btn" id="resetOS" type="button">
         Reset
       </button>
 
@@ -1373,85 +1306,85 @@
       <!-- ======================================== -->
 
       <div class="app-window" id="system-window">
-        <!-- HEADER -->
-
         <div class="window-header">
           <div class="window-controls">
-            <span class="close-btn"></span>
-            <span class="minimize-btn"></span>
-            <span class="expand-btn"></span>
+            <button class="close-btn" type="button" aria-label="Close About"></button>
+            <button class="minimize-btn" type="button" aria-label="Minimize About"></button>
+            <button class="expand-btn" type="button" aria-label="Resize About"></button>
           </div>
-
-          <p>SYSTEM INFO</p>
+          <p>ABOUT / CV</p>
         </div>
 
-        <!-- CONTENT -->
-
-        <div class="window-content system-content">
-          <div class="w-content-holder">
-            <!-- LEFT -->
-
-            <div class="system-left-panel">
-              <div class="system-avatar">
-                <img src="./assets/images/profile-image.png" alt="Olefile" />
+        <div class="window-content cv-content">
+          <div class="work-collection cv-collection">
+            <header class="work-intro cv-hero">
+              <div>
+                <p class="work-eyebrow">CURRICULUM VITAE / 2026</p>
+                <h2>Olefile Makganye</h2>
+                <p>Software Developer &amp; Creative Developer · Midrand, South Africa</p>
+                <div class="cv-links">
+                  <a class="work-link" href="./assets/Olefile Makganye 2-page A4 CV.pdf" target="_blank" rel="noopener">Open CV (PDF) ↗</a>
+                  <a class="work-link" href="./assets/Olefile Makganye 2-page A4 CV.pdf" download>Download PDF ↓</a>
+                </div>
               </div>
+              <img src="./assets/images/profile-image.png" alt="Olefile Makganye" />
+            </header>
 
-              <h2>Olefile Makganye</h2>
+            <section class="cv-section" data-cv-reveal>
+              <h3>Profile</h3>
+              <p>I build responsive websites, web applications, and interactive experiences that combine front-end development, back-end integration, motion, and 3D. My background spans UI/UX, digital marketing, music production, and audio engineering.</p>
+            </section>
 
-              <p>Creative Developer / Interactive Designer / Music Producer</p>
+            <section class="cv-section" data-cv-reveal>
+              <h3>Experience</h3>
+              <ul class="cv-list">
+                <li><strong>Valley Group · Software Developer</strong><p class="cv-date">June 2026 – Present</p><p>Build and maintain web products, from responsive interfaces to back-end integration, databases, and deployment.</p></li>
+                <li><strong>Lesaka YES Programme · Web Development / Digital Marketing</strong><p class="cv-date">June 2025 – June 2026</p><p>Supported website development, digital communications, troubleshooting, and maintenance.</p></li>
+                <li><strong>Rayna Music · Audio Engineer</strong><p class="cv-date">January 2025 – June 2025</p><p>Worked on recording, mixing, mastering, live sound, and studio operations.</p></li>
+              </ul>
+            </section>
 
-              <div class="system-status">ONLINE</div>
-            </div>
+            <section class="cv-section" data-cv-reveal>
+              <h3>Selected projects</h3>
+              <ul class="cv-list">
+                <li><strong>F2F Food Co. · Booking and ordering</strong><p>Multi-step booking with uploads, a review step, and an Express.js and MongoDB back end.</p></li>
+                <li><strong>Personal portfolio · Interactive web</strong><p>Animated interfaces and 3D experiences using Three.js, Blender, and GSAP ScrollTrigger.</p></li>
+                <li>
+                  <strong>Imisi Foundation · Website</strong>
+                  <p>Responsive website with GSAP motion and an interactive 3D basket modelled in Blender and integrated with Three.js.</p>
+                  <a class="work-link" href="https://imisi-website-main-2.pages.dev/" target="_blank" rel="noopener">Visit website ↗</a>
+                </li>
+              </ul>
+            </section>
 
-            <!-- RIGHT -->
+            <section class="cv-section" data-cv-reveal>
+              <h3>Tech stack</h3>
+              <ul class="cv-list">
+                <li><strong>Front end</strong><p>HTML, CSS, SCSS, JavaScript, React, Next.js, Tailwind CSS, and Bootstrap.</p></li>
+                <li><strong>Back end &amp; APIs</strong><p>Node.js, Express.js, PHP, REST APIs, PHPMailer, and EmailJS.</p></li>
+                <li><strong>Databases</strong><p>MySQL, MongoDB, SQL, and phpMyAdmin.</p></li>
+                <li><strong>CMS</strong><p>WordPress and Elementor.</p></li>
+                <li><strong>Motion, 3D &amp; audio</strong><p>GSAP, ScrollTrigger, Three.js, GLTFLoader, Blender, FL Studio, Logic, and Pro Tools.</p></li>
+                <li><strong>Data &amp; analytics</strong><p>Power BI and Google Analytics.</p></li>
+                <li><strong>Development tools</strong><p>Git, GitHub, Postman, VS Code, and XAMPP.</p></li>
+                <li><strong>AI &amp; automation</strong><p>API integration, automation, and AI-assisted integration.</p></li>
+              </ul>
+            </section>
 
-            <div class="system-right-panel">
-              <div class="spec-card">
-                <span>OS</span>
-
-                <h3>Olefile Makganye OS</h3>
+            <section class="cv-section" data-cv-reveal>
+              <h3>Education &amp; languages</h3>
+              <ul class="cv-list">
+                <li><strong>North-West University</strong><p>Bachelor of Computer Science &amp; Electronics · Completed 2024</p></li>
+                <li><strong>Languages</strong><p>English and Setswana</p></li>
+              </ul>
+              <div class="cv-links">
+                <a class="work-link" href="https://github.com/o-makganye" target="_blank" rel="noopener">GitHub ↗</a>
+                <a class="work-link" href="https://www.linkedin.com/in/olefile-makganye" target="_blank" rel="noopener">LinkedIn ↗</a>
               </div>
-
-              <div class="spec-card">
-                <span>Runtime</span>
-
-                <h3>
-                  HTML <br />
-                  JavaScript <br />
-                  React
-                </h3>
-              </div>
-
-              <div class="spec-card">
-                <span>Motion Engine</span>
-
-                <h3>GSAP + ScrollTrigger</h3>
-              </div>
-
-              <div class="spec-card">
-                <span>DAW Engine</span>
-
-                <h3>
-                  FL Studio <br />
-                  Logic Pro <br />
-                  Pro Tools
-                </h3>
-              </div>
-
-              <div class="spec-card">
-                <span>Current Focus</span>
-
-                <h3>
-                  Web Sites <br />
-                  Web App <br />
-                  Software
-                </h3>
-              </div>
-            </div>
+            </section>
           </div>
         </div>
       </div>
-
 
 <!-- ========================================
      ARCADE WINDOW
@@ -1516,7 +1449,7 @@
                     <h2>Air Hockey</h2>
 
                     <p>
-                        Physics • AI • Multiplayer
+                        Single player • Play against the CPU
                     </p>
 
                     <button
@@ -1832,42 +1765,20 @@
 
       <!-- ------------------------------------Bottom Task Bar --------------------------- -->
 
-      <div class="task-bar">
-        <!-- START BUTTON -->
-
-        <div class="start-button">
-          <div class = "start-menu-logo"></div>
-        </div>
-
-        <!-- TASKBAR APPS -->
-
-        <div class="taskbar-apps">
-          <div class="taskbar-icon" id="email-taskbar">
-            <img
-              src="./assets/Icons/communication.png"
-              style="height: 60px; width: 50px"
-              alt="Files"
-            />
-          </div>
-          <!-- ================================= -->
-          <!-- EMAIL MODAL -->
-          <!-- ================================= -->
-
-          <div class="email-modal" id="emailModal">
-            <div class="email-window">
+            <div class="app-window email-window" id="email-window">
               <!-- TOP BAR -->
-              <div class="email-topbar">
+              <div class="window-header email-topbar">
                 <div class="window-controls">
-                  <span class="close-btn email-close"></span>
-                  <span class="minimize-btn"></span>
-                  <span class="expand-btn"></span>
+                  <button class="close-btn" type="button" aria-label="Close contact window"></button>
+                  <button class="minimize-btn" type="button" aria-label="Minimize contact window"></button>
+                  <button class="expand-btn" type="button" aria-label="Resize contact window"></button>
                 </div>
 
                 <p>Compose Message</p>
               </div>
 
               <!-- BODY -->
-              <div class="email-body">
+              <div class="window-content email-body">
                 <div class="email-wrapper">
                   <!-- LEFT -->
                   <div class="email-sidebar">
@@ -1890,28 +1801,30 @@
                     <div class="email-section active-section" id="compose">
                       <form id="contact-form">
                         <div class="input-group">
-                          <label>Name</label>
-                          <input type="text" name="user_name" required />
+                          <label for="contact-user_name">Name</label>
+                          <input type="text" id="contact-user_name" name="user_name" required />
                         </div>
 
                         <div class="input-group">
-                          <label>Email</label>
-                          <input type="email" name="user_email" required />
+                          <label for="contact-user_email">Email</label>
+                          <input type="email" id="contact-user_email" name="user_email" required />
                         </div>
 
                         <div class="input-group">
-                          <label>Subject</label>
-                          <input type="text" name="subject" required />
+                          <label for="contact-subject">Subject</label>
+                          <input type="text" id="contact-subject" name="subject" required />
                         </div>
 
                         <div class="input-group">
-                          <label>Message</label>
-                          <textarea name="message" rows="8" required></textarea>
+                          <label for="contact-message">Message</label>
+                          <textarea id="contact-message" name="message" rows="5" required></textarea>
                         </div>
 
                         <button type="submit" class="send-btn">
                           Send Message
                         </button>
+                        <p id="contact-status" role="status"></p>
+                        <a class="contact-direct" href="mailto:Omakganye11@gmail.com">Email me directly</a>
                       </form>
                     </div>
                     <!-- NOTIFICATIONS -->
@@ -1974,8 +1887,24 @@
                 </div>
               </div>
             </div>
-          </div>
 
+      <div class="task-bar">
+        <!-- START BUTTON -->
+
+        <div class="start-button">
+          <div class = "start-menu-logo"></div>
+        </div>
+
+        <!-- TASKBAR APPS -->
+
+        <div class="taskbar-apps">
+          <button class="taskbar-icon" id="email-taskbar" type="button" aria-label="Open contact form">
+            <img
+              src="./assets/Icons/communication.png"
+              style="height: 60px; width: 50px"
+              alt="Files"
+            />
+          </button>
           <div class="taskbar-icon" id="music-taskbar">
             <img
               src="./assets/Icons/FL studio icon.png"
@@ -1984,14 +1913,13 @@
             />
           </div>
 
-          <a href="https://www.facebook.com/fixi.nator.1" target="__blank">
-            <div class="taskbar-icon" id="archive-taskbar">
-              <img
-                src="./assets/Icons/facebook.png"
-                style="height: 50px; width: 50px"
-                alt="Facebook"
-              /></div
-          ></a>
+          <div class="taskbar-icon" id="archive-taskbar" title="Archive">
+            <img src="./assets/Icons/folder.png" alt="Archive" />
+          </div>
+
+          <a class="taskbar-icon" href="https://www.facebook.com/fixi.nator.1" target="_blank" title="Facebook">
+            <img src="./assets/Icons/facebook.png" alt="Facebook" />
+          </a>
 
           <div class="taskbar-icon" id="finder-taskbar">
             <img
@@ -2028,7 +1956,7 @@
               /></div
           ></a>
 
-          <div class="taskbar-icon">
+          <div class="taskbar-icon" id="trash-taskbar">
             <img
               src="./assets/Icons/Trash-icon.png"
               style="height: 55px; width: 50px"
@@ -2083,7 +2011,7 @@
                 </div></a
               >
 
-              <div class="pinned-app" id="music-taskbar">
+              <div class="pinned-app" data-window="music-window">
                 <img
                   src="./assets/Icons/FL studio icon.png"
                   style="height: 60px; width: 60px"
@@ -2092,14 +2020,14 @@
                 <span>FL Studio</span>
               </div>
 
-              <div class="pinned-app">
+              <button class="pinned-app" id="pinned-email" type="button" data-window="email-window">
                 <img
                   src="./assets/Icons/communication.png"
                   style="height: 60px; width: 60px"
                   alt="Files"
                 />
                 <span>Email</span>
-              </div>
+              </button>
 
               <a href="https://github.com/Fixinator314" target="__blank">
                 <div class="pinned-app">
@@ -2112,14 +2040,14 @@
                 </div></a
               >
 
-              <div class="pinned-app">
+              <a class="pinned-app" href="./internet.html" target="_blank">
                 <img
                   src="./assets/Icons/web.png"
                   style="height: 60px; width: 60px"
                   alt="Internet"
                 />
                 <span>Internet</span>
-              </div>
+              </a>
             </div>
           </div>
         </div>
@@ -2127,9 +2055,8 @@
     </section>
 
     <!-- EMAILJS CDN -->
-    <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+    <script async src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
 
-    <script src="gsap.js"></script>
     <script src="script.js"></script>
 
   </body>

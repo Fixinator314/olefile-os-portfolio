@@ -7,11 +7,14 @@
   gap: 10px;
 }
 
-.window-controls span {
+.window-controls span,
+.window-controls button {
   width: 14px;
   height: 14px;
 
   border-radius: 20%;
+  border: 0;
+  cursor: pointer;
 }
 
 .close-btn {

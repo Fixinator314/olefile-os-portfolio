@@ -42,11 +42,6 @@
 .work-sidebar3 {
   min-width: 0;
 }
-#music-window .window-content {
-  height: calc(100% - 60px);
-
-  overflow: hidden;
-}
 
 .sidebar-title {
   font-size: 14px;
