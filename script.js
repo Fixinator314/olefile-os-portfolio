@@ -644,6 +644,152 @@ window.addEventListener("DOMContentLoaded", () => {
     openAppWindow(document.getElementById("arcade-window"));
   });
 
+  {
+    const searchEntries = [];
+
+    function addSearchApp(title, windowId, keywords = "") {
+      searchEntries.push({
+        title, type: "App", keywords,
+        open: () => openAppWindow(document.getElementById(windowId), windowTaskbars.get(windowId)),
+      });
+    }
+
+    desktopIcons.forEach((icon) => {
+      const title = icon.querySelector("span:last-child")?.textContent.trim();
+      if (title && icon.dataset.window) {
+        addSearchApp(title, icon.dataset.window, {
+          "system-window": "cv resume biography",
+          "arcade-window": "game air hockey",
+          "finder-window": "projects portfolio websites services",
+        }[icon.dataset.window]);
+      } else if (title && icon.href) {
+        searchEntries.push({ title, type: "PDF", href: icon.href, keywords: "cv resume curriculum vitae" });
+      }
+    });
+
+    addSearchApp("Settings", "settings-window", "wallpaper theme sound preferences");
+    addSearchApp("Contact", "email-window", "email message compose");
+    const internet = startMenu?.querySelector('a[href="./internet.html"]');
+    if (internet) {
+      searchEntries.push({ title: "Internet", type: "Page", href: internet.href, keywords: "online book flipbook" });
+    }
+
+    workEntries.forEach((entry) => {
+      const title = entry.querySelector("h3")?.textContent.trim();
+      if (!title) return;
+      const link = entry.querySelector("a[href]");
+      const action = entry.querySelector("button");
+      const service = entry.dataset.workCategory === "services";
+      searchEntries.push({
+        title,
+        type: service ? "Service" : "Project",
+        keywords: entry.textContent,
+        href: link?.href,
+        open: () => {
+          if (action) {
+            action.click();
+            return;
+          }
+          openAppWindow(document.getElementById("finder-window"), "finder-taskbar");
+          document.querySelector('[data-work-filter="services"]')?.click();
+          entry.scrollIntoView({ block: "nearest" });
+        },
+      });
+    });
+
+    document.querySelectorAll("#archive-window .work-entry").forEach((entry) => {
+      const link = entry.querySelector("a[href]");
+      const title = entry.querySelector("h4")?.textContent.trim();
+      if (link && title) searchEntries.push({ title, type: "Archive", href: link.href, keywords: entry.textContent });
+    });
+
+    for (const [formId, inputId, panelId, statusId, listId] of [
+      ["start-search", "start-search-input", "start-search-results", "start-search-status", "start-search-list"],
+    ]) {
+      const searchForm = document.getElementById(formId);
+      const searchInput = document.getElementById(inputId);
+      const searchPanel = document.getElementById(panelId);
+      const searchStatus = document.getElementById(statusId);
+      const searchList = document.getElementById(listId);
+      if (!searchForm || !searchInput || !searchPanel || !searchStatus || !searchList) continue;
+
+      function closeSearch() {
+        searchPanel.hidden = true;
+      }
+
+      function renderSearch() {
+        document.querySelectorAll(".search-panel").forEach((panel) => {
+          if (panel !== searchPanel) panel.hidden = true;
+        });
+        const query = searchInput.value.trim().toLowerCase();
+        searchList.replaceChildren();
+        if (!query) {
+          closeSearch();
+          return;
+        }
+
+        const terms = query.split(/\s+/);
+        const matches = searchEntries.filter(({ title, type, keywords }) =>
+          terms.every((term) => `${title} ${type} ${keywords ?? ""}`.toLowerCase().includes(term)),
+        ).sort((a, b) =>
+          Number(b.title.toLowerCase().startsWith(query)) - Number(a.title.toLowerCase().startsWith(query)),
+        );
+
+        searchStatus.textContent = matches.length
+          ? `${matches.length} ${matches.length === 1 ? "result" : "results"}`
+          : "No matches found.";
+        matches.forEach(({ title, type, href, open }) => {
+          const item = document.createElement("li");
+          const result = document.createElement(href ? "a" : "button");
+          const label = document.createElement("span");
+          label.textContent = type;
+          result.append(title, label);
+
+          if (href) {
+            result.href = href;
+            result.target = "_blank";
+            result.rel = "noopener";
+          } else {
+            result.type = "button";
+          }
+
+          result.addEventListener("click", () => {
+            closeSearch();
+            setStartMenuOpen(false);
+            if (!href) open?.();
+          });
+          item.append(result);
+          searchList.append(item);
+        });
+        searchPanel.hidden = false;
+      }
+
+      searchInput.addEventListener("input", renderSearch);
+      searchInput.addEventListener("focus", renderSearch);
+      searchInput.addEventListener("keydown", (event) => {
+        if (event.key !== "ArrowDown" || searchPanel.hidden) return;
+        const first = searchList.querySelector("a, button");
+        if (!first) return;
+        event.preventDefault();
+        first.focus();
+      });
+      searchForm.addEventListener("submit", (event) => {
+        event.preventDefault();
+        if (searchPanel.hidden) renderSearch();
+        searchList.querySelector("a, button")?.click();
+      });
+      document.addEventListener("keydown", (event) => {
+        if (event.key !== "Escape" || searchPanel.hidden) return;
+        event.preventDefault();
+        searchInput.focus();
+        closeSearch();
+      });
+      document.addEventListener("click", (event) => {
+        if (!searchForm.contains(event.target) && !searchPanel.contains(event.target)) closeSearch();
+      });
+    }
+  }
+
   const emailNav = document.querySelectorAll(".email-nav");
   const emailSections = document.querySelectorAll(".email-section");
   emailNav.forEach((item) => {

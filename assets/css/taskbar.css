@@ -323,3 +323,64 @@
     gap: 12px;
   }
 }
+
+.search-panel {
+  position: fixed;
+  z-index: 998;
+  bottom: var(--taskbar-height);
+  left: 50%;
+  width: min(420px, calc(100vw - 16px));
+  max-height: min(360px, calc(100dvh - var(--navbar-height) - var(--taskbar-height)));
+  padding: 12px;
+  overflow: auto;
+  transform: translateX(-50%);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  background: var(--window-surface);
+  box-shadow: 0 14px 40px #0005;
+  color: var(--text-secondary);
+  scrollbar-color: var(--accent) transparent;
+}
+
+.search-panel p {
+  margin: 0 4px 6px;
+  font-size: 0.8rem;
+}
+
+.search-panel ul {
+  display: grid;
+  gap: 4px;
+  list-style: none;
+}
+
+.search-panel :is(a, button) {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  width: 100%;
+  min-height: 36px;
+  padding: 8px;
+  border: 1px solid transparent;
+  border-radius: 8px;
+  background: var(--surface-light);
+  color: inherit;
+  font: inherit;
+  font-size: 0.9rem;
+  text-align: left;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.search-panel :is(a, button):hover {
+  border-color: var(--accent);
+}
+
+.search-panel span {
+  font-size: 0.75rem;
+}
+
+.search-panel :is(a, button):focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 1px;
+}

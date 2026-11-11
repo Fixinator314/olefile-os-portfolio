@@ -1951,9 +1951,13 @@
             </div>
           </div>
 
-          <div class="containerInput">
-            <input placeholder="What app are you looking for?" type="text" />
-          </div>
+          <form class="containerInput" id="start-search" role="search">
+            <input id="start-search-input" placeholder="What app are you looking for?" type="search" aria-label="Search the portfolio from Start" aria-controls="start-search-results" autocomplete="off" />
+          </form>
+          <section class="search-panel start-search-results" id="start-search-results" aria-label="Start menu search results" hidden>
+            <p id="start-search-status" role="status"></p>
+            <ul id="start-search-list"></ul>
+          </section>
 
           <!-- PINNED -->
 
